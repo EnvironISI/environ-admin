@@ -115,6 +115,7 @@ function login() {
             var myStatus = response.status;
             if(myStatus == 200) {
                 storeInfo();
+                window.location = "../../pages/examples/profile.html";
             }
             return response
         })
@@ -161,7 +162,6 @@ function recoverPassword() {
                 sessionStorage.setItem('cidade', 'valor');
                 sessionStorage.setItem('pais', 'valor');
                 // document.getElementById("spanUser").innerText = data.user.email;
-                window.location = "../../pages/examples/profile.html";
             })
     }
 
