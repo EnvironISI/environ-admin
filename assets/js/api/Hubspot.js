@@ -155,10 +155,10 @@ function recoverPassword() {
             })
             .then((data) => {
                 console.log(data)
-                sessionStorage.setItem('nome', data.user.display_name);
+                sessionStorage.setItem('nome', data.user.displayName);
                 sessionStorage.setItem('photoURL',  data.user.photoURL);
                 sessionStorage.setItem('email',  data.user.email);
-                sessionStorage.setItem('phoneNumber',  data.user.phone_number);
+                sessionStorage.setItem('phoneNumber',  data.user.phoneNumber);
                 sessionStorage.setItem('cidade', 'valor');
                 sessionStorage.setItem('pais', 'valor');
                 // document.getElementById("spanUser").innerText = data.user.email;
