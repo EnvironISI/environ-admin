@@ -161,7 +161,7 @@ function recoverPassword() {
                 sessionStorage.setItem('cidade', 'valor');
                 sessionStorage.setItem('pais', 'valor');
                 // document.getElementById("spanUser").innerText = data.user.email;
-                // window.location = "../../pages/examples/profile.html";
+                window.location = "../../pages/examples/profile.html";
             })
     }
 
