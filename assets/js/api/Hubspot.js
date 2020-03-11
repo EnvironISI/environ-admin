@@ -47,7 +47,7 @@ function registerUser() {
         if (CheckPasswordStrength(password) == true) {
             if (confirmPassword == password) {
 
-                fetch("http://localhost:8080/register", {
+                fetch("https://environ-back.herokuapp.com/register", {
                         method: "POST",
                         headers: {
                             'Accept': 'application/json',
@@ -99,7 +99,7 @@ var articles;
 function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
-    fetch("http://localhost:8080/login", {
+    fetch("https://environ-back.herokuapp.com/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -128,7 +128,7 @@ function recoverPassword() {
     var email = document.getElementById("recoverEmail").value;
     console.log(email);
 
-    fetch("http://localhost:8080/recoverPassword", {
+    fetch("https://environ-back.herokuapp.com/recoverPassword", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -146,7 +146,7 @@ function recoverPassword() {
 }
 
 function storeInfo() {
-    var req = new Request("http://localhost:8080/user");
+    var req = new Request("https://environ-back.herokuapp.com/user");
     fetch(req)
         .then((response) => {
             return response.json()
