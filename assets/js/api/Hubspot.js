@@ -197,7 +197,7 @@ function storeInfo() {
     }
 
 function postIdTokenToSessionLogin(url, idToken, csrfToken){
-    fetch(url, {
+    fetch('https://environ-back.herokuapp.com'+url, {
         method: 'post',
         headers: {
             'Content-Type': 'application/json'
