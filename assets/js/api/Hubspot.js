@@ -112,14 +112,17 @@ function login() {
         })
         .then((response) => {
             var myStatus = response.status;
-            if(myStatus == 200) {
-                storeInfo();
-                window.location = "../../pages/examples/profile.html";
+            if(myStatus != 200) {
+                throw new Error("error");
             }
-            return response
+            return response.json()
         })
         .then((data) => {
             console.log(data)
+            localStorage.setItem('token', data.token);
+            window.location = "../../pages/examples/profile.html";
+        }).catch(error => {
+            console.log(error)
         })
 }
 
@@ -146,7 +149,12 @@ function recoverPassword() {
 
 function storeInfo() {
     var req = new Request("https://environ-back.herokuapp.com/user");
-    fetch(req)
+    fetch(req, {
+        method: 'get',
+        headers: {
+            "AuthToken": localStorage.getItem('token')
+        }
+    })
         .then((response) => {
             return response.json()
         })
