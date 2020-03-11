@@ -225,3 +225,14 @@ function debug(){
         console.log(error)
     })
 }
+
+function logout(){
+    fetch('https://environ-back.herokuapp.com/logout', {
+        method: 'get',
+        credentials: 'include'
+    }).then(response => {
+        if(response.ok){
+            window.location.reload();
+        }
+    })
+}
