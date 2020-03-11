@@ -131,7 +131,7 @@ function login() {
               // CSRF protection should be taken into account.
               // ...
               const csrfToken = getCookie('csrfToken')
-              return postIdTokenToSessionLogin('login', idToken, csrfToken);
+              return postIdTokenToSessionLogin(idToken, csrfToken);
             });
           }).then(() => {
             // A page redirect would suffice as the persistence is set to NONE.
@@ -196,8 +196,8 @@ function storeInfo() {
         document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
     }
 
-function postIdTokenToSessionLogin(url, idToken, csrfToken){
-    fetch('https://environ-back.herokuapp.com/'+url, {
+function postIdTokenToSessionLogin(idToken, csrfToken){
+    fetch('https://environ-back.herokuapp.com/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
