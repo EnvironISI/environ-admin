@@ -124,17 +124,21 @@ function login() {
         }).catch(error => {
             console.log(error)
         })*/
-    firebase.auth().signInWithEmailAndPassword(email, password).then((user) =>{
-        return user.getIdToken().then(idToken => {
-            const csrfToken = getCookie('csrfToken')
-            return postIdTokenToSessionLogin('/login', idToken, csrfToken);
-        });
-    }).then(() => {
-        // A page redirect would suffice as the persistence is set to NONE.
-        return firebase.auth().signOut();
-    }).then(() => {
-        window.location = "../../pages/examples/profile.html";
-    });
+        firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
+            // Get the user's ID token as it is needed to exchange for a session cookie.
+            return user.getIdToken().then(idToken => {
+              // Session login endpoint is queried and the session cookie is set.
+              // CSRF protection should be taken into account.
+              // ...
+              const csrfToken = getCookie('csrfToken')
+              return postIdTokenToSessionLogin('/login', idToken, csrfToken);
+            });
+          }).then(() => {
+            // A page redirect would suffice as the persistence is set to NONE.
+            return firebase.auth().signOut();
+          }).then(() => {
+            window.location = "../../pages/examples/profile.html";
+          });
 }
 
 function recoverPassword() {
