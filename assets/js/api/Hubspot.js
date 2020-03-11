@@ -47,7 +47,7 @@ function registerUser() {
         if (CheckPasswordStrength(password) == true) {
             if (confirmPassword == password) {
 
-                fetch("https://environ-back.herokuapp.com/register", {
+                fetch("http://localhost:8080/register", {
                         method: "POST",
                         headers: {
                             'Accept': 'application/json',
@@ -99,13 +99,13 @@ var articles;
 function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
-    fetch("https://environ-back.herokuapp.com/login", {
+    fetch("http://localhost:8080/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-
+            credentials: 'include',
             body: JSON.stringify({
                 email: email,
                 password: password
@@ -128,7 +128,7 @@ function recoverPassword() {
     var email = document.getElementById("recoverEmail").value;
     console.log(email);
 
-    fetch("https://environ-back.herokuapp.com/recoverPassword", {
+    fetch("http://localhost:8080/recoverPassword", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -145,25 +145,23 @@ function recoverPassword() {
         })
 }
 
-
-
-    function storeInfo() {
-        var req = new Request("https://environ-back.herokuapp.com/user");
-        fetch(req)
-            .then((response) => {
-                return response.json()
-            })
-            .then((data) => {
-                console.log(data)
-                sessionStorage.setItem('nome', data.user.displayName);
-                sessionStorage.setItem('photoURL',  data.user.photoURL);
-                sessionStorage.setItem('email',  data.user.email);
-                sessionStorage.setItem('phoneNumber',  data.user.phoneNumber);
-                sessionStorage.setItem('cidade', 'valor');
-                sessionStorage.setItem('pais', 'valor');
-                // document.getElementById("spanUser").innerText = data.user.email;
-            })
-    }
+function storeInfo() {
+    var req = new Request("http://localhost:8080/user");
+    fetch(req)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            console.log(data)
+            sessionStorage.setItem('nome', data.user.displayName);
+            sessionStorage.setItem('photoURL',  data.user.photoURL);
+            sessionStorage.setItem('email',  data.user.email);
+            sessionStorage.setItem('phoneNumber',  data.user.phoneNumber);
+            sessionStorage.setItem('cidade', 'valor');
+            sessionStorage.setItem('pais', 'valor');
+        // document.getElementById("spanUser").innerText = data.user.email;
+    })
+}
 
     function getUserInfo() {
         document.getElementById("input-email").value = sessionStorage.getItem("email");
