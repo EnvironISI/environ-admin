@@ -126,7 +126,7 @@ function login() {
         })*/
         firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
             // Get the user's ID token as it is needed to exchange for a session cookie.
-            return user.getIdToken().then(idToken => {
+            return user.user.getIdToken().then(idToken => {
               // Session login endpoint is queried and the session cookie is set.
               // CSRF protection should be taken into account.
               // ...
