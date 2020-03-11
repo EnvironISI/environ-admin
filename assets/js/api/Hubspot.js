@@ -139,6 +139,7 @@ function login() {
           }).then(() => {
             //window.location = "../../pages/examples/profile.html";
             console.log('hello')
+            console.log(document.cookie)
           });
 }
 
@@ -208,6 +209,16 @@ function postIdTokenToSessionLogin(url, idToken, csrfToken){
         return response.json()
     }).then(result => {
         console.log(result);
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
+function debug(){
+    fetch('https://environ-back.herokuapp.com/user').then(response => {
+        return response.json();
+    }).then(result => {
+        console.log(result)
     }).catch(error => {
         console.log(error)
     })
