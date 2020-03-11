@@ -204,6 +204,7 @@ function postIdTokenToSessionLogin(url, idToken, csrfToken){
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({idToken:idToken, csrfToken: csrfToken})
     }).then(response => {
         return response.json()
