@@ -131,7 +131,7 @@ function login() {
               // CSRF protection should be taken into account.
               // ...
               const csrfToken = getCookie('csrfToken')
-              return postIdTokenToSessionLogin('/login', idToken, csrfToken);
+              return postIdTokenToSessionLogin('login', idToken, csrfToken);
             });
           }).then(() => {
             // A page redirect would suffice as the persistence is set to NONE.
@@ -197,8 +197,8 @@ function storeInfo() {
     }
 
 function postIdTokenToSessionLogin(url, idToken, csrfToken){
-    fetch('https://environ-back.herokuapp.com'+url, {
-        method: 'post',
+    fetch('https://environ-back.herokuapp.com/'+url, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
