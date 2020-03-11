@@ -133,10 +133,10 @@ function login() {
               const csrfToken = getCookie('csrfToken')
               return postIdTokenToSessionLogin(idToken, csrfToken);
             });
-          }).then(() => {
+          /*}).then(() => {
               console.log('no')
             // A page redirect would suffice as the persistence is set to NONE.
-            return firebase.auth().signOut();
+            return firebase.auth().signOut();*/
           }).then(() => {
             window.location = "../../pages/examples/profile.html";
           });
