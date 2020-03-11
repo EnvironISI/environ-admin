@@ -233,7 +233,7 @@ function logout(){
         credentials: 'include'
     }).then(response => {
         if(response.ok){
-            window.location.reload();
+            window.location.assign("/pages/examples/login.html")
         }
     })
 }
