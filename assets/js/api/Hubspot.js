@@ -217,7 +217,8 @@ function postIdTokenToSessionLogin(url, idToken, csrfToken){
 
 function debug(){
     fetch('https://environ-back.herokuapp.com/user', {
-        method: 'get'
+        method: 'get',
+        credentials: 'include'
     }).then(response => {
         return response.json();
     }).then(result => {
