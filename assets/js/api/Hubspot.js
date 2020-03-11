@@ -99,7 +99,7 @@ var articles;
 function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
-    fetch("https://environ-back.herokuapp.com/login", {
+    /*fetch("https://environ-back.herokuapp.com/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -123,7 +123,18 @@ function login() {
             window.location = "../../pages/examples/profile.html";
         }).catch(error => {
             console.log(error)
-        })
+        })*/
+    firebase.auth().signInWithEmailAndPassword(email, password).then(() =>{
+        return user.getIdToken().then(idToken => {
+            const csrfToken = getCookie('csrfToken')
+            return postIdTokenToSessionLogin('/login', idToken, csrfToken);
+        });
+    }).then(() => {
+        // A page redirect would suffice as the persistence is set to NONE.
+        return firebase.auth().signOut();
+    }).then(() => {
+        window.location = "../../pages/examples/profile.html";
+    });
 }
 
 function recoverPassword() {
@@ -174,3 +185,19 @@ function storeInfo() {
         document.getElementById("input-email").value = sessionStorage.getItem("email");
         document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
     }
+
+function postIdTokenToSessionLogin(url, idToken, csrfToken){
+    fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({idToken:idToken, csrfToken: csrfToken})
+    }).then(response => {
+        return response.json()
+    }).then(result => {
+        console.log(result);
+    }).catch(error => {
+        console.log(error)
+    })
+}
