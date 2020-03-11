@@ -124,7 +124,7 @@ function login() {
         }).catch(error => {
             console.log(error)
         })*/
-    firebase.auth().signInWithEmailAndPassword(email, password).then(() =>{
+    firebase.auth().signInWithEmailAndPassword(email, password).then((user) =>{
         return user.getIdToken().then(idToken => {
             const csrfToken = getCookie('csrfToken')
             return postIdTokenToSessionLogin('/login', idToken, csrfToken);
