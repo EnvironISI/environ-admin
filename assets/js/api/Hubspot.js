@@ -105,7 +105,6 @@ function login() {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            credentials: 'include',
             body: JSON.stringify({
                 email: email,
                 password: password
