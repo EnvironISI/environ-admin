@@ -234,6 +234,7 @@ function debug(){
     }).then(result => {
         console.log(result)
         document.getElementById('hello').innerHTML += result.user.displayName;
+        document.getElementById('profile-card').innerHTML += `<img src=${result.user.photoUrl} alt="Image placeholder" class="card-img-top">`
     }).catch(error => {
         console.log(error)
     })
