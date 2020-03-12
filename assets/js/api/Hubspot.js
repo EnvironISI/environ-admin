@@ -84,10 +84,10 @@ function registerUser() {
     }
 }
 
-function login() {
+async function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
-    fetch("https://environ-back.herokuapp.com/login", {
+    await fetch("https://environ-back.herokuapp.com/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -106,11 +106,10 @@ function login() {
             return response.json()
         })
         .then((data) => {
-            const csrfToken = getCookie('csrfToken')
-            var idToken = data.idToken;
-            return postIdTokenToSessionLogin(idToken, csrfToken);
+            console.log(data)
+            window.location.assign("/pages/examples/profile.html");
         }).then(() => {
-            window.location = "../../pages/examples/profile.html";
+            
         }).catch(error => {
             console.log(error)
         })
@@ -202,7 +201,7 @@ function getUserInfo() {
     document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
 }
 
-async function postIdTokenToSessionLogin(idToken, csrfToken){
+/*async function postIdTokenToSessionLogin(idToken, csrfToken){
     await fetch('https://environ-back.herokuapp.com/sessionLogin', {
         method: 'POST',
         headers: {
@@ -217,7 +216,7 @@ async function postIdTokenToSessionLogin(idToken, csrfToken){
     }).catch(error => {
         console.log(error)
     })
-}
+}*/
 let user;
 
 function debug(){
