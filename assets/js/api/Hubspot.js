@@ -87,7 +87,7 @@ function registerUser() {
 function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
-    /*fetch("https://environ-back.herokuapp.com/login", {
+    fetch("https://environ-back.herokuapp.com/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -106,13 +106,15 @@ function login() {
             return response.json()
         })
         .then((data) => {
-            console.log(data)
-            localStorage.setItem('token', data.token);
+            const csrfToken = getCookie('csrfToken')
+            var idToken = data.idToken;
+            return postIdTokenToSessionLogin(idToken, csrfToken);
+        }).then(() => {
             window.location = "../../pages/examples/profile.html";
         }).catch(error => {
             console.log(error)
-        })*/
-        firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
+        })
+        /*firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
             // Get the user's ID token as it is needed to exchange for a session cookie.
             return user.user.getIdToken().then(idToken => {
               // Session login endpoint is queried and the session cookie is set.
@@ -124,10 +126,10 @@ function login() {
           /*}).then(() => {
               console.log('no')
             // A page redirect would suffice as the persistence is set to NONE.
-            return firebase.auth().signOut();*/
+            return firebase.auth().signOut();
           }).then(() => {
             window.location.assign("/pages/examples/profile.html")
-          });
+          });*/
 }
 
 async function logout(){
@@ -209,7 +211,7 @@ function getUserInfo() {
 }
 
 async function postIdTokenToSessionLogin(idToken, csrfToken){
-    await fetch('https://environ-back.herokuapp.com/login', {
+    await fetch('https://environ-back.herokuapp.com/sessionLogin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
