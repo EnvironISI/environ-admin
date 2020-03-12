@@ -138,7 +138,7 @@ function login() {
             // A page redirect would suffice as the persistence is set to NONE.
             return firebase.auth().signOut();*/
           }).then(() => {
-            setTimeout(window.location.assign("/pages/examples/profile.html"), 1000);
+            window.location.assign("/pages/examples/profile.html")
           });
 }
 
