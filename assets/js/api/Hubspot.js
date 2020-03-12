@@ -169,7 +169,7 @@ function recoverPassword() {
         })
     }).then((response) => {
         if(response.ok){
-            window.location.assign('/pages/example/login.html');
+            window.location.assign('/pages/examples/login.html');
         }
     })
 }
