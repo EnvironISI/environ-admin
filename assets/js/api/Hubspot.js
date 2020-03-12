@@ -32,7 +32,13 @@
 //             "<td>" + new Date(users[obj].updatedAt).toLocaleString() + "</td>"
 //     }
 // }
+var fileTag = document.getElementById("filetag"),
+    preview = document.getElementById("preview");
 
+let user;
+var articles;
+
+//Registar Utilizador
 function registerUser() {
     var name = document.getElementById("registerName").value;
     var email = document.getElementById("registerEmail").value;
@@ -84,76 +90,36 @@ function registerUser() {
     }
 }
 
+//Login Utilizador
 async function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
     await fetch("https://environ-back.herokuapp.com/login", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
         })
-        .then((response) => {
-            var myStatus = response.status;
-            if(myStatus != 200) {
-                throw new Error("error");
-            }
-            return response.json()
-        })
-        .then((data) => {
-            console.log(data)
-            window.location.assign("/pages/examples/profile.html");
-        }).then(() => {
-            
-        }).catch(error => {
-            console.log(error)
-        })
-        /*firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
-            // Get the user's ID token as it is needed to exchange for a session cookie.
-            return user.user.getIdToken().then(idToken => {
-              // Session login endpoint is queried and the session cookie is set.
-              // CSRF protection should be taken into account.
-              // ...
-              const csrfToken = getCookie('csrfToken')
-              return postIdTokenToSessionLogin(idToken, csrfToken);
-            });
-          /*}).then(() => {
-              console.log('no')
-            // A page redirect would suffice as the persistence is set to NONE.
-            return firebase.auth().signOut();
-          }).then(() => {
-            window.location.assign("/pages/examples/profile.html")
-          });*/
-}
-
-async function logout(){
-    await fetch('https://environ-back.herokuapp.com/logout', {
-        method: 'get',
-        credentials: 'include'
-    }).then(response => {
-        if(response.ok){
-            window.location.assign("/pages/examples/login.html")
+    }).then((response) => {
+        var myStatus = response.status;
+        if(myStatus != 200) {
+            throw new Error("error");
         }
+        return response.json()
+    })
+    .then((data) => {
+        console.log(data)
+        window.location.assign("/pages/examples/profile.html");
+    }).catch(error => {
+        console.log(error)
     })
 }
 
-function clearRegisterFields() {
-    document.getElementById("registerName").value == "";
-    document.getElementById("registerEmail").value == "";
-    document.getElementById("registerTelefone").value == "";
-    document.getElementById("registerCidade").value == "";
-    document.getElementById("registerPais").value == "";
-    document.getElementById("registerSetor").value == "";
-    document.getElementById("registerPassword").value == "";
-    document.getElementById("registerRepeatPassword").value == "";
-}
-var articles;
-
+//Recuperar Password Utilizador
 function recoverPassword() {
     var email = document.getElementById("recoverEmail").value;
     fetch("https://environ-back.herokuapp.com/recoverPassword", {
@@ -173,85 +139,19 @@ function recoverPassword() {
     })
 }
 
-function storeInfo() {
-    var req = new Request("https://environ-back.herokuapp.com/user");
-    fetch(req, {
-        method: 'get',
-        headers: {
-            "AuthToken": localStorage.getItem('token')
-        }
-    })
-        .then((response) => {
-            return response.json()
-        })
-        .then((data) => {
-            console.log(data)
-            sessionStorage.setItem('nome', data.user.displayName);
-            sessionStorage.setItem('photoURL',  data.user.photoURL);
-            sessionStorage.setItem('email',  data.user.email);
-            sessionStorage.setItem('phoneNumber',  data.user.phoneNumber);
-            sessionStorage.setItem('cidade', 'valor');
-            sessionStorage.setItem('pais', 'valor');
-        // document.getElementById("spanUser").innerText = data.user.email;
-    })
-}
-
-function getUserInfo() {
-    document.getElementById("input-email").value = sessionStorage.getItem("email");
-    document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
-}
-
-/*async function postIdTokenToSessionLogin(idToken, csrfToken){
-    await fetch('https://environ-back.herokuapp.com/sessionLogin', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({idToken:idToken, csrfToken: csrfToken})
-    }).then(response => {
-        return response.json()
-    }).then(result => {
-        console.log(result);
-    }).catch(error => {
-        console.log(error)
-    })
-}*/
-let user;
-
-function debug(){
-    fetch('https://environ-back.herokuapp.com/user', {
+//Logout Utilizador
+async function logout(){
+    await fetch('https://environ-back.herokuapp.com/logout', {
         method: 'get',
         credentials: 'include'
     }).then(response => {
-        return response.json();
-    }).then(result => {
-        console.log(result)
-        user = result.user;
-        document.getElementById('hello').innerHTML += result.user.displayName;
-        if(result.user.photoURL != null){
-            document.getElementById('preview').src = user.photoURL;
+        if(response.ok){
+            window.location.assign("/pages/examples/login.html")
         }
-    }).catch(error => {
-        console.log(error)
     })
 }
 
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-var fileTag = document.getElementById("filetag"),
-    preview = document.getElementById("preview");
-
-if(fileTag != null){
-    fileTag.addEventListener("change", function() {
-        edit(this);
-    });
-}
-
+//Editar Utilizador
 function edit(input){
     var reader;
   
@@ -333,5 +233,69 @@ function edit(input){
             });
         });
     }
+}
+
+//Limpar Campos
+function clearRegisterFields() {
+    document.getElementById("registerName").value == "";
+    document.getElementById("registerEmail").value == "";
+    document.getElementById("registerTelefone").value == "";
+    document.getElementById("registerCidade").value == "";
+    document.getElementById("registerPais").value == "";
+    document.getElementById("registerSetor").value == "";
+    document.getElementById("registerPassword").value == "";
+    document.getElementById("registerRepeatPassword").value == "";
+}
+
+function storeInfo() {
+    var req = new Request("https://environ-back.herokuapp.com/user");
+    fetch(req, {
+        method: 'get',
+        headers: {
+            "AuthToken": localStorage.getItem('token')
+        }
+    })
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            console.log(data)
+            sessionStorage.setItem('nome', data.user.displayName);
+            sessionStorage.setItem('photoURL',  data.user.photoURL);
+            sessionStorage.setItem('email',  data.user.email);
+            sessionStorage.setItem('phoneNumber',  data.user.phoneNumber);
+            sessionStorage.setItem('cidade', 'valor');
+            sessionStorage.setItem('pais', 'valor');
+        // document.getElementById("spanUser").innerText = data.user.email;
+    })
+}
+
+function getUserInfo() {
+    document.getElementById("input-email").value = sessionStorage.getItem("email");
+    document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
+}
+
+function debug(){
+    fetch('https://environ-back.herokuapp.com/user', {
+        method: 'get',
+        credentials: 'include'
+    }).then(response => {
+        return response.json();
+    }).then(result => {
+        console.log(result)
+        user = result.user;
+        document.getElementById('hello').innerHTML += result.user.displayName;
+        if(result.user.photoURL != null){
+            document.getElementById('preview').src = user.photoURL;
+        }
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
+if(fileTag != null){
+    fileTag.addEventListener("change", function() {
+        edit(this);
+    });
 }
 
