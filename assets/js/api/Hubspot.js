@@ -157,28 +157,20 @@ var articles;
 
 function recoverPassword() {
     var email = document.getElementById("recoverEmail").value;
-    console.log(email);
-
-    /*fetch("https://environ-back.herokuapp.com/recoverPassword", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-
-            body: JSON.stringify({
-                email: email,
-            })
+    fetch("https://environ-back.herokuapp.com/recoverPassword", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        credentials:'include',
+        body: JSON.stringify({
+            email: email,
         })
-        .then((response) => {
-            console.log(response.json())
-            return response.json();
-        })*/
-    firebase.auth().sendPasswordResetEmail(email).then(function() {
-        // Email sent.
-        console.log("Email sent");
-    }).catch(error => {
-        console.log(error)
+    }).then((response) => {
+        if(response.ok){
+            window.location.assign('/pages/example/login.html');
+        }
     })
 }
 
