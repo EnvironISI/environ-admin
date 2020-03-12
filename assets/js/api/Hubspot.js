@@ -197,8 +197,8 @@ function storeInfo() {
         document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
     }
 
-function postIdTokenToSessionLogin(idToken, csrfToken){
-    fetch('https://environ-back.herokuapp.com/login', {
+async function postIdTokenToSessionLogin(idToken, csrfToken){
+    await fetch('https://environ-back.herokuapp.com/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -227,8 +227,8 @@ function debug(){
     })
 }
 
-function logout(){
-    fetch('https://environ-back.herokuapp.com/logout', {
+async function logout(){
+    await fetch('https://environ-back.herokuapp.com/logout', {
         method: 'get',
         credentials: 'include'
     }).then(response => {
