@@ -234,7 +234,9 @@ function debug(){
     }).then(result => {
         console.log(result)
         document.getElementById('hello').innerHTML += result.user.displayName;
-        document.getElementById('profile-img').src = result.user.photoUrl;
+        if(result.user.photoURL != null){
+            document.getElementById('profile-img').src = result.user.photoUrl;
+        }
     }).catch(error => {
         console.log(error)
     })
