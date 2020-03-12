@@ -312,17 +312,28 @@ function edit(input){
         }, function() {
             // Upload completed successfully, now we can get the download URL
             uploadTask.snapshot.ref.getDownloadURL().then(async function(downloadURL) {
-                console.log(user);
-                /*await fetch('https://environ-back.herokuapp.com/edit', {
+                await fetch('https://environ-back.herokuapp.com/edit', {
                     method: 'PUT',
                     credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: {
-                        email: get
+                        email: user.email,
+                        display_name: user.displayName,
+                        photo_url: downloadURL,
+                        phone: user.phoneNumber,
+                        city: '',
+                        country: '',
+                        nif: ''
                     }
-                })*/
+                }).then(response => {
+                    return response.json();
+                }).then(result => {
+                    console.log(result);
+                }).catch(error => {
+                    console.log(error)
+                })
             });
         });
     }
