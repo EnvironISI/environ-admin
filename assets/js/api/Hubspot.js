@@ -237,7 +237,7 @@ function debug(){
         user = result.user;
         document.getElementById('hello').innerHTML += result.user.displayName;
         if(result.user.photoURL != null){
-            document.getElementById('profile-img').src = result.user.photoUrl;
+            document.getElementById('profile-img').src = user.photoURL;
         }
     }).catch(error => {
         console.log(error)
@@ -331,7 +331,7 @@ function edit(input){
                 }).then(response => {
                     return response.json();
                 }).then(result => {
-                    console.log(result);
+                    console.log(result.data);
                 }).catch(error => {
                     console.log(error)
                 })
