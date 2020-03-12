@@ -252,10 +252,12 @@ function getCookie(name) {
 
 var fileTag = document.getElementById("filetag"),
     preview = document.getElementById("preview");
-    
-fileTag.addEventListener("change", function() {
-  edit(this);
-});
+
+if(fileTag != null){
+    fileTag.addEventListener("change", function() {
+        edit(this);
+    });
+}
 
 function edit(input){
     var reader;
