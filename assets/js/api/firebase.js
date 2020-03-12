@@ -1,6 +1,6 @@
 // TODO: Replace the following with your app's Firebase project configuration
 var firebaseConfig = {
-    apiKey: process.env.API_KEY,
+    apiKey: "AIzaSyB8MYslNwT_i3mCs7UhuiU4ZlF8TFmU5P8",
     authDomain: "isienviron.firebaseapp.com",
     databaseURL: "https://isienviron.firebaseio.com",
     projectId: "isienviron",
