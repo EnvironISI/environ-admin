@@ -224,6 +224,7 @@ async function postIdTokenToSessionLogin(idToken, csrfToken){
         console.log(error)
     })
 }
+let user;
 
 function debug(){
     fetch('https://environ-back.herokuapp.com/user', {
@@ -233,6 +234,7 @@ function debug(){
         return response.json();
     }).then(result => {
         console.log(result)
+        user = result.user;
         document.getElementById('hello').innerHTML += result.user.displayName;
         if(result.user.photoURL != null){
             document.getElementById('profile-img').src = result.user.photoUrl;
@@ -309,8 +311,18 @@ function edit(input){
             }
         }, function() {
             // Upload completed successfully, now we can get the download URL
-            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                console.log('File available at', downloadURL);
+            uploadTask.snapshot.ref.getDownloadURL().then(async function(downloadURL) {
+                console.log(user);
+                /*await fetch('https://environ-back.herokuapp.com/edit', {
+                    method: 'PUT',
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: {
+                        email: get
+                    }
+                })*/
             });
         });
     }
