@@ -312,21 +312,22 @@ function edit(input){
         }, function() {
             // Upload completed successfully, now we can get the download URL
             uploadTask.snapshot.ref.getDownloadURL().then(async function(downloadURL) {
+                let body = {
+                    email: user.email,
+                    display_name: user.displayName,
+                    photo_url: downloadURL,
+                    phone: user.phoneNumber,
+                    city: '',
+                    country: '',
+                    nif: ''
+                }
                 await fetch('https://environ-back.herokuapp.com/edit/'+user.uid, {
                     method: 'PUT',
                     credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: {
-                        email: user.email,
-                        display_name: user.displayName,
-                        photo_url: downloadURL,
-                        phone: user.phoneNumber,
-                        city: '',
-                        country: '',
-                        nif: ''
-                    }
+                    body: JSON.stringify(body)
                 }).then(response => {
                     return response.json();
                 }).then(result => {
