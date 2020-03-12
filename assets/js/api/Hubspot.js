@@ -84,18 +84,6 @@ function registerUser() {
     }
 }
 
-function clearRegisterFields() {
-    document.getElementById("registerName").value == "";
-    document.getElementById("registerEmail").value == "";
-    document.getElementById("registerTelefone").value == "";
-    document.getElementById("registerCidade").value == "";
-    document.getElementById("registerPais").value == "";
-    document.getElementById("registerSetor").value == "";
-    document.getElementById("registerPassword").value == "";
-    document.getElementById("registerRepeatPassword").value == "";
-}
-var articles;
-
 function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
@@ -142,17 +130,34 @@ function login() {
           });
 }
 
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-  }
+async function logout(){
+    await fetch('https://environ-back.herokuapp.com/logout', {
+        method: 'get',
+        credentials: 'include'
+    }).then(response => {
+        if(response.ok){
+            window.location.assign("/pages/examples/login.html")
+        }
+    })
+}
+
+function clearRegisterFields() {
+    document.getElementById("registerName").value == "";
+    document.getElementById("registerEmail").value == "";
+    document.getElementById("registerTelefone").value == "";
+    document.getElementById("registerCidade").value == "";
+    document.getElementById("registerPais").value == "";
+    document.getElementById("registerSetor").value == "";
+    document.getElementById("registerPassword").value == "";
+    document.getElementById("registerRepeatPassword").value == "";
+}
+var articles;
 
 function recoverPassword() {
     var email = document.getElementById("recoverEmail").value;
     console.log(email);
 
-    fetch("https://environ-back.herokuapp.com/recoverPassword", {
+    /*fetch("https://environ-back.herokuapp.com/recoverPassword", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -166,7 +171,13 @@ function recoverPassword() {
         .then((response) => {
             console.log(response.json())
             return response.json();
-        })
+        })*/
+    firebase.auth().sendPasswordResetEmail(email).then(function() {
+        // Email sent.
+        console.log("Email sent");
+    }).catch(error => {
+        console.log(error)
+    })
 }
 
 function storeInfo() {
@@ -192,10 +203,10 @@ function storeInfo() {
     })
 }
 
-    function getUserInfo() {
-        document.getElementById("input-email").value = sessionStorage.getItem("email");
-        document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
-    }
+function getUserInfo() {
+    document.getElementById("input-email").value = sessionStorage.getItem("email");
+    document.getElementById("emailInfo").innerText = sessionStorage.getItem("email");
+}
 
 async function postIdTokenToSessionLogin(idToken, csrfToken){
     await fetch('https://environ-back.herokuapp.com/login', {
@@ -227,13 +238,9 @@ function debug(){
     })
 }
 
-async function logout(){
-    await fetch('https://environ-back.herokuapp.com/logout', {
-        method: 'get',
-        credentials: 'include'
-    }).then(response => {
-        if(response.ok){
-            window.location.assign("/pages/examples/login.html")
-        }
-    })
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
 }
+
