@@ -233,6 +233,7 @@ function debug(){
         return response.json();
     }).then(result => {
         console.log(result)
+        document.getElementById('hello').innerHTML += result.user.displayName;
     }).catch(error => {
         console.log(error)
     })
