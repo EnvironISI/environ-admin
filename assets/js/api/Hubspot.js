@@ -1,5 +1,5 @@
-// window.onload(hubspot());
-// var users;
+window.onload(hubspot());
+var users;
 
 // function hubspot() {
 //     var url =
@@ -46,6 +46,7 @@ function registerUser() {
     var city = document.getElementById("registerCidade").value;
     var country = document.getElementById("registerPais").value;
     var sector = document.getElementById("registerSetor").value;
+    var nif = document.getElementById("registerNif").value;
     var password = document.getElementById("registerPassword").value;
     var confirmPassword = document.getElementById("registerRepeatPassword").value;
     console.log(password);
@@ -67,6 +68,7 @@ function registerUser() {
                             city: city,
                             country: country,
                             sector: sector,
+                            nif: nif,
                             password: password
                         })
                     })
@@ -100,6 +102,7 @@ async function login() {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
             email: email,
             password: password
@@ -113,7 +116,7 @@ async function login() {
     })
     .then((data) => {
         console.log(data)
-        window.location.assign("/pages/examples/profile.html");
+        window.location.assign("../../pages/examples/profile.html");
     }).catch(error => {
         console.log(error)
     })
@@ -146,7 +149,7 @@ async function logout(){
         credentials: 'include'
     }).then(response => {
         if(response.ok){
-            window.location.assign("/pages/examples/login.html")
+            window.location.assign("../../pages/examples/login.html")
         }
     })
 }
@@ -282,12 +285,11 @@ function debug(){
     }).then(response => {
         return response.json();
     }).then(result => {
-        console.log(result)
-        user = result.user;
-        document.getElementById('hello').innerHTML += result.user.displayName;
-        if(result.user.photoURL != null){
-            document.getElementById('preview').src = user.photoURL;
-        }
+        console.log(result);
+        setUserInfo(result);
+        // if(result.user.photoURL != null){
+        //     document.getElementById('preview').src = user.photoURL;
+        // }
     }).catch(error => {
         console.log(error)
     })
@@ -297,5 +299,24 @@ if(fileTag != null){
     fileTag.addEventListener("change", function() {
         edit(this);
     });
+}
+
+function setUserInfo(result) {
+    document.getElementById("hello").innerHTML = result.user.displayName;
+    document.getElementById("hello1").innerHTML = result.user.displayName;
+    document.getElementById("hello2").innerHTML = result.user.displayName;
+    document.getElementById("hello3").innerHTML = result.user.displayName;
+    document.getElementById("hello4").innerHTML = result.user.displayName;
+    document.getElementById("hello5").innerHTML = result.user.displayName;
+    document.getElementById("hello6").innerHTML = result.user.displayName;
+    document.getElementById("nameInfo").value = result.user.displayName;
+    document.getElementById("input-name").value = result.user.displayName;
+    document.getElementById("input-email").value = result.user.email;
+    document.getElementById("input-phone").value = result.user.phoneNumber;
+    document.getElementById("preview").src = result.user.photoURL;
+    document.getElementById("outpu-email").innerHTML = result.user.email;
+    
+    // document.getElementById("input-nif").value = result.user.displayName;
+    
 }
 

@@ -240,10 +240,16 @@
                           ><i class="fas fa-phone"></i
                         ></span>
                       </div>
-                      <input
-                        class="form-control"
-                        placeholder="Telefone"
+                      <select 
+                        id="countries_phone1" 
+                        class="form-control bfh-countries" 
+                        data-country="PT">
+                      </select>
+                      <input 
                         type="tel"
+                        placeholder="Telefone" 
+                        class="form-control bfh-phone" 
+                        data-country="countries_phone1"
                         id="registerTelefone"
                       />
                     </div>
@@ -296,6 +302,22 @@
                         placeholder="Setor"
                         type="text"
                         id="registerSetor"
+                      />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div
+                      class="input-group input-group-merge input-group-alternative mb-3"
+                    >
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"
+                          ><i class="fas fa-id-card"></i></span>
+                      </div>
+                      <input
+                        class="form-control"
+                        placeholder="NIF"
+                        type="number"
+                        id="registerNif"
                       />
                     </div>
                   </div>
@@ -501,37 +523,22 @@
     <script src="../../assets/js/demo.min.js"></script>
     <!-- Password options-->
     <script src="../../assets/js/passwords/passwordOptions.js"></script>
-
     <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+    <script src="../../assets//js/api/firebase.js"></script> 
     <script src="../../assets/js/api/Hubspot.js"></script>
     <script src="../../assets/js/api/intTelFormat.js"></script>
     <script>
-      var input = document.querySelector("input"),
-        form = document.querySelector("form"),
-        result = document.querySelector("#result");
-
-      var iti = intlTelInput(input, {
-        initialCountry: "pt"
-      });
-
-      form.addEventListener(
-        "submit",
-        function(e) {
-          e.preventDefault();
-          var num = iti.getNumber(),
-            valid = iti.isValidNumber();
-          result.textContent = "Number: " + num + ", valid: " + valid;
-        },
-        false
-      );
-
-      input.addEventListener(
-        "focus",
-        function() {
-          result.textContent = "";
-        },
-        false
-      );
+      function test() {
+        console.log(document.getElementById("registerTelefone").value);
+      }
     </script>
   </body>
 </html>
