@@ -27,6 +27,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
 </head>
@@ -38,8 +39,8 @@
       <!-- Brand -->
       <div class="sidenav-header d-flex align-items-center">
         <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
-          <img src="../../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
+            <img src="../../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          </a>
         <div class="ml-auto">
           <!-- Sidenav toggler -->
           <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
@@ -58,13 +59,13 @@
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="#navbar-dashboards" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-dashboards">
-                <i class="ni ni-shop text-primary"></i>
-                <span class="nav-link-text">Página inicial</span>
-              </a>
+                  <i class="ni ni-shop text-primary"></i>
+                  <span class="nav-link-text">Página inicial</span>
+                </a>
               <div class="collapse" id="navbar-dashboards">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../../pages/dashboards/dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="../../pages/dashboards/dashboard.html" class="nav-link">Página Inicial</a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/dashboards/alternative.html" class="nav-link">Alternative</a>
@@ -73,10 +74,60 @@
               </div>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="../../pages/components/news.html">
+                   <i class="fas fa-newspaper" style="color:#4b8b3b;"></i>
+                   <span class="nav-link-text">Notícias</span>
+                 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/examples/weather.html">
+                   <i class="fas fa-temperature-high" style="color:#1d84b5;;"></i>
+                   <span class="nav-link-text">Metereologia</span>
+                 </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#navbar-events" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-events">
+                  <i class="fas fa-calendar-alt" style="color:#808080;;"></i>
+                    <span class="nav-link-text">Eventos</span>
+                </a>
+              <div class="collapse" id="navbar-events">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="../../pages/maps/evento.html" class="nav-link">Listar Eventos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../pages/dashboards/alternative.html" class="nav-link">Pedir Eventos</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#navbar-users" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-users">
+                    <i class="fas fa-users" style="color:#C4302B;;"></i>
+                    <span class="nav-link-text">Utilizadores</span>
+                </a>
+              <div class="collapse" id="navbar-users">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="../../pages/tables/Utilizadores.html" class="nav-link">Listar utilizadores</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../pages/dashboards/alternative.html" class="nav-link">Criar utilizadores</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/maps/OpenChargeMap.html">
+                  <i class="fas fa-charging-station" style="color:#e6e600;"></i>
+                  <span class="nav-link-text">Open Charge Map</span>
+                </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
-                <i class="ni ni-ungroup text-orange"></i>
-                <span class="nav-link-text">Examples</span>
-              </a>
+                  <i class="ni ni-ungroup text-orange"></i>
+                  <span class="nav-link-text">Examples</span>
+                </a>
               <div class="collapse" id="navbar-examples">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
@@ -92,7 +143,7 @@
                     <a href="../../pages/examples/lock.html" class="nav-link">Lock</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/examples/timeline.html" class="nav-link">Timeline</a>
+                    <a href="../../pages/examples/timeline.html" class="nav-link active">Timeline</a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/examples/profile.html" class="nav-link">Profile</a>
@@ -102,9 +153,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#navbar-components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
-                <i class="ni ni-ui-04 text-info"></i>
-                <span class="nav-link-text">Components</span>
-              </a>
+                  <i class="ni ni-ui-04 text-info"></i>
+                  <span class="nav-link-text">Components</span>
+                </a>
               <div class="collapse" id="navbar-components">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
@@ -146,9 +197,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#navbar-forms" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-forms">
-                <i class="ni ni-single-copy-04 text-pink"></i>
-                <span class="nav-link-text">Forms</span>
-              </a>
+                  <i class="ni ni-single-copy-04 text-pink"></i>
+                  <span class="nav-link-text">Forms</span>
+                </a>
               <div class="collapse" id="navbar-forms">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
@@ -165,9 +216,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#navbar-tables" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-tables">
-                <i class="ni ni-align-left-2 text-default"></i>
-                <span class="nav-link-text">Tables</span>
-              </a>
+                  <i class="ni ni-align-left-2 text-default"></i>
+                  <span class="nav-link-text">Tables</span>
+                </a>
               <div class="collapse" id="navbar-tables">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
@@ -184,9 +235,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#navbar-maps" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-maps">
-                <i class="ni ni-map-big text-primary"></i>
-                <span class="nav-link-text">Maps</span>
-              </a>
+                  <i class="ni ni-map-big text-primary"></i>
+                  <span class="nav-link-text">Maps</span>
+                </a>
               <div class="collapse" id="navbar-maps">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
@@ -200,21 +251,21 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../pages/widgets.html">
-                <i class="ni ni-archive-2 text-green"></i>
-                <span class="nav-link-text">Widgets</span>
-              </a>
+                  <i class="ni ni-archive-2 text-green"></i>
+                  <span class="nav-link-text">Widgets</span>
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../pages/charts.html">
-                <i class="ni ni-chart-pie-35 text-info"></i>
-                <span class="nav-link-text">Charts</span>
-              </a>
+                  <i class="ni ni-chart-pie-35 text-info"></i>
+                  <span class="nav-link-text">Charts</span>
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../pages/calendar.html">
-                <i class="ni ni-calendar-grid-58 text-red"></i>
-                <span class="nav-link-text">Calendar</span>
-              </a>
+                  <i class="ni ni-calendar-grid-58 text-red"></i>
+                  <span class="nav-link-text">Calendar</span>
+                </a>
             </li>
           </ul>
           <!-- Divider -->
@@ -225,27 +276,27 @@
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
               <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
-                <i class="ni ni-spaceship"></i>
-                <span class="nav-link-text">Getting started</span>
-              </a>
+                  <i class="ni ni-spaceship"></i>
+                  <span class="nav-link-text">Getting started</span>
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
-              </a>
+                  <i class="ni ni-palette"></i>
+                  <span class="nav-link-text">Foundation</span>
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">Components</span>
-              </a>
+                  <i class="ni ni-ui-04"></i>
+                  <span class="nav-link-text">Components</span>
+                </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
-                <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Plugins</span>
-              </a>
+                  <i class="ni ni-chart-pie-35"></i>
+                  <span class="nav-link-text">Plugins</span>
+                </a>
             </li>
           </ul>
         </div>
@@ -258,20 +309,6 @@
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative input-group-merge">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-                <input class="form-control" placeholder="Search" type="text">
-              </div>
-            </div>
-            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </form>
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center ml-md-auto">
             <li class="nav-item d-xl-none">
@@ -550,14 +587,14 @@
                 </h5>
                 <h5 class="h3"><span id="emailInfo" class="font-weight-light"></span>
                 </h5>
-                <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                <div class="h5 font-weight-300" id="output-city-country">
+                  <i class="ni location_pin mr-2"></i>
                 </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2" id="output-email"></i>
+                <div class="h5 mt-4" id="output-email">
+                  <i class="ni business_briefcase-24 mr-2"></i>
                 </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>University of Computer Science
+                <div id="output-sector" class="text-uppercase">
+                  <i class="ni education_hat mr-2"></i>
                 </div>
               </div>
             </div>
@@ -618,7 +655,7 @@
                   <h3 class="mb-0">Editar perfil</h3>
                 </div>
                 <div class="col-4 text-right">
-                  <a class="text-white btn btn-sm btn-primary">Configurações</a>
+                  <a id="blockUnblock" onclick="blockUnblock()" class="text-white btn btn-sm btn-success">Desbloquear configurações</a>
                 </div>
               </div>
             </div>
@@ -629,34 +666,34 @@
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-username">Nome</label>
-                        <input type="text" id="input-name" class="form-control" placeholder="Username" value="">
+                        <label class="form-control-label" for="input-name">Nome</label>
+                        <input disabled type="text" id="input-name" class="form-control" placeholder="Nome" value="">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">NIF</label>
-                        <input type="number" id="input-nif" class="form-control" placeholder="">
+                        <label class="form-control-label" for="input-nif">NIF</label>
+                        <input disabled type="number" id="input-nif" class="form-control" placeholder="NIF">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">Email</label>
+                        <label class="form-control-label" for="input-email">Email</label>
                         <input type="email" id="input-email" class="form-control" placeholder="Email" value="">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-last-name">Contacto telefónico</label>
-                        <input type="text" id="input-phone" class="form-control" placeholder="Last name" value="">
+                        <label class="form-control-label" for="input-phone">Contacto telefónico</label>
+                        <input type="text" id="input-phone" class="form-control" placeholder="Contacto telefónico" value="">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-last-name">Foto</label>
-                        <input type="file" class="form-control" id="filetag">
+                        <label class="form-control-label" for="filetag">Foto</label>
+                        <input disabled type="file" class="form-control" id="filetag">
                       </div>
                     </div>
                   </div>
@@ -677,33 +714,39 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-city">Cidade</label>
-                        <input type="text" id="input-cidade" class="form-control" placeholder="Cidade" value="Braga">
+                        <input disabled type="text" id="input-cidade" class="form-control" placeholder="Cidade" value="">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">País</label>
-                        <input type="text" id="input-pais" class="form-control" placeholder="País" value="Portugal">
+                        <input disabled type="text" id="input-pais" class="form-control" placeholder="País" value="">
                       </div>
                     </div>
-                    <!-- <div class="col-lg-4">
+                    <div hidden class="col-lg-4">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" id="input-postal-code" class="form-control" placeholder="Postal code">
+                        <label class="form-control-label" for="input-country">Photo</label>
+                        <input type="text" id="input-photo" class="form-control" placeholder="">
                       </div>
-                    </div> -->
+                    </div>
                   </div>
                 </div>
                 <hr class="my-4" />
                 <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">About me</h6>
                 <div class="pl-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label">About Me</label>
-                    <textarea rows="4" class="form-control" placeholder="A few words about you ...">A beautiful premium dashboard for Bootstrap 4.</textarea>
+                  <div class="row justify-content-between">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <button disabled id="atualizarConta" onclick="updateUserInfo()" type="button" class="btn btn-primary">Atualizar informação</button>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                      <div class="form-group">
+                        <button disabled id="apagarConta" type="button" onclick="deleteUser()" class="btn btn-danger">Eliminar conta</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <button class="btn btn-primary">Atualizar informação</button>
               </form>
             </div>
           </div>
@@ -730,13 +773,14 @@
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
   <!-- Add Firebase products that you want to use -->
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
-  <script src="../../assets//js/api/firebase.js"></script>  
+  <script src="../../assets//js/api/firebase.js"></script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
@@ -747,11 +791,13 @@
   <!-- Demo JS - remove this in your project -->
   <script src="../../assets/js/demo.min.js"></script>
   <script src="../../assets/js/api/Hubspot.js"></script>
+
+
   <script>
     //storeInfo();
     debug();
-    
   </script>
+  <script src="../../assets/js/api/profile.js"></script>
 </body>
 
 </html>
