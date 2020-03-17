@@ -1,0 +1,407 @@
+<!-- =========================================================
+* Argon Dashboard PRO v1.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-pro
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4." />
+  <meta name="author" content="Creative Tim" />
+  <title>environ.</title>
+  <!-- Favicon -->
+  <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png" />
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css" />
+  <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css" />
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css" />
+</head>
+
+<body class="bg-default">
+  <!-- Navbar -->
+  <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
+          <img src="../../assets/img/brand/white.png" />
+        </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="../../pages/dashboards/dashboard.html">
+                  <img src="../../assets/img/brand/white.png" />
+                </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span></span>
+                  <span></span>
+                </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a href="../../pages/dashboards/dashboard.html" class="nav-link">
+                <span class="nav-link-inner--text">Página Inicial</span>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="../../pages/examples/login.html" class="nav-link">
+                <span class="nav-link-inner--text">Login</span>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="../../pages/examples/forgotPassword.html" class="nav-link">
+                <span class="nav-link-inner--text">Recuperar password</span>
+              </a>
+          </li>
+        </ul>
+        <hr class="d-lg-none" />
+        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="" target="_blank" data-toggle="tooltip" data-original-title="Segue-nos no Facebook">
+                <i class="fab fa-facebook-square"></i>
+                <span class="nav-link-inner--text d-lg-none">Facebook</span>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="" target="_blank" data-toggle="tooltip" data-original-title="Segue-nos no Instagram">
+                <i class="fab fa-instagram"></i>
+                <span class="nav-link-inner--text d-lg-none">Instagram</span>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" href="" target="_blank" data-toggle="tooltip" data-original-title="Segue-nos no Twitter">
+                <i class="fab fa-twitter-square"></i>
+                <span class="nav-link-inner--text d-lg-none">Twitter</span>
+              </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+      <div class="container"></div>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <polygon
+              class="fill-default"
+              points="2560 0 2560 100 0 100"
+            ></polygon>
+          </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div id="registerDiv" class="container mt--8 pb-5">
+      <!-- Table -->
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-secondary border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Registo com credenciais</small>
+              </div>
+              <form role="form">
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" placeholder="Name" type="text" id="registerName" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" placeholder="Email" type="email" id="registerEmail" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-phone"></i
+                        ></span>
+                    </div>
+                    <select id="countries_phone1" class="form-control bfh-countries" data-country="PT">
+                      </select>
+                    <input type="tel" placeholder="Telefone" class="form-control bfh-phone" data-country="countries_phone1" id="registerTelefone" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-city"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" placeholder="Cidade" type="text" id="registerCidade" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-globe"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" placeholder="País" type="text" id="registerPais" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-tag"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" placeholder="Setor" type="text" id="registerSetor" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-tag"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" placeholder="Nome do Responsável" type="text" id="registerResponsible" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="NIF" type="number" id="registerNif" />
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-building"></i></span>
+                    </div>
+                    <select class="form-control" id="registerType">
+        <option>camara</option>
+      <option>empresa</option>
+    </select>
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" id="registerPassword" onkeyup="CheckPasswordStrength(this.value); return this.passed" placeholder="Password" type="password" />
+                    <button type="button" onclick="visible()" class="btn btn-secondary btn-md">
+                        <i id="eye" class="far fa-eye"></i>
+                      </button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i
+                        ></span>
+                    </div>
+                    <input class="form-control" type="password" id="registerRepeatPassword" placeholder="Confirmar Password" type="passwordConfirm" />
+                  </div>
+                </div>
+                <div class="text-muted font-italic">
+                  <small>Requisitos:
+                      <span
+                        id=""
+                        class="badge badge-pill badge-warning font-weight-700"
+                        >8 dígitos, Letra Maíuscula e minúscula</span
+                      ></small
+                    >
+                  </div>
+                  <div class="text-muted font-italic">
+                    <small
+                      >Força da password:
+                      <span
+                        id="password_strength"
+                        class="font-weight-700"
+                      ></span
+                    ></small>
+                </div>
+                <div class="row my-4">
+                  <div class="col-12">
+                    <div class="custom-control custom-control-alternative custom-checkbox">
+                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" />
+                      <label class="custom-control-label" for="customCheckRegister">
+                          <span class="text-muted"
+                            >Concordo com
+                            <a href="#!">Política de privacidade</a></span
+                          >
+                        </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button id="register" type="button" onclick="registerUser()" class="btn btn-primary mt-4">
+                      Criar conta
+                    </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="py-5" id="footer-main">
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-muted">
+            &copy; 2020
+            <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">environ.</a
+              >
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <ul
+              class="nav nav-footer justify-content-center justify-content-xl-end"
+            >
+              <li class="nav-item">
+                <a
+                  href="https://www.creative-tim.com"
+                  class="nav-link"
+                  target="_blank"
+                  >environ.</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <button
+        style="display: none;"
+        id="WORKING"
+        class="btn btn-warning"
+        data-toggle="notify"
+        data-message="Requisitos de password não cumpridos"
+        data-title="A password deve conter pelo menos 8 dígitos dos quais pelo menos 1 letra Maiúscula, 1 letra minúscula e 1 número."
+        data-placement="top"
+        data-align="center"
+        data-type="warning"
+        data-icon="ni ni-bell-55"
+      >
+        Warning
+      </button>
+      <button
+        style="display: none;"
+        id="NOTWORKING"
+        class="btn btn-warning"
+        data-toggle="notify"
+        data-message="Passwords não correspondem"
+        data-title="Não foi possível concluir o registo uma vez que as passwords não correspondem"
+        data-placement="top"
+        data-align="center"
+        data-type="warning"
+        data-icon="ni ni-bell-55"
+      >
+        Warning
+      </button>
+      <button
+        style="display: none;"
+        id="EMPTYFIELDS"
+        class="btn btn-warning"
+        data-toggle="notify"
+        data-message="Campos vazios"
+        data-title="Não foi possível concluir o registo uma vez que alguns dos campos se encontram por preencher"
+        data-placement="top"
+        data-align="center"
+        data-type="warning"
+        data-icon="ni ni-bell-55"
+      >
+        Warning
+      </button>
+      <button
+        style="display: none;"
+        id="SUCCESS"
+        class="btn btn-success"
+        data-toggle="notify"
+        data-message="Registo concluído"
+        data-title="O registo foi concluído com sucesso. Já pode efetuar login."
+        data-placement="top"
+        data-align="center"
+        data-type="success"
+        data-icon="ni ni-bell-55"
+      >
+        Warning
+      </button>
+      <button
+      style="display: none;"
+      id="ERROR"
+      class="btn btn-danger"
+      data-toggle="notify"
+      data-message="Erro no Servidor"
+      data-title="500 Internal Server Error"
+      data-placement="top"
+      data-align="center"
+      data-type="danger"
+      data-icon="ni ni-bell-55"
+    >
+      Warning
+    </button>
+    </footer>
+    <!-- Argon Scripts -->
+    <!-- Core -->
+    <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="../../assets/js/argon.js?v=1.1.0"></script>
+    <!-- Demo JS - remove this in your project -->
+    <script src="../../assets/js/demo.min.js"></script>
+    <!-- Password options-->
+    <script src="../../assets/js/passwords/passwordOptions.js"></script>
+
+    
+    <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+    <script src="../../assets/js/api/firebase.js"></script> 
+    <script src="../../assets/js/api/Hubspot.js"></script>
+    <!--<script src="../../assets/js/api/intTelFormat.js"></script>-->
+    <script>
+      function test() {
+        console.log(document.getElementById("registerTelefone").value);
+      }
+    </script>
+  </body>
+</html>
