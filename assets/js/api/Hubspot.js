@@ -104,7 +104,7 @@ async function login() {
     })
         .then((data) => {
             console.log(data)
-            window.location.assign("../../pages/examples/profile.html");
+            window.location.assign("../../pages/all/profile.html");
         }).catch(error => {
             console.log(error)
         })
@@ -125,7 +125,7 @@ function recoverPassword() {
         })
     }).then((response) => {
         if (response.ok) {
-            window.location.assign('/pages/examples/login.html');
+            window.location.assign('/pages/all/login.html');
         }
     })
 }
@@ -145,7 +145,7 @@ async function requestVerification(){
         })
     }).then((response) => {
         if (response.ok) {
-            window.location.assign('/pages/examples/login.html');
+            window.location.assign('/pages/all/login.html');
         }
     })
 }
@@ -157,7 +157,7 @@ async function logout() {
         credentials: 'include'
     }).then(response => {
         if (response.ok) {
-            window.location.assign("../../pages/examples/login.html")
+            window.location.assign("../../pages/all/login.html")
         }
     })
 }
@@ -288,7 +288,7 @@ async function atualizarConta() {
         return response.json();
     }).then(result => {
         console.log(result.data);
-        window.location.assign("../../pages/examples/profile.html");
+        window.location.assign("../../pages/all/profile.html");
     }).catch(error => {
         console.log(error)
     })
@@ -372,7 +372,7 @@ function deleteUser() {
                 method: 'DELETE',
                 credentials: 'include'
             }).then(response => {
-                window.location.assign("../../pages/examples/login.html");
+                window.location.assign("../../pages/all/login.html");
                 return response.json();
             }).then(result => {
                 console.log(result);
