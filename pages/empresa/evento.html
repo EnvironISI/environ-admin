@@ -618,9 +618,9 @@
           </div>
           <div class="form-group">
             <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span class="badge badge-pill badge-danger">detalhada</span></label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="resumo" rows="3"></textarea>
           </div>
-          <button class="btn btn-primary" type="submit" id="submit">Submeter</button>
+          <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
         </form>
         </div>
       </div>
@@ -668,6 +668,7 @@ console.log(today);
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
   <!-- Demo JS - remove this in your project -->
   <script src="../../assets/js/demo.min.js"></script>
+  <script src="../../assets/js/api/Hubspot"></script>
 
   <script src="../../assets/js/api/GoogleMaps.js"></script>
   <script>
