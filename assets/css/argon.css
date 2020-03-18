@@ -17,7 +17,7 @@
 */
 :root
 {
-    --blue: #1d84b5;
+    --blue: #3A9BED;
     --indigo: #5603ad;
     --purple: #8965e0;
     --pink: #f3a4b5;
@@ -32,7 +32,7 @@
     --gray-dark: #32325d;
     --light: #ced4da;
     --lighter: #e9ecef;
-    --primary: #1d84b5;
+    --primary: #3A9BED;
     --secondary: #f7fafc;
     --success: #2dce89;
     --info: #11cdef;
@@ -3094,6 +3094,83 @@ a.btn.disabled,
 fieldset:disabled a.btn
 {
     pointer-events: none;
+}
+
+/* experiment */
+
+.gradient-button {
+    margin: 10px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #FFF;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 1px 3px #3A9BED, 0 1px 2px #3A9BED;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 25px;
+}
+.gradient-button:hover{
+    box-shadow: 0 10px 20px #3A9BED 0 6px 6px #3A9BED;
+    margin: 8px 10px 12px;
+}
+.gradient-button-1 {background-image: linear-gradient(to right, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%)}
+.gradient-button-1:hover { background-position: right center; }
+
+.gradient-button-2 {background-image: linear-gradient(to right, #2BC0E4 0%, #EAECC6 51%, #2BC0E4 100%)}
+.gradient-button-2:hover { background-position: right center; }
+
+.gradient-button-3 {background-image: linear-gradient(to right, #7474BF 0%, #348AC7 51%, #7474BF 100%)}
+.gradient-button-3:hover { background-position: right center; }
+
+.gradient-button-hugo {background-image:  linear-gradient(87deg, #3A9BED 0, #235ECF 100%) !important}
+.gradient-button-4:hover { background-position: right center; }
+
+.btn-hugo
+{
+    color: #fff;
+    border-color: #2FE37F;
+    background-color: #2FE37F;
+    box-shadow: 0 4px 6px #28CB82, 0 1px 3px #28CB82;
+}
+.btn-hugo:hover
+{
+    color: #fff;
+    border-color: #2FE37F; 
+    background-color: #2FE37F;
+}
+.btn-hugo:focus,
+.btn-hugo.focus
+{
+    box-shadow: 0 4px 6px #28CB82, 0 1px 3px #28CB82, 0 0 0 0 #28CB82;
+}
+.btn-hugo.disabled,
+.btn-hugo:disabled
+{
+    color: #fff;
+    border-color: #2FE37F; 
+    background-color: #2FE37F;
+}
+.btn-hugo:not(:disabled):not(.disabled):active,
+.btn-hugo:not(:disabled):not(.disabled).active,
+.show > .btn-hugo.dropdown-toggle
+{
+    color: #fff;
+    border-color: #2FE37F; 
+    background-color: #2FE37F;
+}
+.btn-hugo:not(:disabled):not(.disabled):active:focus,
+.btn-hugo:not(:disabled):not(.disabled).active:focus,
+.show > .btn-hugo.dropdown-toggle:focus
+{
+    box-shadow: none, 0 0 0 0 #28CB82;
 }
 
 .btn-primary
@@ -8454,6 +8531,24 @@ button.bg-primary:focus
     background-color: #324cdd !important;
 }
 
+.bg-black
+{
+    background-color: #000000 !important;
+}
+
+.bg-hugo
+{
+    background-color: #f2f4fa !important;
+}
+
+a.bg-black:hover,
+a.bg-black:focus,
+button.bg-black:hover,
+button.bg-black:focus
+{
+    background-color: #000000 !important;
+}
+
 .bg-secondary
 {
     background-color: #f7fafc !important;
@@ -8556,6 +8651,19 @@ button.bg-default:hover,
 button.bg-default:focus
 {
     background-color: #0b1526 !important;
+}
+
+.bg-defaulthugo
+{
+    background-color: #01BAEF !important;
+}
+
+a.bg-defaulthugo:hover,
+a.bg-defaulthugo:focus,
+button.bg-defaulthugo:hover,
+button.bg-defaulthugo:focus
+{
+    background-color: #01BAEF    !important;
 }
 
 .bg-white
@@ -24672,6 +24780,17 @@ button.bg-lighter:focus
     background: linear-gradient(87deg, #f7fafc 0, #f7f8fc 100%) !important;
 }
 
+
+.bg-gradient-hugo
+{
+    background: linear-gradient(87deg, #80FF72 0, #7EE8FA 100%) !important;
+}
+
+.bg-gradient-hugo-daniel
+{
+    background: linear-gradient(87deg, #3A9BED 0, #235ECF 100%) !important;
+}
+
 .bg-gradient-success
 {
     background: linear-gradient(87deg, #2dce89 0, #2dcecc 100%) !important;
@@ -25161,6 +25280,11 @@ button.section-darker:focus
 .fill-default
 {
     fill: #172b4d;
+}
+
+.fill-hugo
+{
+    fill: #F5F5F5;
 }
 
 .stroke-default
