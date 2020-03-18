@@ -1,22 +1,22 @@
 var fileTag = document.getElementById("filetag"),
-    preview = document.getElementById("preview");
+preview = document.getElementById("preview");
 let user;
 var articles;
 
 //Registar Utilizador
-function registerUser() {
+function registarUtilizador() {
     var name = document.getElementById("registerName").value;
     var email = document.getElementById("registerEmail").value;
     var phone = document.getElementById("registerTelefone").value;
     var city = document.getElementById("registerCidade").value;
     var country = document.getElementById("registerPais").value;
-    var sector = document.getElementById("registerSetor").value;
+    var sector = "";
     var responsible = document.getElementById("registerResponsible").value;
     var nif = document.getElementById("registerNif").value;
-    var type = document.getElementById("registerType").value;
+    var type = 'empresa';
     var password = document.getElementById("registerPassword").value;
     var confirmPassword = document.getElementById("registerRepeatPassword").value;
-    if (name != "" && email != "" && phone != "" && city != "" && country != "" && sector != "" && password != "" && confirmPassword != "" && type != "") {
+    if (name != "" && email != "" && phone != "" && city != "" && country != "" && responsible != "" && password != "" && confirmPassword != "" && type != "") {
         if (CheckPasswordStrength(password) == true) {
             if (confirmPassword == password) {
                 fetch("https://environ-back.herokuapp.com/register", {

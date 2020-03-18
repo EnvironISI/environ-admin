@@ -1,23 +1,7 @@
 @charset 'UTF-8';
-/*!
-
-=========================================================
-* Argon Dashboard PRO - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by www.creative-tim.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 :root
 {
-    --blue: #2FE37F;
+    --blue: #3A9BED;
     --indigo: #5603ad;
     --purple: #8965e0;
     --pink: #f3a4b5;
@@ -32,7 +16,7 @@
     --gray-dark: #32325d;
     --light: #ced4da;
     --lighter: #e9ecef;
-    --primary: #2FE37F;
+    --primary: #3A9BED;
     --secondary: #f7fafc;
     --success: #2dce89;
     --info: #11cdef;
@@ -44,7 +28,6 @@
     --white: #fff;
     --neutral: #fff;
     --darker: black;
-    --hugo: linear-gradient(87deg, #80FF72 0, #7EE8FA 100%);
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;
     --breakpoint-md: 768px;
@@ -218,14 +201,14 @@ a
 {
     text-decoration: none;
 
-    color: #1d84b5;
+    color: #3A9BED;
     background-color: transparent;
 }
 a:hover
 {
     text-decoration: none; 
 
-    color: #233dd2;
+    color: #1d84b5;
 }
 
 a:not([href]):not([tabindex])
@@ -3132,60 +3115,21 @@ fieldset:disabled a.btn
 .gradient-button-3:hover { background-position: right center; }
 
 .gradient-button-hugo {background-image:  linear-gradient(87deg, #3A9BED 0, #235ECF 100%) !important}
-.gradient-button-4:hover { background-position: right center; }
+.gradient-button-hugo:hover { background-position: right center; }
 
-.btn-hugo
-{
-    color: #fff;
-    border-color: #2FE37F;
-    background-color: #2FE37F;
-    box-shadow: 0 4px 6px #28CB82, 0 1px 3px #28CB82;
-}
-.btn-hugo:hover
-{
-    color: #fff;
-    border-color: #2FE37F; 
-    background-color: #2FE37F;
-}
-.btn-hugo:focus,
-.btn-hugo.focus
-{
-    box-shadow: 0 4px 6px #28CB82, 0 1px 3px #28CB82, 0 0 0 0 #28CB82;
-}
-.btn-hugo.disabled,
-.btn-hugo:disabled
-{
-    color: #fff;
-    border-color: #2FE37F; 
-    background-color: #2FE37F;
-}
-.btn-hugo:not(:disabled):not(.disabled):active,
-.btn-hugo:not(:disabled):not(.disabled).active,
-.show > .btn-hugo.dropdown-toggle
-{
-    color: #fff;
-    border-color: #2FE37F; 
-    background-color: #2FE37F;
-}
-.btn-hugo:not(:disabled):not(.disabled):active:focus,
-.btn-hugo:not(:disabled):not(.disabled).active:focus,
-.show > .btn-hugo.dropdown-toggle:focus
-{
-    box-shadow: none, 0 0 0 0 #28CB82;
-}
 
 .btn-primary
 {
     color: #fff;
-    border-color: #1d84b5;
-    background-color: #1d84b5;
+    border-color: #3A9BED;
+    background-color: #3A9BED;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 }
 .btn-primary:hover
 {
     color: #fff;
-    border-color: #1d84b5; 
-    background-color: #1d84b5;
+    border-color: #3A9BED; 
+    background-color: #3A9BED;
 }
 .btn-primary:focus,
 .btn-primary.focus
@@ -3196,16 +3140,16 @@ fieldset:disabled a.btn
 .btn-primary:disabled
 {
     color: #fff;
-    border-color: #1d84b5; 
-    background-color: #1d84b5;
+    border-color: #3A9BED; 
+    background-color: #3A9BED;
 }
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle
 {
     color: #fff;
-    border-color: #1d84b5; 
-    background-color: #324cdd;
+    border-color: #3A9BED; 
+    background-color: #3A9BED;
 }
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
