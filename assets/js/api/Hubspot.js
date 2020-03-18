@@ -62,7 +62,6 @@ function registerUser() {
                 }).catch(error => {
                     console.log(error)
                     document.getElementById("ERROR").click();
-                    clearRegisterFields();
                 })
             } else {
                 document.getElementById("NOTWORKING").click();
@@ -93,7 +92,6 @@ async function login() {
     }).then((response) => {
         var myStatus = response.status;
         if (myStatus == 400) {
-            document.getElementById("VERIFIQUEEMAIL").click();
             throw new Error("verificar email");
         }
         if (myStatus != 200 && myStatus != 400) {
@@ -106,7 +104,7 @@ async function login() {
             console.log(data)
             window.location.assign("../../pages/all/profile.html");
         }).catch(error => {
-            console.log(error)
+            document.getElementById("VERIFIQUEEMAIL").click();
         })
 }
 
