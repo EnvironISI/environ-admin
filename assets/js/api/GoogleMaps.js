@@ -26,31 +26,15 @@ function test(lat, lng) {
             return response.json()
         }).then(function (data) {
             data.results.forEach(result => {
-                console.log(result)
                 result.types.forEach(type => {
-                    if(type == "administrative_area_level_2"){
+                    if (type == "administrative_area_level_2") {
                         document.getElementById('municipio').value = result.address_components[0].long_name;
                     }
-                    else if(type == "street_address"){
+                    else if (type == "street_address") {
                         document.getElementById('rua').value = result.formatted_address;
                     }
                 });
             })
-            var municipios = [];
-            fetch('https://environ-back.herokuapp.com/service/camaras', {
-                method: 'GET',
-                credentials: 'include'
-            }).then(result => {
-                return result.json();
-            }).then(data => {
-                data.forEach(municipio => {
-                    municipios.push(municipio);
-                });
-            })
-            console.log(municipios);
-
-
-
         })
         .catch(function () {
             // catch any errors
