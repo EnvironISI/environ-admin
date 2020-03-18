@@ -23,9 +23,34 @@ function getInputValue() {
 function test(lat, lng) {
     fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyCsz3ly0l0NIr5XQvwQHoBwQTya4VWcDC0')
         .then(function (response) {
-            console.log(response.json())
+            return response.json()
         }).then(function (data) {
-            console.log(data);
+            data.results.forEach(result => {
+                console.log(result)
+                result.types.forEach(type => {
+                    if(type == "administrative_area_level_2"){
+                        document.getElementById('municipio').value = result.address_components[0].long_name;
+                    }
+                    else if(type == "street_address"){
+                        document.getElementById('rua').value = result.formatted_address;
+                    }
+                });
+            })
+            var municipios = [];
+            fetch('https://environ-back.herokuapp.com/service/camaras', {
+                method: 'GET',
+                credentials: 'include'
+            }).then(result => {
+                return result.json();
+            }).then(data => {
+                data.forEach(municipio => {
+                    municipios.push(municipio);
+                });
+            })
+            console.log(municipios);
+
+
+
         })
         .catch(function () {
             // catch any errors
@@ -140,8 +165,11 @@ function initMap(lat, lng) {
     });
 
     function getPo() {
-        document.getElementById('lati').value = marker.getPosition().lat();
-        document.getElementById('long').value = marker.getPosition().lng()
+        var lat = marker.getPosition().lat();
+        var lng = marker.getPosition().lng();
+        document.getElementById('lati').value = lat;
+        document.getElementById('long').value = lng;
+        test(lat, lng);
     }
 }
 
