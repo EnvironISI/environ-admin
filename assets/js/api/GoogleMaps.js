@@ -49,52 +49,6 @@ function runScript(e) {
         return false;
     }
 }
-
-var $map = $('#map-default'),
-    map,
-    lat,
-    lng,
-    color = "#1d84b5";
-
-function initMap() {
-
-    map = document.getElementById('map-default');
-    lat = map.getAttribute('data-lat');
-    lng = map.getAttribute('data-lng');
-
-    var myLatlng = new google.maps.LatLng(lat, lng);
-    var mapOptions = {
-        zoom: 12,
-        scrollwheel: false,
-        center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-    }
-
-    map = new google.maps.Map(map, mapOptions);
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        animation: google.maps.Animation.DROP,
-        title: 'Hello World!'
-    });
-
-    var contentString = '<div class="info-window-content"><h2>Argon Dashboard PRO</h2>' +
-        '<p>A beautiful premium dashboard for Bootstrap 4.</p></div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    google.maps.event.addListener(marker, 'click', function () {
-        infowindow.open(map, marker);
-    });
-}
-
-if ($map.length) {
-    google.maps.event.addDomListener(window, 'load', initMap);
-}
-
 //
 // Google maps
 //
@@ -106,14 +60,14 @@ function showPosition(position) {
     initMap(lat, lng)
 }
 
-var $map = $('#map-custom'),
+var $map = $('#map-hi'),
     map,
     color = "#1d84b5";
 
 
 function initMap(lat, lng) {
 
-    map = document.getElementById('map-custom');
+    map = document.getElementById('map-hi');
 
     var myLatlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
@@ -131,11 +85,11 @@ function initMap(lat, lng) {
         map: map,
         draggable: true,
         animation: google.maps.Animation.DROP,
-        title: 'Hello World!'
+        title: 'Hello World!',
     });
 
-    var contentString = '<div class="info-window-content"><h2>Argon Dashboard PRO</h2>' +
-        '<p>A beautiful premium dashboard for Bootstrap 4.</p></div>';
+    var contentString = '<div class="info-window-content"><h2>SUP BRO</h2>' +
+        '<p>SUP BRO</p></div>';
 
     var infowindow = new google.maps.InfoWindow({
         content: contentString

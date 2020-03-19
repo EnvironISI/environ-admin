@@ -17475,13 +17475,13 @@ button.bg-darker:focus
 
 .text-primary
 {
-    color: #1d84b5 !important;
+    color: #3A9BED !important;
 }
 
 a.text-primary:hover,
 a.text-primary:focus
 {
-    color: #233dd2 !important;
+    color: #1d84b5!important;
 }
 
 .text-secondary

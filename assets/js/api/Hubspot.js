@@ -1,5 +1,5 @@
 var fileTag = document.getElementById("filetag"),
-preview = document.getElementById("preview");
+    preview = document.getElementById("preview");
 let user;
 var articles;
 
@@ -42,8 +42,8 @@ function registarUtilizador() {
                 }).then((data) => {
                     return data
                 }).then(() => {
-                    document.getElementById('registerDiv').innerHTML = 
-                    `<div class="row justify-content-center">
+                    document.getElementById('registerDiv').innerHTML =
+                        `<div class="row justify-content-center">
                         <div class="col-lg-6 col-md-8">
                             <div class="card bg-secondary border-0">
                                 <div class="card-body px-lg-5 py-lg-5">
@@ -58,9 +58,7 @@ function registarUtilizador() {
                         </div>
                     </div>`
                     document.getElementById("SUCCESS").click();
-                    clearRegisterFields();
                 }).catch(error => {
-                    console.log(error)
                     document.getElementById("ERROR").click();
                 })
             } else {
@@ -79,27 +77,27 @@ async function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
     await fetch("https://environ-back.herokuapp.com/login", {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({
-            email: email,
-            password: password
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        }).then((response) => {
+            var myStatus = response.status;
+            if (myStatus == 400) {
+                throw new Error("verificar email");
+            }
+            if (myStatus != 200 && myStatus != 400) {
+                document.getElementById("FALSELOGIN").click();
+                throw new Error("credenciais");
+            }
+            return response.json()
         })
-    }).then((response) => {
-        var myStatus = response.status;
-        if (myStatus == 400) {
-            throw new Error("verificar email");
-        }
-        if (myStatus != 200 && myStatus != 400) {
-            document.getElementById("FALSELOGIN").click();
-            throw new Error("credenciais");
-        }
-        return response.json()
-    })
         .then((data) => {
             console.log(data)
             window.location.assign("../../pages/all/profile.html");
@@ -129,7 +127,7 @@ function recoverPassword() {
 }
 
 //Mandar verificação por email
-async function requestVerification(){
+async function requestVerification() {
     var email = document.getElementById('requestedEmail').value;
     await fetch("https://environ-back.herokuapp.com/requestEmailVerification", {
         method: "POST",
@@ -290,18 +288,6 @@ async function atualizarConta() {
     }).catch(error => {
         console.log(error)
     })
-}
-
-//Limpar Campos
-function clearRegisterFields() {
-    document.getElementById("registerName").value = "";
-    document.getElementById("registerEmail").value = "";
-    document.getElementById("registerTelefone").value = "";
-    document.getElementById("registerCidade").value = "";
-    document.getElementById("registerPais").value = "";
-    document.getElementById("registerSetor").value = "";
-    document.getElementById("registerPassword").value = "";
-    document.getElementById("registerRepeatPassword").value = "";
 }
 
 //getUserInfo
