@@ -71,7 +71,7 @@ function initMap(lat, lng) {
 
     var myLatlng = new google.maps.LatLng(lat, lng);
     var mapOptions = {
-        zoom: 12,
+        zoom: 13,
         scrollwheel: false,
         center: myLatlng,
         // mapTypeId: 'google.maps.MapTypeId.ROADMAP',
@@ -88,7 +88,7 @@ function initMap(lat, lng) {
         title: 'Hello World!',
     });
 
-    var contentString = '<div class="info-window-content"><h2>SUP BRO</h2>' +
+    var contentString = '<div class="info-window-content"><h2>SUP</h2>' +
         '<p>SUP BRO</p></div>';
 
     var infowindow = new google.maps.InfoWindow({

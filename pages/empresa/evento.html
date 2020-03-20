@@ -20,8 +20,8 @@
 </head>
 
 <body>
-   <!-- Sidenav -->
-   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header d-flex align-items-center">
@@ -84,23 +84,23 @@
                 <i class="fas fa-users" style="color:#C4302B;"></i>
                 <span class="nav-link-text">Utilizadores</span>
               </a>
-              <li class="nav-item">
-                <a class="nav-link" href="#navbar-entidades" data-toggle="collapse" role="button" aria-expanded="false"
-                  aria-controls="navbar-entidades">
-                  <i class="fas fa-fire-alt" style="color:#fb6340;"></i>
-                  <span class="nav-link-text">Entidades</span>
-                </a>
-                <div class="collapse" id="navbar-entidades">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a href="../../pages/camara/eventosCamara.html" class="nav-link">Listar Entidades</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="../../pages/empresa/evento.html" class="nav-link">Registar Entidades</a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#navbar-entidades" data-toggle="collapse" role="button" aria-expanded="false"
+                aria-controls="navbar-entidades">
+                <i class="fas fa-fire-alt" style="color:#fb6340;"></i>
+                <span class="nav-link-text">Entidades</span>
+              </a>
+              <div class="collapse" id="navbar-entidades">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="../../pages/camara/eventosCamara.html" class="nav-link">Listar Entidades</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../pages/empresa/evento.html" class="nav-link">Registar Entidades</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../pages/all/weather.html">
@@ -122,33 +122,29 @@
             </li>
           </ul>
           <hr class="my-3">
-        <!-- Heading -->
-        <h6 class="navbar-heading p-0 text-muted">Acompanha-nos</h6>
-        <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href=""
-              target="_blank">
-              <i class="fab fa-facebook" style="color:#3b5999;"></i>
-              <span class="nav-link-text">Facebook</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href=""
-              target="_blank">
-              <i class="fab fa-instagram" style="color:#e4405f;"></i>
-              <span class="nav-link-text">Instagram</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-              href=""
-              target="_blank">
-              <i class="fab fa-twitter" style="color:#55acee;"></i>
-              <span class="nav-link-text">Twitter</span>
-            </a>
-          </li>
-        </ul>
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">Acompanha-nos</h6>
+          <!-- Navigation -->
+          <ul class="navbar-nav mb-md-3">
+            <li class="nav-item">
+              <a class="nav-link" href="" target="_blank">
+                <i class="fab fa-facebook" style="color:#3b5999;"></i>
+                <span class="nav-link-text">Facebook</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" target="_blank">
+                <i class="fab fa-instagram" style="color:#e4405f;"></i>
+                <span class="nav-link-text">Instagram</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="" target="_blank">
+                <i class="fab fa-twitter" style="color:#55acee;"></i>
+                <span class="nav-link-text">Twitter</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -173,7 +169,8 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
                 <i class="ni ni-ungroup"></i>
               </a>
               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default dropdown-menu-right">
@@ -222,7 +219,7 @@
                   <span>Perfil</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#!"onclick="logout()" class="dropdown-item">
+                <a href="#!" onclick="logout()" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
@@ -233,7 +230,7 @@
       </div>
     </nav>
     <!-- Header -->
- <div class="header bg-hugo pb-6">
+    <div class="header bg-hugo pb-6">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -245,14 +242,17 @@
       </div>
       <div class="container">
         <div class="row">
-        <div class="input-group mb-3 col-md-6">
-         <input id="inputLocal" type="text" class="form-control" onkeypress="return runScript(event)" placeholder="Insira uma localização" aria-label="Example text with button addon" aria-describedby="button-addon1">
-         <div class="input-group-prepend">
-           <button class="btn btn-white" type="button" onclick="getInputValue()" id="button-addon1"><i class="fas fa-search-location fa-lg" style="color:#1d84b5"></i></button>
-         </div>
-       </div>
-     </div>
-     </div>
+          <div class="input-group mb-3 col-md-6">
+            <input id="inputLocal" type="text" class="form-control" onkeypress="return runScript(event)"
+              placeholder="Insira uma localização" aria-label="Example text with button addon"
+              aria-describedby="button-addon1">
+            <div class="input-group-prepend">
+              <button class="btn btn-white" type="button" onclick="getInputValue()" id="button-addon1"><i
+                  class="fas fa-search-location fa-lg" style="color:#1d84b5"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
@@ -272,60 +272,73 @@
         <div class="card-body">
           <!-- Form groups used in grid -->
           <form>
-          <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="form-control-label" for="example3cols1Input">Latitude</label>
-                <input disabled id="lati" type="text" class="form-control" placeholder="Utilize o mapa para localizar">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols1Input">Nome</label>
+                  <input id="name" type="text" class="form-control"
+                    placeholder="Nome do evento">
+                </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="form-control-label" for="example3cols2Input">Longitude</label>
-                <input disabled id="long" type="text" class="form-control" placeholder="Utilize o mapa para localizar">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols1Input">Latitude</label>
+                  <input disabled id="lati" type="text" class="form-control"
+                    placeholder="Utilize o mapa para localizar">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols2Input">Longitude</label>
+                  <input disabled id="long" type="text" class="form-control"
+                    placeholder="Utilize o mapa para localizar">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols2Input">Rua <span
+                      class="badge badge-pill badge-success">complementar</span></label>
+                  <input id="rua" type="text" class="form-control"  placeholder="Utilize o mapa para localizar">
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="form-control-label" for="example3cols2Input">Rua <span class="badge badge-pill badge-success">complementar</span></label>
-                <input id="rua" type="text" class="form-control" placeholder="Insira uma Rua">
+            <div class="row input-daterange datepicker align-items-center">
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-control-label">Sugestão de intervalo de tempo - Início</label>
+                  <input id="ini" class="form-control" placeholder="Start date" type="text">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label class="form-control-label">Sugestão de intervalo de tempo - Fim</label>
+                  <input id="fim" class="form-control" placeholder="End date" type="text">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="row input-daterange datepicker align-items-center">
-            <div class="col">
-              <div class="form-group">
-                <label class="form-control-label">Sugestão de intervalo de tempo - Início</label>
-                <input id="ini" class="form-control" placeholder="Start date" type="text">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
+                  <input type="number" id="number" class="form-control" placeholder="Insira o número de participantes">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols2Input">Município</label>
+                  <input id="municipio" type="text" class="form-control" placeholder="Município" disabled>
+                </div>
               </div>
             </div>
-            <div class="col">
-              <div class="form-group">
-                <label class="form-control-label">Sugestão de intervalo de tempo - Fim</label>
-                <input id="fim" class="form-control" placeholder="End date" type="text">
-              </div>
+            <div class="form-group">
+              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span
+                  class="badge badge-pill badge-danger">detalhada</span></label>
+              <textarea class="form-control" id="resumo" rows="3"></textarea>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
-                <input type="number" id="number" class="form-control" placeholder="Insira o número de participantes">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label class="form-control-label" for="example3cols2Input">Município</label>
-                <input id="municipio" type="text" class="form-control" placeholder="Município" disabled>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span class="badge badge-pill badge-danger">detalhada</span></label>
-            <textarea class="form-control" id="resumo" rows="3"></textarea>
-          </div>
-          <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
-        </form>
+            <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
+          </form>
         </div>
       </div>
       <!-- Footer -->
@@ -333,7 +346,8 @@
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
             <div class="copyright text-center text-lg-left text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">environ.</a>
+              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                target="_blank">environ.</a>
             </div>
           </div>
           <div class="col-lg-6">
@@ -347,19 +361,48 @@
       </footer>
     </div>
   </div>
+  <button
+  style="display: none;"
+  id="eventocriado"
+  class="btn btn-success"
+  data-toggle="notify"
+  data-message="Pedido de evento registado"
+  data-title="O seu pedido de evento foi registado com sucesso"
+  data-placement="top"
+  data-align="center"
+  data-type="success"
+  data-icon="ni ni-bell-55"
+>
+  Warning
+</button>  
+<button
+style="display: none;"
+id="eventonaocriado"
+class="btn btn-danger"
+data-toggle="notify"
+data-message="Erro ao submeter pedido"
+data-title="Por alguma razão o seu pedido não foi concluído com sucesso. Verifique se preencheu corretamente o formulário."
+data-placement="top"
+data-align="center"
+data-type="danger"
+data-icon="ni ni-bell-55"
+>
+Warning
+</button>  
   <!-- Argon Scripts -->
   <!-- Core -->
   <script>
-  	var today = new Date();
+    var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-   var yyyy = today.getFullYear();
+    var yyyy = today.getFullYear();
     today = dd + '/' + mm + '/' + yyyy;
     document.getElementById('ini').value = today;
     document.getElementById('fim').value = today;
-console.log(today);
+    console.log(today);
   </script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
