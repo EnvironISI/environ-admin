@@ -1496,7 +1496,7 @@ var DatatableButtons = (function () {
 
 	// Variables
 
-	var $dtButtons = $('#datatable-buttons');
+	var $dtButtons = $('#users');
 
 
 	// Methods

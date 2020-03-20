@@ -214,7 +214,7 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Bem-vindo!</h6>
                 </div>
-                <a href="#!" class="dropdown-item">
+                <a href="../all/profile.html" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>Perfil</span>
                 </a>
@@ -276,8 +276,7 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label class="form-control-label" for="example3cols1Input">Nome</label>
-                  <input id="name" type="text" class="form-control"
-                    placeholder="Nome do evento">
+                  <input id="name" type="text" class="form-control" placeholder="Nome do evento">
                 </div>
               </div>
             </div>
@@ -300,7 +299,7 @@
                 <div class="form-group">
                   <label class="form-control-label" for="example3cols2Input">Rua <span
                       class="badge badge-pill badge-success">complementar</span></label>
-                  <input id="rua" type="text" class="form-control"  placeholder="Utilize o mapa para localizar">
+                  <input id="rua" type="text" class="form-control" placeholder="Utilize o mapa para localizar">
                 </div>
               </div>
             </div>
@@ -361,34 +360,17 @@
       </footer>
     </div>
   </div>
-  <button
-  style="display: none;"
-  id="eventocriado"
-  class="btn btn-success"
-  data-toggle="notify"
-  data-message="Pedido de evento registado"
-  data-title="O seu pedido de evento foi registado com sucesso"
-  data-placement="top"
-  data-align="center"
-  data-type="success"
-  data-icon="ni ni-bell-55"
->
-  Warning
-</button>  
-<button
-style="display: none;"
-id="eventonaocriado"
-class="btn btn-danger"
-data-toggle="notify"
-data-message="Erro ao submeter pedido"
-data-title="Por alguma razão o seu pedido não foi concluído com sucesso. Verifique se preencheu corretamente o formulário."
-data-placement="top"
-data-align="center"
-data-type="danger"
-data-icon="ni ni-bell-55"
->
-Warning
-</button>  
+  <button style="display: none;" id="eventocriado" class="btn btn-success" data-toggle="notify"
+    data-message="Pedido de evento registado" data-title="O seu pedido de evento foi registado com sucesso"
+    data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">
+    Warning
+  </button>
+  <button style="display: none;" id="eventonaocriado" class="btn btn-danger" data-toggle="notify"
+    data-message="Erro ao submeter pedido"
+    data-title="Por alguma razão o seu pedido não foi concluído com sucesso. Verifique se preencheu corretamente o formulário."
+    data-placement="top" data-align="center" data-type="danger" data-icon="ni ni-bell-55">
+    Warning
+  </button>
   <!-- Argon Scripts -->
   <!-- Core -->
   <script>
@@ -399,7 +381,6 @@ Warning
     today = dd + '/' + mm + '/' + yyyy;
     document.getElementById('ini').value = today;
     document.getElementById('fim').value = today;
-    console.log(today);
   </script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
@@ -419,6 +400,10 @@ Warning
 
   <script src="../../assets/js/api/GoogleMaps.js"></script>
   <script>
+    window.onload = function () {
+      document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
+      document.getElementById('img1').src = sessionStorage.getItem('photo');
+    };
   </script>
 </body>
 

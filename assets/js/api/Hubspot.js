@@ -90,6 +90,7 @@ async function login() {
         }).then((response) => {
             var myStatus = response.status;
             if (myStatus == 400) {
+                document.getElementById("VERIFIQUEEMAIL").click();
                 throw new Error("verificar email");
             }
             if (myStatus != 200 && myStatus != 400) {
@@ -102,7 +103,7 @@ async function login() {
             console.log(data)
             window.location.assign("../../pages/all/profile.html");
         }).catch(error => {
-            document.getElementById("VERIFIQUEEMAIL").click();
+            return error;
         })
 }
 
@@ -121,6 +122,7 @@ function recoverPassword() {
         })
     }).then((response) => {
         if (response.ok) {
+            sessionStorage.clear;
             window.location.assign('/pages/all/login.html');
         }
     })
@@ -311,6 +313,8 @@ if (fileTag != null) {
 
 // Colocar info do user no profile
 function setUserInfo(result) {
+    //Session Storage
+    console.log(result);
     sessionStorage.setItem('role', result.user.role);
     sessionStorage.setItem('name', result.user.name);
     sessionStorage.setItem('email', result.user.email);
@@ -521,4 +525,37 @@ function blockUnblock() {
     function isOdd(n) {
         return Math.abs(n % 2) == 1;
     }
+}
+
+function getAllUsers() {
+    fetch('https://environ-back.herokuapp.com/admin/users', {
+        method: 'GET',
+        credentials: 'include'
+      }).then(result => {
+        return result.json();
+      }).then(response => {
+        var array = []
+        response.forEach(element => {
+          var obj = [];
+          if(!element.uid || element.uid === ''){ obj.push('null') } else { obj.push(element.uid) }
+          if(!element.name || element.name === ''){ obj.push('null') } else { obj.push(element.name) }
+          if(!element.email || element.email === ''){ obj.push('null') } else { obj.push(element.email) }
+          if(!element.phoneNumber || element.phoneNumber === ''){ obj.push('null') } else { obj.push(element.phoneNumber) }
+          if(!element.role || element.role === ''){ obj.push('null') } else { obj.push(element.role) }
+          if(!element.nif || element.nif === ''){ obj.push('null') } else { obj.push(element.nif) }
+          if(!element.country || element.country === ''){ obj.push('null') } else { obj.push(element.country) }
+          if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
+          if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
+          array.push(obj);
+        });
+        $('#users').DataTable( {
+          data: array,
+          language: {
+            paginate: {
+                previous: "<i class='fas fa-angle-left'>",
+                next: "<i class='fas fa-angle-right'>"
+            }
+        }
+        } );
+      })
 }
