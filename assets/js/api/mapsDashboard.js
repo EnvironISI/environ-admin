@@ -29,32 +29,59 @@ function initMap(lat, lng) {
     }).then(result => {
         return result.json();
     }).then(response => {
+        var empresas = 0;
+        var camaras = 0;
+        response.forEach(element => {
+            if (!element.role || element.role === '') {
+                return false
+            } else if (element.role === 'empresa') {
+                empresas += 1;
+            } else if (element.role === 'camara') {
+                camaras += 1;
+            }
+        })
+        document.getElementById('numEmpresas').innerText = empresas;
+        document.getElementById('numCamaras').innerText = camaras;
         response.forEach(element => {
             cities.push(element.city);
         })
+        const unique = (value, index, self) => {
+            return self.indexOf(value) === index
+        }
+        const uniqueAges = cities.filter(unique)
+        var citiesNum = 0;
+        for (var i in uniqueAges) {
+            if (uniqueAges[i].length > 0) {
+                citiesNum += 1
+            }
+        }
+        document.getElementById('numCidades').innerText = citiesNum;
         cities.forEach(element => {
             fetch('https://api.opencagedata.com/geocode/v1/json?q=' + element + '&key=e266ba8c43b346eab28695023463e6ff')
-            .then(function (response) {
-                return response.json();
-            }).then(function (data) {
-                var markers=[];
-                var a = { lat: data.results[0].geometry.lat, lng:data.results[0].geometry.lng}
-                for (i = 0; i < cities.length; i++) { 
-                    var coo = new google.maps.LatLng(a.lat, a.lng)
-                    console.log(coo)
-                    markers[i] = new google.maps.Marker({
-                    position: coo,
-                    map: map,
-                    draggable: false,
-                    animation: google.maps.Animation.DROP,
-                    title: 'Utilizador'
-                });
-            }
-            })
-            .catch(function () {
-                // catch any errors
-            }); // 8011224 Guimaraes
-        
+                .then(function (response) {
+                    return response.json();
+                }).then(function (data) {
+                    var markers = [];
+                    var a = {
+                        lat: data.results[0].geometry.lat,
+                        lng: data.results[0].geometry.lng
+                    }
+                    for (i = 0; i < cities.length; i++) {
+                        var coo = new google.maps.LatLng(a.lat, a.lng)
+                        console.log(coo)
+                        markers[i] = new google.maps.Marker({
+                            position: coo,
+                            map: map,
+                            draggable: false,
+                            animation: google.maps.Animation.DROP,
+                            title: 'Utilizador'
+                        });
+                    }
+                })
+                .catch(function () {
+                    // catch any errors
+                }); // 8011224 Guimaraes
+
         })
     })
 
@@ -76,6 +103,3 @@ function initMap(lat, lng) {
 if ($map.length) {
     google.maps.event.addDomListener(window, 'load', initMap);
 }
-
-
-
