@@ -68,7 +68,6 @@ function initMap(lat, lng) {
                     }
                     for (i = 0; i < cities.length; i++) {
                         var coo = new google.maps.LatLng(a.lat, a.lng)
-                        console.log(coo)
                         markers[i] = new google.maps.Marker({
                             position: coo,
                             map: map,

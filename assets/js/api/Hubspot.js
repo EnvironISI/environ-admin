@@ -548,7 +548,7 @@ function getAllUsers() {
           if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
           array.push(obj);
         });
-        $('#users').DataTable( {
+        $('#utilizadores').DataTable( {
           data: array,
           language: {
             paginate: {
