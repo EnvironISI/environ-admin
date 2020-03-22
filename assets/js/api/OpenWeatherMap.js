@@ -75,10 +75,10 @@ function setTimelineData() {
 
             '<div class="timeline-block">' +
             '<span class="timeline-step badge-success">' +
-            '<i class="fas fa-temperature-high" style="color:#1d84b5;;"></i></span>' + 
+            '<i class="fas fa-cloud-sun" style="color:#1d84b5"></i></span>' + 
             '<div class="timeline-content">' +
-              '<small class="text-muted font-weight-bold">' + new Date(info[obj].dt * 1000).toLocaleString() + 
-              '</small><h5 class=" mt-3 mb-0">' + this.city + '</h5>' + 
+              '<span class="badge badge-pill badge-success">' + new Date(info[obj].dt * 1000).toLocaleString() + 
+              '</span><h5 class=" mt-3 mb-0">' + this.city + '</h5>' + 
               '<p class=" text-sm mt-1 mb-0">Temperatura: ' + info[obj].main.temp + '°C</p>' + 
               '<p class=" text-sm mt-1 mb-0">Condições: ' + info[obj].weather[0].main + '</p>' + 
               '<p class=" text-sm mt-1 mb-0">Descrição: ' + info[obj].weather[0].description + '</p>' + 
@@ -97,10 +97,10 @@ function setManualTimelineData() {
 
             '<div class="timeline-block">' +
             '<span class="timeline-step badge-success">' +
-            '<i class="fas fa-temperature-high" style="color:#1d84b5;;"></i></span>' + 
+            '<i class="fas fa-cloud-sun" style="color:#1d84b5;;"></i></span>' + 
             '<div class="timeline-content">' +
-              '<small class="text-muted font-weight-bold">' + new Date(manualInfo[obj].dt * 1000).toLocaleString() + 
-              '</small><h5 class=" mt-3 mb-0">' + this.manualCity + '</h5>' + 
+            '<span class="badge badge-pill badge-success">' + new Date(manualInfo[obj].dt * 1000).toLocaleString() + 
+              '</span><h5 class=" mt-3 mb-0">' + this.manualCity + '</h5>' + 
               '<p class=" text-sm mt-1 mb-0">Temperatura: ' + manualInfo[obj].main.temp + '°C</p>' + 
               '<p class=" text-sm mt-1 mb-0">Condições: ' + manualInfo[obj].weather[0].main + '</p>' + 
               '<p class=" text-sm mt-1 mb-0">Descrição: ' + manualInfo[obj].weather[0].description + '</p>' + 

@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="description" content="Start your development with a Página Inicial for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Argon Dashboard PRO - Premium Bootstrap 4 Admin Template</title>
+  <title>Argon Página Inicial PRO - Premium Bootstrap 4 Admin Template</title>
   <!-- Favicon -->
   <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png">
   <!-- Fonts -->
@@ -21,7 +21,8 @@
 
 <body>
   <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+<!-- Sidenav -->
+<nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header d-flex align-items-center">
@@ -115,9 +116,15 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/maps/openChargeMap.html">
+              <a class="nav-link" href="../../pages/all/openChargeMap.html">
                 <i class="fas fa-charging-station" style="color:#cccc14;"></i>
                 <span class="nav-link-text">Elétricos</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/all/chat.html">
+                <i class="fas fa-comments" style="color:#14cc42;"></i>
+                <span class="nav-link-text">Chat</span>
               </a>
             </li>
           </ul>
@@ -173,7 +180,7 @@
                 aria-expanded="false">
                 <i class="ni ni-ungroup"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default dropdown-menu-right">
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-gradient-hugo-daniel dropdown-menu-right">
                 <div class="row shortcuts px-4">
                   <a href="#!" class="col-4 shortcut-item">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-red">
@@ -214,7 +221,7 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Bem-vindo!</h6>
                 </div>
-                <a href="../all/profile.html" class="dropdown-item">
+                <a href="#!" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>Perfil</span>
                 </a>
@@ -235,20 +242,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-calendar-alt"></i> Evento</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="input-group mb-3 col-md-6">
-            <input id="inputLocal" type="text" class="form-control" onkeypress="return runScript(event)"
-              placeholder="Insira uma localização" aria-label="Example text with button addon"
-              aria-describedby="button-addon1">
-            <div class="input-group-prepend">
-              <button class="btn btn-white" type="button" onclick="getInputValue()" id="button-addon1"><i
-                  class="fas fa-search-location fa-lg" style="color:#1d84b5"></i></button>
+              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-comments"></i> Chat</h6>
             </div>
           </div>
         </div>
@@ -259,85 +253,8 @@
       <div class="row">
         <div class="col">
           <div class="card border-0">
-            <div id="map-evento" draggable class="map-canvas" style="height: 400px;"></div>
+            <iframe src="https://minnit.chat/Environ?embed&nickname=" style="border:none;width:90%;height:500px;" allowTransparency="true"></iframe><br><a href="https://minnit.chat/Environ" target="_blank">Environ.</a>
           </div>
-        </div>
-      </div>
-      <div class="card mb-4">
-        <!-- Card header -->
-        <div class="card-header">
-          <h3 class="mb-0">Pedido de evento</h3>
-        </div>
-        <!-- Card body -->
-        <div class="card-body">
-          <!-- Form groups used in grid -->
-          <form>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Nome</label>
-                  <input id="name" type="text" class="form-control" placeholder="Nome do evento">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Latitude</label>
-                  <input disabled id="lati" type="text" class="form-control"
-                    placeholder="Utilize o mapa para localizar">
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols2Input">Longitude</label>
-                  <input disabled id="long" type="text" class="form-control"
-                    placeholder="Utilize o mapa para localizar">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols2Input">Rua <span
-                      class="badge badge-pill badge-success">complementar</span></label>
-                  <input id="rua" type="text" class="form-control" placeholder="Utilize o mapa para localizar">
-                </div>
-              </div>
-            </div>
-            <div class="row input-daterange datepicker align-items-center">
-              <div class="col">
-                <div class="form-group">
-                  <label class="form-control-label">Sugestão de intervalo de tempo - Início</label>
-                  <input id="ini" class="form-control" placeholder="Start date" type="text">
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="form-control-label">Sugestão de intervalo de tempo - Fim</label>
-                  <input id="fim" class="form-control" placeholder="End date" type="text">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
-                  <input type="number" id="number" class="form-control" placeholder="Insira o número de participantes">
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols2Input">Município</label>
-                  <input id="municipio" type="text" class="form-control" placeholder="Município" disabled>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span
-                  class="badge badge-pill badge-danger">detalhada</span></label>
-              <textarea class="form-control" id="resumo" rows="3"></textarea>
-            </div>
-            <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
-          </form>
         </div>
       </div>
       <!-- Footer -->
@@ -345,8 +262,7 @@
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
             <div class="copyright text-center text-lg-left text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                target="_blank">environ.</a>
+              &copy; 2019 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">environ.</a>
             </div>
           </div>
           <div class="col-lg-6">
@@ -360,45 +276,19 @@
       </footer>
     </div>
   </div>
-  <button style="display: none;" id="eventocriado" class="btn btn-success" data-toggle="notify"
-    data-message="Pedido de evento registado" data-title="O seu pedido de evento foi registado com sucesso"
-    data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">
-    Warning
-  </button>
-  <button style="display: none;" id="eventonaocriado" class="btn btn-danger" data-toggle="notify"
-    data-message="Erro ao submeter pedido"
-    data-title="Por alguma razão o seu pedido não foi concluído com sucesso. Verifique se preencheu corretamente o formulário."
-    data-placement="top" data-align="center" data-type="danger" data-icon="ni ni-bell-55">
-    Warning
-  </button>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script>
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = dd + '/' + mm + '/' + yyyy;
-    document.getElementById('ini').value = today;
-    document.getElementById('fim').value = today;
-  </script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsz3ly0l0NIr5XQvwQHoBwQTya4VWcDC0"></script>
-  <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
   <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/api/Hubspot.js"></script>
-  <script src="../../assets/js/api/Moloni.js"></script>
-
-  <script src="../../assets/js/api/GoogleMaps.js"></script>
+  <script src="../../assets/js/demo.min.js"></script>
   <script>
     window.onload = function () {
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
