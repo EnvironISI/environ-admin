@@ -356,7 +356,7 @@ function deleteUser() {
         reverseButtons: true
     }).then((result) => {
         if (result.value) {
-            fetch('https://environ-back.herokuapp.com/delete/me', {
+            fetch('https://environ-back.herokuapp.com/user/delete/me', {
                 method: 'DELETE',
                 credentials: 'include'
             }).then(response => {
