@@ -235,20 +235,7 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-calendar-alt"></i> Evento</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="input-group mb-3 col-md-6">
-            <input id="inputLocal" type="text" class="form-control" onkeypress="return runScript(event)"
-              placeholder="Insira uma localização" aria-label="Example text with button addon"
-              aria-describedby="button-addon1">
-            <div class="input-group-prepend">
-              <button class="btn btn-white" type="button" onclick="getInputValue()" id="button-addon1"><i
-                  class="fas fa-search-location fa-lg" style="color:#1d84b5"></i></button>
+              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-fire-alt"></i> Entidades</h6>
             </div>
           </div>
         </div>
@@ -256,17 +243,10 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
-      <div class="row">
-        <div class="col">
-          <div class="card border-0">
-            <div id="map-evento" draggable class="map-canvas" style="height: 400px;"></div>
-          </div>
-        </div>
-      </div>
       <div class="card mb-4">
         <!-- Card header -->
         <div class="card-header">
-          <h3 class="mb-0">Pedido de evento</h3>
+          <h3 class="mb-0">Registar Pacotes de Entidades</h3>
         </div>
         <!-- Card body -->
         <div class="card-body">
@@ -275,66 +255,83 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Nome</label>
-                  <input id="name" type="text" class="form-control" placeholder="Nome do evento">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Latitude</label>
-                  <input disabled id="lati" type="text" class="form-control"
-                    placeholder="Utilize o mapa para localizar">
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols2Input">Longitude</label>
-                  <input disabled id="long" type="text" class="form-control"
-                    placeholder="Utilize o mapa para localizar">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols2Input">Rua <span
-                      class="badge badge-pill badge-success">complementar</span></label>
-                  <input id="rua" type="text" class="form-control" placeholder="Utilize o mapa para localizar">
-                </div>
-              </div>
-            </div>
-            <div class="row input-daterange datepicker align-items-center">
-              <div class="col">
-                <div class="form-group">
-                  <label class="form-control-label">Sugestão de intervalo de tempo - Início</label>
-                  <input id="ini" class="form-control" placeholder="Start date" type="text">
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label class="form-control-label">Sugestão de intervalo de tempo - Fim</label>
-                  <input id="fim" class="form-control" placeholder="End date" type="text">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
+                  <label class="form-control-label" for="example2cols1Input">Nº Participantes <span
+                      class="badge badge-pill badge-success">maior ou igual a</span></label>
                   <input type="number" id="number" class="form-control" placeholder="Insira o número de participantes">
                 </div>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-5">
                 <div class="form-group">
-                  <label class="form-control-label" for="example3cols2Input">Município</label>
-                  <input id="municipio" type="text" class="form-control" placeholder="Município" disabled>
+                  <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
+                  <select id="tipoEvento" class="form-control">
+                    <option disabled value="" selected="selected">Selecionar opção</option>
+                    <option value="Manifestação">Manifestação</option>
+                    <option value="Limpeza">Limpeza</option>
+                    <option value="Plantação de árvores">Plantação de árvores</option>
+                    <option value="Palestra">Palestra</option>
+                    <option value="Congresso">Congresso</option>
+                    <option value="Formação">Formação</option>
+                    <option value="Curso">Curso</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Ação">Ação</option>
+                    <option value="Feira">Feira</option>
+                    <option value="Seminário">Seminário</option>
+                    <option value="Outro">Outro</option>
+                  </select>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span
+              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição <span
                   class="badge badge-pill badge-danger">detalhada</span></label>
               <textarea class="form-control" id="resumo" rows="3"></textarea>
+            </div>
+            <div class="card">
+              <!-- Card header -->
+              <div class="card-header">
+                <label class="form-control-label" for="exampleFormControlTextarea1">Entidades de autorização</label>
+              </div>
+              <!-- Card body -->
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="camara" type="checkbox">
+                        <label class="custom-control-label" for="camara">Câmara Municipal</label>
+                      </div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="parqueNatural" type="checkbox">
+                        <label class="custom-control-label" for="parqueNatural">Parque Natural responsável da zona em questão</label>
+                      </div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="APA" type="checkbox">
+                        <label class="custom-control-label" for="APA">Agência Portuguesa do Ambiente</label>
+                      </div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="capitania" type="checkbox">
+                        <label class="custom-control-label" for="capitania">Capitania do Porto responsável da zona em questão</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="gnr" type="checkbox">
+                        <label class="custom-control-label" for="gnr">Guarda Nacional Republicana</label>
+                      </div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="proprietario" type="checkbox">
+                        <label class="custom-control-label" for="proprietario">Proprietário do terreno</label>
+                      </div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="pm" type="checkbox">
+                        <label class="custom-control-label" for="pm">Polícia Municipal</label>
+                      </div>
+                      <div class="custom-control custom-checkbox mb-3">
+                        <input class="custom-control-input" id="bombeiros" type="checkbox">
+                        <label class="custom-control-label" for="bombeiros">Bombeiros</label>
+                      </div>
+                    </div>
+                  </div>
+              </div>
             </div>
             <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
           </form>
@@ -372,16 +369,6 @@
     Warning
   </button>
   <!-- Argon Scripts -->
-  <!-- Core -->
-  <script>
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
-    today = dd + '/' + mm + '/' + yyyy;
-    document.getElementById('ini').value = today;
-    document.getElementById('fim').value = today;
-  </script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -397,8 +384,6 @@
   <!-- Demo JS - remove this in your project -->
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/api/Moloni.js"></script>
-
-  <script src="../../assets/js/api/GoogleMaps.js"></script>
   <script>
     window.onload = function () {
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
