@@ -53,3 +53,17 @@ async function requestEvent() {
         console.log(data);
     })
 }
+
+function getAllEvents() {
+    fetch('https://environ-back.herokuapp.com/service/all', {
+        method: 'GET',
+        credentials: 'include'
+    }).then(response => {
+        console.log(response.json())
+        return true;
+    }).then(result => {
+        console.log(result)
+    }).catch(error => {
+        console.log(error)
+    })
+}

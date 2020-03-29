@@ -348,10 +348,10 @@ function deleteUser() {
     })
     swalWithBootstrapButtons.fire({
         title: 'Tem a certeza?',
-        text: "Não será possível reverter esta ação!",
+        text: "Poderá reverter esta ação falando com um dos administradores.",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: 'Sim, eliminar conta!',
+        confirmButtonText: 'Sim, desativar conta!',
         cancelButtonText: 'Não, cancelar!',
         reverseButtons: true
     }).then((result) => {
@@ -368,8 +368,8 @@ function deleteUser() {
                 console.log(error)
             })
             swalWithBootstrapButtons.fire(
-                'Conta eliminada!',
-                'A sua conta foi eliminada com sucesso.',
+                'Conta desativada!',
+                'A sua conta foi desativada com sucesso.',
                 'success'
             )
         } else if (
@@ -537,15 +537,15 @@ function getAllUsers() {
         var array = []
         response.forEach(element => {
           var obj = [];
-          if(!element.uid || element.uid === ''){ obj.push('null') } else { obj.push(element.uid) }
+        //   if(!element.uid || element.uid === ''){ obj.push('null') } else { obj.push(element.uid) }
           if(!element.name || element.name === ''){ obj.push('null') } else { obj.push(element.name) }
           if(!element.email || element.email === ''){ obj.push('null') } else { obj.push(element.email) }
           if(!element.phoneNumber || element.phoneNumber === ''){ obj.push('null') } else { obj.push(element.phoneNumber) }
           if(!element.role || element.role === ''){ obj.push('null') } else { obj.push(element.role) }
           if(!element.nif || element.nif === ''){ obj.push('null') } else { obj.push(element.nif) }
           if(!element.country || element.country === ''){ obj.push('null') } else { obj.push(element.country) }
-          if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
-          if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
+        //   if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
+        //   if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
           array.push(obj);
         });
         $('#utilizadores').DataTable( {
@@ -555,7 +555,12 @@ function getAllUsers() {
                 previous: "<i class='fas fa-angle-left'>",
                 next: "<i class='fas fa-angle-right'>"
             }
-        }
+        },
+        columnDefs: [ {
+            targets: -1,
+            data: null,
+            defaultContent:'<button id="eliminar" type="button" class="btn btn-youtube btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-trash-alt"></i></span></button> <button id="ativar" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-history"></i></span></button>'
+        } ]
         } );
       })
 }
