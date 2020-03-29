@@ -7,6 +7,7 @@ function showPosition(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;
     initMap(lat, lng)
+    weather(lat, lng)
 }
 
 function initMap(lat, lng) {
@@ -56,6 +57,7 @@ function initMap(lat, lng) {
             }
         }
         document.getElementById('numCidades').innerText = citiesNum;
+        getAllEvents();
         cities.forEach(element => {
             fetch('https://api.opencagedata.com/geocode/v1/json?q=' + element + '&key=e266ba8c43b346eab28695023463e6ff')
                 .then(function (response) {
@@ -84,21 +86,41 @@ function initMap(lat, lng) {
         })
     })
 
+    function getAllEvents() {
+        fetch('https://environ-back.herokuapp.com/service/all', {
+            method: 'GET',
+            credentials: 'include'
+        }).then(response => {
+            return response.json()
+        }).then(result => {
+            console.log(result)
+            document.getElementById("numEventos").innerText = result.length;
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
     map = new google.maps.Map(map, mapOptions);
 
-    google.maps.event.addListener(marker, 'click', function () {
-        infowindow.open(map, marker);
-    });
-    google.maps.event.addListener(marker, 'dragend', function () {
-        getPo();
-    });
-
-    function getPo() {
-        document.getElementById('lati').value = marker.getPosition().lat();
-        document.getElementById('long').value = marker.getPosition().lng()
-    }
 }
 
-if ($map.length) {
-    google.maps.event.addDomListener(window, 'load', initMap);
+function weather(latitude, longitude) {
+    var key = '{09d0f4bebcac766f59092c6275e8a0fa}';
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat=' + latitude + '&lon=' + longitude + '&lang=pt&units=metric&appid=09d0f4bebcac766f59092c6275e8a0fa')
+        .then(function (resp) {
+            return resp.json()
+        }) // Convert data to json
+        .then(function (data) {
+            console.log(data)
+            document.getElementById("openLocalizacao").innerText = data.name + " (" + data.sys.country + ")";
+            document.getElementById("openTemperatura").innerText = data.main.temp + ' °C';
+            document.getElementById("openVento").innerText = data.wind.speed + ' m/s';
+            document.getElementById("openPressao").innerText = data.main.pressure + " hPa";
+            document.getElementById("openHumidade").innerText = data.main.humidity + " %";
+            document.getElementById("openDescricao").innerText = data.weather[0].main + " - " + data.weather[0].description;
+
+        })
+        .catch(function () {
+            // catch any errors
+        }); // 8011224 Guimaraes
 }

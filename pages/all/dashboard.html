@@ -33,6 +33,9 @@
 </head>
 
 <body>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v6.0">
+  </script>
   <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
@@ -70,7 +73,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/camara/eventosCamara.html">
+              <a class="nav-link" href="../../pages/admin/eventos.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
@@ -327,8 +330,8 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Eventos</h5>
-                        <span class="h2 font-weight-bold mb-0">2</span>
+                        <h5 class="card-title text-uppercase text-muted mb-0">Eventos Totais</h5>
+                        <span id="numEventos" class="h2 font-weight-bold mb-0"></span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -439,69 +442,81 @@
                 <!-- Card header -->
                 <div class="card-header">
                   <!-- Title -->
-                  <h5 class="h3 mb-0">To do list</h5>
+                  <h5 id="metereologiaTitle" class="h3 mb-0">Metereologia Atual</h5>
                 </div>
                 <!-- Card body -->
-                <div class="card-body p-0">
-                  <!-- List group -->
-                  <ul class="list-group list-group-flush" data-toggle="checklist">
-                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                      <div class="checklist-item checklist-item-success">
-                        <div class="checklist-info">
-                          <h5 class="checklist-title mb-0">Call with Dave</h5>
-                          <small>10:30 AM</small>
-                        </div>
-                        <div>
-                          <div class="custom-control custom-checkbox custom-checkbox-success">
-                            <input class="custom-control-input" id="chk-todo-task-1" type="checkbox" checked>
-                            <label class="custom-control-label" for="chk-todo-task-1"></label>
-                          </div>
-                        </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Localização</h5>
+                      <span id="openLocalizacao" class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                        <i class="fas fa-map-marker-alt"></i>
                       </div>
-                    </li>
-                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                      <div class="checklist-item checklist-item-warning">
-                        <div class="checklist-info">
-                          <h5 class="checklist-title mb-0">Lunch meeting</h5>
-                          <small>10:30 AM</small>
-                        </div>
-                        <div>
-                          <div class="custom-control custom-checkbox custom-checkbox-warning">
-                            <input class="custom-control-input" id="chk-todo-task-2" type="checkbox">
-                            <label class="custom-control-label" for="chk-todo-task-2"></label>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Temperatura</h5>
+                      <span id="openTemperatura" class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-temperature-high"></i>
                       </div>
-                    </li>
-                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                      <div class="checklist-item checklist-item-info">
-                        <div class="checklist-info">
-                          <h5 class="checklist-title mb-0">Argon Dashboard Launch</h5>
-                          <small>10:30 AM</small>
-                        </div>
-                        <div>
-                          <div class="custom-control custom-checkbox custom-checkbox-info">
-                            <input class="custom-control-input" id="chk-todo-task-3" type="checkbox">
-                            <label class="custom-control-label" for="chk-todo-task-3"></label>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Vento</h5>
+                      <span id="openVento" class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                        <i class="fas fa-wind"></i>
                       </div>
-                    </li>
-                    <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                      <div class="checklist-item checklist-item-danger">
-                        <div class="checklist-info">
-                          <h5 class="checklist-title mb-0">Winter Hackaton</h5>
-                          <small>10:30 AM</small>
-                        </div>
-                        <div>
-                          <div class="custom-control custom-checkbox custom-checkbox-danger">
-                            <input class="custom-control-input" id="chk-todo-task-4" type="checkbox" checked>
-                            <label class="custom-control-label" for="chk-todo-task-4"></label>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Pressão</h5>
+                      <span id="openPressao" class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                        <i class="fas fa-wind"></i>
                       </div>
-                    </li>
-                  </ul>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Humidade</h5>
+                      <span id="openHumidade" class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-pink text-white rounded-circle shadow">
+                        <i class="fas fa-braille"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Descrição Geral</h5>
+                      <span id="openDescricao" class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                        <i class="fas fa-info-circle"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -511,81 +526,17 @@
                 <!-- Card header -->
                 <div class="card-header">
                   <!-- Title -->
-                  <h5 class="h3 mb-0">Progress track</h5>
+                  <h5 class="h3 mb-0">Página Facebook</h5>
                 </div>
                 <!-- Card body -->
                 <div class="card-body">
                   <!-- List group -->
-                  <ul class="list-group list-group-flush list my--3">
-                    <li class="list-group-item px-0">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <!-- Avatar -->
-                          <a href="#" class="avatar rounded-circle">
-                            <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
-                          </a>
-                        </div>
-                        <div class="col">
-                          <h5>Argon Design System</h5>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                              aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="list-group-item px-0">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <!-- Avatar -->
-                          <a href="#" class="avatar rounded-circle">
-                            <img alt="Image placeholder" src="../../assets/img/theme/angular.jpg">
-                          </a>
-                        </div>
-                        <div class="col">
-                          <h5>Angular Now UI Kit PRO</h5>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0"
-                              aria-valuemax="100" style="width: 100%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="list-group-item px-0">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <!-- Avatar -->
-                          <a href="#" class="avatar rounded-circle">
-                            <img alt="Image placeholder" src="../../assets/img/theme/sketch.jpg">
-                          </a>
-                        </div>
-                        <div class="col">
-                          <h5>Black Dashboard</h5>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar bg-red" role="progressbar" aria-valuenow="72" aria-valuemin="0"
-                              aria-valuemax="100" style="width: 72%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="list-group-item px-0">
-                      <div class="row align-items-center">
-                        <div class="col-auto">
-                          <!-- Avatar -->
-                          <a href="#" class="avatar rounded-circle">
-                            <img alt="Image placeholder" src="../../assets/img/theme/react.jpg">
-                          </a>
-                        </div>
-                        <div class="col">
-                          <h5>React Material Dashboard</h5>
-                          <div class="progress progress-xs mb-0">
-                            <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                              aria-valuemax="100" style="width: 90%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
+                  <div class="fb-page" data-href="https://www.facebook.com/Environ-109765900647547/"
+                    data-tabs="timeline" data-width="400px" data-height="" data-small-header="false"
+                    data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/Environ-109765900647547/" class="fb-xfbml-parse-ignore">
+                      <a href="https://www.facebook.com/Environ-109765900647547/">Environ</a></blockquote>
+                  </div>
                 </div>
               </div>
             </div>

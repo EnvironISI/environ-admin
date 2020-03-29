@@ -14,15 +14,20 @@ async function requestEvent() {
     myDate1 = endTime.split("/");
     var newDateFim = myDate1[1] + "/" + myDate1[0] + "/" + myDate1[2];
     var fim = `${new Date(newDateFim).getTime()}`
-    console.log(name);
-    console.log(lat);
-    console.log(long);
-    console.log(address);
-    console.log(inicio);
-    console.log(fim);
-    console.log(nrPart);
-    console.log(municipio);
-    console.log(summary);
+
+    // Formato DD/MM/AAAA 
+    var initTime1 = `${document.getElementById('ini').value}`
+    var endTime1 = `${document.getElementById('fim').value}`
+
+    // console.log(name);
+    // console.log(lat);
+    // console.log(long);
+    // console.log(address);
+    // console.log(inicio);
+    // console.log(fim);
+    // console.log(nrPart);
+    // console.log(municipio);
+    // console.log(summary);
 
     fetch('https://environ-back.herokuapp.com/service/request', {
         method: 'POST',
@@ -35,8 +40,8 @@ async function requestEvent() {
             latitude: lat,
             longitude: long,
             address: address,
-            initTime: inicio,
-            endTime: fim,
+            initTime: initTime1,
+            endTime: endTime1,
             nrPart: nrPart,
             municipio: municipio,
             summary: summary
@@ -54,13 +59,12 @@ async function requestEvent() {
     })
 }
 
-function getAllEvents() {
-    fetch('https://environ-back.herokuapp.com/service/all', {
+async function getAllEvents() {
+   await fetch('https://environ-back.herokuapp.com/service/all', {
         method: 'GET',
         credentials: 'include'
     }).then(response => {
-        console.log(response.json())
-        return true;
+        return response.json()
     }).then(result => {
         console.log(result)
     }).catch(error => {

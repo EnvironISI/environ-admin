@@ -3,7 +3,7 @@
         var url =
             "http://newsapi.org/v2/everything?" +
             "q=Environment&" +
-            "from=2020-02-28&" +
+            "from=2020-03-15&" +
             "pageSize=20&" +
             "sortBy=popularity&" +
             "apiKey=1602c707c35b423f946e6f8c60b76dde";
@@ -19,7 +19,6 @@
             if (articles == undefined) {
                 console.log("Parsing data.");
             } else {
-                console.log(articles);
                 clearInterval(loadData);
                 generateData(articles);
                 setCardData();

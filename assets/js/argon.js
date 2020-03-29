@@ -1259,7 +1259,7 @@ var BarsChart = (function () {
 				labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 				datasets: [{
 					label: 'Sales',
-					data: [25, 20, 30, 22, 17, 29]
+					data: [25, 20, 30, 22, 17, 100]
 				}]
 			}
 		});
