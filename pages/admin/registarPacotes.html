@@ -17,6 +17,12 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/select2/dist/css/select2.min.css">
+  <link rel="stylesheet" href="../../assets/css/bootstrap/bootstrap-tagsinput.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> -->
+
 </head>
 
 <body>
@@ -96,7 +102,7 @@
                     <a href="../../pages/camara/eventosCamara.html" class="nav-link">Listar Entidades</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/empresa/evento.html" class="nav-link">Registar Entidades</a>
+                    <a href="../../pages/admin/registarPacotes.html" class="nav-link">Registar Pacotes</a>
                   </li>
                 </ul>
               </div>
@@ -281,59 +287,25 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição <span
-                  class="badge badge-pill badge-danger">detalhada</span></label>
-              <textarea class="form-control" id="resumo" rows="3"></textarea>
-            </div>
-            <div class="card">
-              <!-- Card header -->
-              <div class="card-header">
-                <label class="form-control-label" for="exampleFormControlTextarea1">Entidades de autorização</label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="example2cols1Input">Entidades de autorização <span
+                      class="badge badge-pill badge-danger">obrigatório</span></label>
+                  <input class="form-control input-tags" id="autorizacao" data-role="tagsinput">
+                </div>
               </div>
-              <!-- Card body -->
-              <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="camara" type="checkbox">
-                        <label class="custom-control-label" for="camara">Câmara Municipal</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="parqueNatural" type="checkbox">
-                        <label class="custom-control-label" for="parqueNatural">Parque Natural responsável da zona em questão</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="APA" type="checkbox">
-                        <label class="custom-control-label" for="APA">Agência Portuguesa do Ambiente</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="capitania" type="checkbox">
-                        <label class="custom-control-label" for="capitania">Capitania do Porto responsável da zona em questão</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="gnr" type="checkbox">
-                        <label class="custom-control-label" for="gnr">Guarda Nacional Republicana</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="proprietario" type="checkbox">
-                        <label class="custom-control-label" for="proprietario">Proprietário do terreno</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="pm" type="checkbox">
-                        <label class="custom-control-label" for="pm">Polícia Municipal</label>
-                      </div>
-                      <div class="custom-control custom-checkbox mb-3">
-                        <input class="custom-control-input" id="bombeiros" type="checkbox">
-                        <label class="custom-control-label" for="bombeiros">Bombeiros</label>
-                      </div>
-                    </div>
-                  </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="example2cols1Input">Entidades de participação <span
+                      class="badge badge-pill badge-danger">obrigatório</span></label>
+                  <input class="form-control input-tags" id="participacao" data-role="tagsinput">
+                </div>
               </div>
             </div>
-            <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
+            <div>
+              <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
+            </div>
           </form>
         </div>
       </div>
@@ -384,11 +356,28 @@
   <!-- Demo JS - remove this in your project -->
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/api/Moloni.js"></script>
+  <script src="../../assets/js/bootstrap-tagsinput.js"></script>
+  <script type="text/javascript">
+    $(".defaults_select").select2({
+      tags: true,
+      multiple: true,
+      placeholder: "Enter values",
+      allowClear: true,
+      language: 'en',
+      tokenSeparators: [',', '$'],
+      dropdownParent: $('#hello')
+    });
+  </script>
   <script>
     window.onload = function () {
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
       document.getElementById('img1').src = sessionStorage.getItem('photo');
     };
+  </script>
+  <script>
+    function teste() {
+      console.log(document.getElementById("tags").value);
+    }
   </script>
 </body>
 
