@@ -14,6 +14,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css" />
   <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css" />
+  <link rel="stylesheet" href="../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <!-- Page plugins -->
   <link rel="stylesheet" href="../../assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
   <link rel="stylesheet" href="../../assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
@@ -274,7 +275,7 @@
               <table id="utilizadores" class="table table-flush" id="datatable-buttons">
                 <thead class="thead-light" id="thead">
                   <tr>
-                    <!-- <th>ID</th> -->
+                    <th>UID</th>
                     <th>Organização</th>
                     <th>Email</th>
                     <th>Contacto</th>
@@ -283,12 +284,13 @@
                     <th>País</th>
                     <!-- <th>Cidade</th> -->
                     <!-- <th>Setor</th> -->
-                    <th>Eliminar/Ativar</th>
+                    <!-- <th>Eliminar/Ativar</th> -->
+
                   </tr>
                 </thead>
                 <tfoot id="tfoot">
                   <tr>
-                    <!-- <th>ID</th> -->
+                    <th>UID</th>
                     <th>Organização</th>
                     <th>Email</th>
                     <th>Contacto</th>
@@ -297,7 +299,7 @@
                     <th>País</th>
                     <!-- <th>Cidade</th>
                     <th>Setor</th> -->
-                    <th>Eliminar/Ativar</th>
+                    <!-- <th>Eliminar/Ativar</th> -->
                   </tr>
                 </tfoot>
                 <tbody id="tbody">
@@ -306,7 +308,29 @@
             </div>
           </div>
         </div>
+      </div>     <div class="card mb-4">
+        <!-- Card header -->
+        <div class="card-header">
+          <h3 class="mb-0">Pedido de evento</h3>
+        </div>
+        <!-- Card body -->
+        <div class="card-body">
+          <!-- Form groups used in grid -->
+          <form>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols1Input">UID</label>
+                  <input id="uid" type="text" class="form-control" placeholder="Insira o UID do utilizador em questão apresentado na tabela">
+                </div>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-danger" type="button" onclick="eliminarUtilizador()">Eliminar</button>
+          <button class="btn btn-success" type="button" onclick="ativarUtilizador()">Ativar</button>
+        </div>
       </div>
+
       <!-- Footer -->
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
@@ -364,6 +388,7 @@
   <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
   <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
   <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
 

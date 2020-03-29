@@ -531,36 +531,167 @@ function getAllUsers() {
     fetch('https://environ-back.herokuapp.com/admin/users', {
         method: 'GET',
         credentials: 'include'
-      }).then(result => {
+    }).then(result => {
         return result.json();
-      }).then(response => {
+    }).then(response => {
         var array = []
         response.forEach(element => {
-          var obj = [];
-        //   if(!element.uid || element.uid === ''){ obj.push('null') } else { obj.push(element.uid) }
-          if(!element.name || element.name === ''){ obj.push('null') } else { obj.push(element.name) }
-          if(!element.email || element.email === ''){ obj.push('null') } else { obj.push(element.email) }
-          if(!element.phoneNumber || element.phoneNumber === ''){ obj.push('null') } else { obj.push(element.phoneNumber) }
-          if(!element.role || element.role === ''){ obj.push('null') } else { obj.push(element.role) }
-          if(!element.nif || element.nif === ''){ obj.push('null') } else { obj.push(element.nif) }
-          if(!element.country || element.country === ''){ obj.push('null') } else { obj.push(element.country) }
-        //   if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
-        //   if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
-          array.push(obj);
-        });
-        $('#utilizadores').DataTable( {
-          data: array,
-          language: {
-            paginate: {
-                previous: "<i class='fas fa-angle-left'>",
-                next: "<i class='fas fa-angle-right'>"
+            var obj = [];
+            if (!element.uid || element.uid === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.uid)
             }
+            if (!element.name || element.name === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.name)
+            }
+            if (!element.email || element.email === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.email)
+            }
+            if (!element.phoneNumber || element.phoneNumber === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.phoneNumber)
+            }
+            if (!element.role || element.role === '') {
+                obj.push('null')
+            } else if(element.role === "empresa") {
+                obj.push('Empresa')
+            } else if(element.role === "camara") {
+                obj.push('Câmara')
+            } else {
+                obj.push(element.role)
+            }
+            if (!element.nif || element.nif === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.nif)
+            }
+            if (!element.country || element.country === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.country)
+            }
+            //   if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
+            //   if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
+            array.push(obj);
+        });
+        $('#utilizadores').DataTable({
+            data: array,
+            language: {
+                paginate: {
+                    previous: "<i class='fas fa-angle-left'>",
+                    next: "<i class='fas fa-angle-right'>"
+                }
+            }
+            // ,columnDefs: [ {
+            //     targets: -1,
+            //     data: null,
+            //     defaultContent:'<button id="eliminar" type="button" class="btn btn-youtube btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-trash-alt"></i></span></button> <button id="ativar" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-history"></i></span></button>'
+            // } ]
+        });
+    })
+}
+
+//Eliminar Utilizador pelo ADMIN
+
+function eliminarUtilizador() {
+    var uid = document.getElementById("uid").value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
         },
-        columnDefs: [ {
-            targets: -1,
-            data: null,
-            defaultContent:'<button id="eliminar" type="button" class="btn btn-youtube btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-trash-alt"></i></span></button> <button id="ativar" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-history"></i></span></button>'
-        } ]
-        } );
-      })
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a eliminar irreversivelmente o utilizador com o UID: " + uid + "!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, eliminar utilizador!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/admin/delete/user/' + uid, {
+                method: 'DELETE',
+                credentials: 'include'
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                location = location;
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Utilizador eliminado!',
+                'O utilizador introduzido foi eliminado!',
+                'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
+}
+
+//Eliminar Utilizador pelo ADMIN
+
+function ativarUtilizador() {
+    var uid = document.getElementById("uid").value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a ativar o utilizador com o UID: " + uid + "!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, ativar utilizador!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/admin/enable/user/' + uid, {
+                method: 'DELETE',
+                credentials: 'include'
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Utilizador ativado!',
+                'O utilizador introduzido foi novamente ativado no sistema!',
+                'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
 }
