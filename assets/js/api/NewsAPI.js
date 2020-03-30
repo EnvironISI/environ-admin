@@ -1,7 +1,7 @@
     var info;
     function news() {
         var url =
-            "http://newsapi.org/v2/everything?" +
+            "https://newsapi.org/v2/everything?" +
             "q=Environment&" +
             "from=2020-03-15&" +
             "pageSize=20&" +
