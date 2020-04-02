@@ -23,8 +23,8 @@
 </head>
 
 <body>
- <!-- Sidenav -->
- <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <!-- Sidenav -->
+  <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header d-flex align-items-center">
@@ -232,7 +232,6 @@
         </div>
       </div>
     </nav>
-
     <!-- Header -->
     <!-- Header -->
     <div class="header bg-hugo pb-6">
@@ -275,6 +274,7 @@
                     <th>Nº Participantes</th>
                     <th>Município</th>
                     <th>Data</th>
+                    <th>Detalhes</th>
                   </tr>
                 </thead>
                 <tfoot id="tfoot">
@@ -285,6 +285,7 @@
                     <th>Nº Participantes</th>
                     <th>Município</th>
                     <th>Data</th>
+                    <th>Detalhes</th>
                   </tr>
                 </tfoot>
                 <tbody id="tbody">
@@ -292,56 +293,83 @@
               </table>
             </div>
           </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center text-lg-left text-muted">
-              &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">environ.</a>
+          <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog"
+            aria-labelledby="modal-notification" aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+              <div class="modal-content bg-gradient-hugo-daniel">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="modal-title-notification"><i class="far fa-calendar-alt fa-3x"></i></h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <p><b>Nome: </b></p>
+                    <p><b>Organização: </b></p>
+                    <p><b>Data: </b></p>
+                    <p><b>Município: </b></p>
+                    <p><b>Rua: </b></p>
+                    <p><b>Latitude: </b></p>
+                    <p><b>Longitude: </b></p>
+                    <p><b>Estado: </b></p>
+                    <div class="form-group">
+                      <input id="dataFinal" class="form-control" placeholder="Data final" type="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-white">Aceitar</button>
+                  <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
-              </li>
-            </ul>
+            <!-- Footer -->
+            <footer class="footer pt-0">
+              <div class="row align-items-center justify-content-lg-between">
+                <div class="col-lg-6">
+                  <div class="copyright text-center text-lg-left text-muted">
+                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                      target="_blank">environ.</a>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                    <li class="nav-item">
+                      <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </footer>
           </div>
         </div>
-      </footer>
-    </div>
-  </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Optional JS -->
-  <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
-
-  <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
-  <!-- Argon JS -->
-  <script src="../../assets/js/argon.js?v=1.1.0"></script>
-
-
-  <script src="../../assets/js/api/Hubspot.js"></script>
-  <script src="../../assets/js/api/Moloni.js"></script>
-
-  <script>
-    document.getElementById("img1").src = sessionStorage.getItem('photo');
-    document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
-    getAllEvents();
-  </script>
+        <!-- Argon Scripts -->
+        <!-- Core -->
+        <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+        <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+        <!-- Optional JS -->
+        <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
+        <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+        
+        <!-- Argon JS -->
+        <script src="../../assets/js/argon.js?v=1.1.0"></script>
+        <script src="../../assets/js/api/Hubspot.js"></script>
+        <script src="../../assets/js/api/Moloni.js"></script>
+        <script>
+          document.getElementById("img1").src = sessionStorage.getItem('photo');
+          document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
+          getAllEvents();
+        </script>
 </body>
 
 </html>

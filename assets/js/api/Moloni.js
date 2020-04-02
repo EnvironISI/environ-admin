@@ -97,6 +97,11 @@ function getAllEvents() {
             } else {
                 obj.push(element.properties[5].value)
             }
+            if (!element.properties[6].value  || element.properties[6].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[6].value)
+            }
             if (!element.properties[8].value  || element.properties[8].value === '') {
                 obj.push('null')
             } else {
@@ -133,8 +138,9 @@ function getAllEvents() {
             } ]
         });
         $('#eventosEnviron tbody').on( 'click', 'button', function () {
-            var data = table.row( $(this).parents('tr') ).data();
-            alert( data[0] +"'s salary is: "+ data[ 5 ] );
+            $('#modal-notification').modal('show');
+            // var data = table.row( $(this).parents('tr') ).data();
+            // alert( data[0] +"'s salary is: "+ data[ 5 ] );
         } );
     })
 }
