@@ -14,6 +14,7 @@ async function requestEvent() {
     myDate1 = endTime.split("/");
     var newDateFim = myDate1[1] + "/" + myDate1[0] + "/" + myDate1[2];
     var fim = `${new Date(newDateFim).getTime()}`
+    var tipoEvento = document.getElementById("tipoEvento").value;
 
     // Formato DD/MM/AAAA 
     var initTime1 = `${document.getElementById('ini').value}`
@@ -44,7 +45,8 @@ async function requestEvent() {
             endTime: endTime1,
             nrPart: nrPart,
             municipio: municipio,
-            summary: summary
+            summary: summary,
+            eventType: tipoEvento
         })
     }).then(result => {
         console.log(result)
@@ -59,15 +61,80 @@ async function requestEvent() {
     })
 }
 
-async function getAllEvents() {
-   await fetch('https://environ-back.herokuapp.com/service/all', {
+function getAllEvents() {
+    fetch('https://environ-back.herokuapp.com/service/all', {
         method: 'GET',
         credentials: 'include'
-    }).then(response => {
-        return response.json()
     }).then(result => {
-        console.log(result)
-    }).catch(error => {
-        console.log(error)
+        return result.json();
+    }).then(response => {
+        var array = []
+        console.log(response)
+        response.forEach(element => {
+            var obj = [];
+            if (!element.product_id || element.product_id === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.product_id)
+            }
+            if (!element.name || element.name === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.name)
+            }
+            if (!element.properties[1].value || element.properties[1].value  === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[1].value )
+            }
+            if (!element.properties[4].value  || element.properties[4].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[4].value)
+            }
+            if (!element.properties[5].value  || element.properties[5].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[5].value)
+            }
+            if (!element.properties[8].value  || element.properties[8].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[8].value)
+            }
+            // if (!element.country || element.country === '') {
+            //     obj.push('null')
+            // } else {
+            //     obj.push(element.country)
+            // }
+            // if (element.disabled === 'undefined' || element.disabled === '') {
+            //     obj.push('null')
+            // } else if(element.disabled === false) {
+            //     obj.push('Ativo')
+            // } else if(element.disabled === true) {
+            //     obj.push('Desativo')
+            // }
+            // //   if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
+            // //   if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
+            array.push(obj);
+        });
+        var table = $('#eventosEnviron').DataTable({
+            data: array,
+            language: {
+                paginate: {
+                    previous: "<i class='fas fa-angle-left'>",
+                    next: "<i class='fas fa-angle-right'>"
+                }
+            }
+            ,columnDefs: [ {
+                targets: -1,
+                data: null,
+                defaultContent:'<button id="eliminar" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>'
+            } ]
+        });
+        $('#eventosEnviron tbody').on( 'click', 'button', function () {
+            var data = table.row( $(this).parents('tr') ).data();
+            alert( data[0] +"'s salary is: "+ data[ 5 ] );
+        } );
     })
 }

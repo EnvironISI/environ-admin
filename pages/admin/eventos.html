@@ -248,13 +248,13 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col">
           <div class="card border-0">
             <div id="map-camaras" draggable class="map-canvas" style="height: 300px;"></div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col">
           <div class="card">
@@ -262,27 +262,29 @@
             <div class="card-header">
               <h3 class="mb-0">Eventos</h3>
               <p class="text-sm mb-0">
-                Aqui estão listados todos os eventos que foram requisitados à sua entidade.
+                Aqui estão listados todos os eventos registados no sistema.
               </p>
             </div>
             <div class="table-responsive py-4">
-              <table class="table table-flush" id="datatable-buttons">
+              <table id="eventosEnviron" class="table table-flush">
                 <thead class="thead-light" id="thead">
                   <tr>
                     <th>ID</th>
-                    <th>Descrição</th>
+                    <th>Nome</th>
+                    <th>Organização</th>
                     <th>Nº Participantes</th>
-                    <th>Estado</th>
-                    <th>Período</th>
+                    <th>Município</th>
+                    <th>Data</th>
                   </tr>
                 </thead>
                 <tfoot id="tfoot">
                   <tr>
                     <th>ID</th>
-                    <th>Descrição</th>
+                    <th>Nome</th>
+                    <th>Organização</th>
                     <th>Nº Participantes</th>
-                    <th>Estado</th>
-                    <th>Período</th>
+                    <th>Município</th>
+                    <th>Data</th>
                   </tr>
                 </tfoot>
                 <tbody id="tbody">
@@ -317,7 +319,6 @@
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsz3ly0l0NIr5XQvwQHoBwQTya4VWcDC0"></script>
   <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
 
@@ -332,8 +333,6 @@
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
 
-
-  <script src="../../assets/js/api/GoogleMaps.js"></script>
 
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/api/Moloni.js"></script>
