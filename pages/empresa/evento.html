@@ -403,14 +403,14 @@
     document.getElementById('fim').value = today;
   </script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIJHeQKwL-1zZd-wYsYlnViueWUiwlTT8"></script>
-  <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuzA3MI5vsN7mIOvVltsGlRyBEIcTQYPY"></script>
   <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
@@ -423,7 +423,7 @@
     window.onload = function () {
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
       document.getElementById('img1').src = sessionStorage.getItem('photo');
-      getAllEvents();
+      getGeolocation();
     };
   </script>
 </body>

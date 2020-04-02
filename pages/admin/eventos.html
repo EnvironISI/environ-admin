@@ -295,7 +295,7 @@
           </div>
           <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog"
             aria-labelledby="modal-notification" aria-hidden="true">
-            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-xl" role="document">
               <div class="modal-content bg-gradient-hugo-daniel">
                 <div class="modal-header">
                   <h3 class="modal-title" id="modal-title-notification"><i class="far fa-calendar-alt fa-3x"></i></h3>
@@ -303,18 +303,103 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
+                
                 <div class="modal-body">
-                    <p><b>Nome: </b></p>
-                    <p><b>Organização: </b></p>
-                    <p><b>Data: </b></p>
-                    <p><b>Município: </b></p>
-                    <p><b>Rua: </b></p>
-                    <p><b>Latitude: </b></p>
-                    <p><b>Longitude: </b></p>
-                    <p><b>Estado: </b></p>
-                    <div class="form-group">
-                      <input id="dataFinal" class="form-control" placeholder="Data final" type="text">
+                  <div class="row">
+                    <div class="col">
+                      <div class="card border-0">
+                        <div id="map-evento" draggable class="map-canvas" style="height: 200px;"></div>
+                      </div>
                     </div>
+                  </div>
+                  <div class="card mb-4">
+                    <!-- Card header -->
+                    <div class="card-header">
+                      <h3 class="mb-0">Detalhes de evento</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                      <!-- Form groups used in grid -->
+                      <form>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example3cols1Input">Nome</label>
+                              <input disabled id="name" type="text" class="form-control" placeholder="Nome do evento">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example3cols2Input">Município</label>
+                              <input disabled id="municipio" type="text" class="form-control" placeholder="Município"
+                                disabled>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example3cols1Input">Latitude</label>
+                              <input disabled id="lati" type="text" class="form-control"
+                                placeholder="Latitude">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example3cols2Input">Longitude</label>
+                              <input disabled id="long" type="text" class="form-control"
+                                placeholder="Longitude">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example3cols2Input">Rua</label>
+                              <input disabled id="rua" type="text" class="form-control"
+                                placeholder="Rua">
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row input-daterange datepicker align-items-center">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label">Sugestão - Início</label>
+                              <input disabled id="ini" class="form-control" placeholder="Sugestão - Início" type="text">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label">Sugestão - Fim</label>
+                              <input disabled id="fim" class="form-control" placeholder="Sugestão - Fim" type="text">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
+                              <input disabled type="text" id="number" class="form-control"
+                                placeholder="Número de participantes">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
+                              <input disabled type="text" id="number" class="form-control"
+                                placeholder="Tipo de evento">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento</label>
+                          <textarea disabled class="form-control" id="resumo" rows="3"></textarea>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-white">Aceitar</button>
@@ -360,7 +445,9 @@
         <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
         <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
         <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
-        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuzA3MI5vsN7mIOvVltsGlRyBEIcTQYPY"></script>
+        <script src="../../assets/js/api/GoogleMaps.js"></script>
+
         <!-- Argon JS -->
         <script src="../../assets/js/argon.js?v=1.1.0"></script>
         <script src="../../assets/js/api/Hubspot.js"></script>
@@ -369,6 +456,7 @@
           document.getElementById("img1").src = sessionStorage.getItem('photo');
           document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
           getAllEvents();
+          initMapEvent(41.481011, -8.192000)
         </script>
 </body>
 

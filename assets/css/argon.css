@@ -7896,7 +7896,7 @@ a.close.disabled
     .modal-lg,
     .modal-xl
     {
-        max-width: 800px;
+        max-width: 400px;
     }
 }
 
@@ -7904,7 +7904,7 @@ a.close.disabled
 {
     .modal-xl
     {
-        max-width: 1140px;
+        max-width: 800px;
     }
 }
 
@@ -26383,7 +26383,7 @@ a.text-lighter:focus
 .datepicker
 {
     border-radius: .375rem;
-
+    z-index: 1080;
     direction: ltr;
 }
 .datepicker-inline
