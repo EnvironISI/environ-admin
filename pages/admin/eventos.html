@@ -268,23 +268,23 @@
               <table id="eventosEnviron" class="table table-flush">
                 <thead class="thead-light" id="thead">
                   <tr>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Organização</th>
                     <th>Nº Participantes</th>
                     <th>Município</th>
                     <th>Data</th>
+                    <th>Estado</th>
                     <th>Detalhes</th>
                   </tr>
                 </thead>
                 <tfoot id="tfoot">
                   <tr>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Organização</th>
                     <th>Nº Participantes</th>
                     <th>Município</th>
                     <th>Data</th>
+                    <th>Estado</th>
                     <th>Detalhes</th>
                   </tr>
                 </tfoot>
@@ -322,16 +322,22 @@
                       <!-- Form groups used in grid -->
                       <form>
                         <div class="row">
+                          <div class="col-md-6" style="display: none;">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example3cols1Input">Nome</label>
+                              <input disabled id="modalEventID" type="text" class="form-control" placeholder="Nome do evento">
+                            </div>
+                          </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols1Input">Nome</label>
-                              <input disabled id="name" type="text" class="form-control" placeholder="Nome do evento">
+                              <input disabled id="modalEventName" type="text" class="form-control" placeholder="Nome do evento">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols2Input">Município</label>
-                              <input disabled id="municipio" type="text" class="form-control" placeholder="Município"
+                              <input disabled id="modalEventMunicipio" type="text" class="form-control" placeholder="Município"
                                 disabled>
                             </div>
                           </div>
@@ -340,14 +346,14 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols1Input">Latitude</label>
-                              <input disabled id="lati" type="text" class="form-control"
+                              <input disabled id="modalEventLatitude" type="text" class="form-control"
                                 placeholder="Latitude">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols2Input">Longitude</label>
-                              <input disabled id="long" type="text" class="form-control"
+                              <input disabled id="modalEventLongitude" type="text" class="form-control"
                                 placeholder="Longitude">
                             </div>
                           </div>
@@ -356,7 +362,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols2Input">Rua</label>
-                              <input disabled id="rua" type="text" class="form-control"
+                              <input disabled id="modalEventRua" type="text" class="form-control"
                                 placeholder="Rua">
                             </div>
                           </div>
@@ -366,13 +372,13 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label">Sugestão - Início</label>
-                              <input disabled id="ini" class="form-control" placeholder="Sugestão - Início" type="text">
+                              <input disabled id="modalEventInicio" class="form-control" placeholder="Sugestão - Início" type="text">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label">Sugestão - Fim</label>
-                              <input disabled id="fim" class="form-control" placeholder="Sugestão - Fim" type="text">
+                              <input disabled id="modalEventFim" class="form-control" placeholder="Sugestão - Fim" type="text">
                             </div>
                           </div>
                         </div>
@@ -380,21 +386,21 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
-                              <input disabled type="text" id="number" class="form-control"
+                              <input disabled type="text" id="modalEventNumero" class="form-control"
                                 placeholder="Número de participantes">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
-                              <input disabled type="text" id="number" class="form-control"
+                              <input disabled type="text" id="modalEventTipo" class="form-control"
                                 placeholder="Tipo de evento">
                             </div>
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento</label>
-                          <textarea disabled class="form-control" id="resumo" rows="3"></textarea>
+                          <textarea disabled class="form-control" id="modalEventResumo" rows="3"></textarea>
                         </div>
                       </form>
                     </div>
@@ -456,7 +462,6 @@
           document.getElementById("img1").src = sessionStorage.getItem('photo');
           document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
           getAllEvents();
-          initMapEvent(41.481011, -8.192000)
         </script>
 </body>
 

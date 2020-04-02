@@ -71,56 +71,92 @@ function getAllEvents() {
         var array = []
         console.log(response)
         response.forEach(element => {
+            console.log(element.properties[8].value)
             var obj = [];
-            if (!element.product_id || element.product_id === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.product_id)
-            }
+
+            //Visiveis ao Utilizador
+
+            //Nome Evento data[0]
             if (!element.name || element.name === '') {
                 obj.push('null')
             } else {
                 obj.push(element.name)
             }
+            //Estado Evento data[1]
             if (!element.properties[1].value || element.properties[1].value  === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[1].value )
             }
+            //Número de participantes data[2]
             if (!element.properties[4].value  || element.properties[4].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[4].value)
             }
-            if (!element.properties[5].value  || element.properties[5].value === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.properties[5].value)
-            }
-            if (!element.properties[6].value  || element.properties[6].value === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.properties[6].value)
-            }
+            //Município onde se localiza evento data[3]
             if (!element.properties[8].value  || element.properties[8].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[8].value)
             }
-            // if (!element.country || element.country === '') {
-            //     obj.push('null')
-            // } else {
-            //     obj.push(element.country)
-            // }
-            // if (element.disabled === 'undefined' || element.disabled === '') {
-            //     obj.push('null')
-            // } else if(element.disabled === false) {
-            //     obj.push('Ativo')
-            // } else if(element.disabled === true) {
-            //     obj.push('Desativo')
-            // }
-            // //   if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
-            // //   if(!element.setor || element.setor === ''){ obj.push('null') } else { obj.push(element.setor) }
+            //Data de Início data[4]
+            if (!element.properties[5].value  || element.properties[5].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[5].value)
+            }
+            //Estado do Evento data[5]
+            if (!element.properties[0].value  || element.properties[0].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(capitalize(element.properties[0].value))
+            }
+
+            //Não visiveís ao utilizador 
+
+            //Latitude do evento data[6]
+            if (!element.properties[2].value  || element.properties[2].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[2].value)
+            }
+            //Longitude do evento data[7]
+            if (!element.properties[3].value  || element.properties[3].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[3].value)
+            }
+            //ID Evento data[8]
+            if (!element.product_id || element.product_id === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.product_id)
+            }
+            //Rua do Evento data[9]
+            if (!element.properties[7].value  || element.properties[7].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[7].value)
+            }
+            //Fim do Evento data[10]
+            if (!element.properties[6].value  || element.properties[6].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[6].value)
+            }
+            //Tipo de evento data[11]
+            if (!element.properties[9].value  || element.properties[9].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[9].value)
+            }
+            //Descrição Evento data[12]
+            if (!element.summary || element.summary === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.summary)
+            }
             array.push(obj);
         });
         var table = $('#eventosEnviron').DataTable({
@@ -135,12 +171,30 @@ function getAllEvents() {
                 targets: -1,
                 data: null,
                 defaultContent:'<button id="eliminar" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>'
-            } ]
+            },
+         ]
         });
         $('#eventosEnviron tbody').on( 'click', 'button', function () {
             $('#modal-notification').modal('show');
-            // var data = table.row( $(this).parents('tr') ).data();
-            // alert( data[0] +"'s salary is: "+ data[ 5 ] );
+            var data = table.row( $(this).parents('tr') ).data();
+            console.log(parseFloat(data[7].replace("," , ".")))
+            initMapEvent(parseFloat(data[6].replace("," , ".")), parseFloat(data[7].replace("," , ".")))
+            document.getElementById("modalEventName").value = data[0];
+            document.getElementById("modalEventMunicipio").value = data[3];
+            document.getElementById("modalEventLatitude").value = parseFloat(data[6].replace("," , "."));
+            document.getElementById("modalEventLongitude").value = parseFloat(data[7].replace("," , "."));
+            document.getElementById("modalEventRua").value = data[9];
+            document.getElementById("modalEventInicio").value = data[4];
+            document.getElementById("modalEventFim").value = data[10];
+            document.getElementById("modalEventNumero").value = data[2];
+            document.getElementById("modalEventTipo").value = capitalize(data[11]);
+            document.getElementById("modalEventResumo").value = capitalize(data[12]);
+            document.getElementById("modalEventID").value = data[8];
+            console.log(document.getElementById("modalEventID").value)
         } );
     })
 }
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
