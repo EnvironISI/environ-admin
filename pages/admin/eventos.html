@@ -14,6 +14,7 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <!-- Page plugins -->
   <link rel="stylesheet" href="../../assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
@@ -408,8 +409,8 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-success">Aceitar</button>
-                  <button type="button" class="btn btn-danger">Recusar</button>
+                  <button type="button"  onclick="aceitarEvento()" class="btn btn-success">Aceitar</button>
+                  <button type="button" onclick="rejeitarEvento()" class="btn btn-danger">Rejeitar</button>
                   <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
               </div>
@@ -441,6 +442,7 @@
         <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
         <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
         <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <!-- Optional JS -->
         <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
         <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>

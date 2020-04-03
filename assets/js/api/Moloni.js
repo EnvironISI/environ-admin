@@ -193,7 +193,117 @@ function getAllEvents() {
         } );
     })
 }
+
+//Capitalizar primeira letra de String 
 const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
   }
+
+//Aceitar Evento
+
+function aceitarEvento() {
+    var id = document.getElementById("modalEventID").value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a aceitar a realização do evento " + document.getElementById("modalEventName").value + "!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, aceitar evento!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/service/camara/acception', {
+                method: 'DELETE',
+                credentials: 'include',
+                body: JSON.stringify({
+                        eventId: id,
+                        accept: true
+                })
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Evento aceite!',
+                'A realização do evento foi aceite com sucesso!',
+                'success'
+            )
+            location = location;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
+}
+
+//Aceitar Evento
+
+function rejeitarEvento() {
+    var id = document.getElementById("modalEventID").value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a rejeitar a realização do evento " + document.getElementById("modalEventName").value + "!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, rejeitar evento!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/service/camara/acception', {
+                method: 'DELETE',
+                credentials: 'include',
+                body: JSON.stringify({
+                        eventId: id,
+                        accept: false
+                })
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Evento rejeitado!',
+                'A realização do evento foi rejeitada com sucesso!',
+                'success'
+            )
+            location = location;
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
+}
