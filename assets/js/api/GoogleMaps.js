@@ -21,10 +21,11 @@ function getInputValue() {
 }
 
 function test(lat, lng) {
-    fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyCsz3ly0l0NIr5XQvwQHoBwQTya4VWcDC0')
+    fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyCwnqymgdvpW-toCbHqTcy8ibiKIkIqOp8')
         .then(function (response) {
             return response.json()
         }).then(function (data) {
+            console.log(data)
             data.results.forEach(result => {
                 result.types.forEach(type => {
                     if (type == "administrative_area_level_2") {
@@ -106,6 +107,10 @@ function initMap(lat, lng) {
         test(lat, lng);
     }
 }
+
+
+
+
 
 function initMapEvent(lat, lng) {
 
