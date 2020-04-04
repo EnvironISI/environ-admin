@@ -275,7 +275,7 @@
                     <th>Município</th>
                     <th>Data</th>
                     <th>Estado</th>
-                    <th>Detalhes</th>
+                    <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
                   </tr>
                 </thead>
                 <tfoot id="tfoot">
@@ -286,7 +286,7 @@
                     <th>Município</th>
                     <th>Data</th>
                     <th>Estado</th>
-                    <th>Detalhes</th>
+                    <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
                   </tr>
                 </tfoot>
                 <tbody id="tbody">
@@ -294,6 +294,8 @@
               </table>
             </div>
           </div>
+
+          <!-- Modal Individual para cada evento-->
           <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog"
             aria-labelledby="modal-notification" aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered modal-xl" role="document">
@@ -304,7 +306,7 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                
+
                 <div class="modal-body">
                   <div class="row">
                     <div class="col">
@@ -326,20 +328,22 @@
                           <div class="col-md-6" style="display: none;">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols1Input">Nome</label>
-                              <input disabled id="modalEventID" type="text" class="form-control" placeholder="Nome do evento">
+                              <input disabled id="modalEventID" type="text" class="form-control"
+                                placeholder="Nome do evento">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols1Input">Nome</label>
-                              <input disabled id="modalEventName" type="text" class="form-control" placeholder="Nome do evento">
+                              <input disabled id="modalEventName" type="text" class="form-control"
+                                placeholder="Nome do evento">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols2Input">Município</label>
-                              <input disabled id="modalEventMunicipio" type="text" class="form-control" placeholder="Município"
-                                disabled>
+                              <input disabled id="modalEventMunicipio" type="text" class="form-control"
+                                placeholder="Município" disabled>
                             </div>
                           </div>
                         </div>
@@ -363,8 +367,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label class="form-control-label" for="example3cols2Input">Rua</label>
-                              <input disabled id="modalEventRua" type="text" class="form-control"
-                                placeholder="Rua">
+                              <input disabled id="modalEventRua" type="text" class="form-control" placeholder="Rua">
                             </div>
                           </div>
                         </div>
@@ -373,13 +376,15 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label">Sugestão - Início</label>
-                              <input disabled id="modalEventInicio" class="form-control" placeholder="Sugestão - Início" type="text">
+                              <input disabled id="modalEventInicio" class="form-control" placeholder="Sugestão - Início"
+                                type="text">
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label class="form-control-label">Sugestão - Fim</label>
-                              <input disabled id="modalEventFim" class="form-control" placeholder="Sugestão - Fim" type="text">
+                              <input disabled id="modalEventFim" class="form-control" placeholder="Sugestão - Fim"
+                                type="text">
                             </div>
                           </div>
                         </div>
@@ -400,8 +405,9 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento</label>
-                          <textarea disabled class="form-control" id="modalEventResumo" rows="3"></textarea>
+                          <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do
+                            evento</label>
+                          <textarea disabled class="form-control" id="modalEventResumo" rows="4"></textarea>
                         </div>
                       </form>
                     </div>
@@ -409,63 +415,89 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button"  onclick="aceitarEvento()" class="btn btn-success">Aceitar</button>
+                  <button type="button" onclick="aceitarEvento()" class="btn btn-success">Aceitar</button>
                   <button type="button" onclick="rejeitarEvento()" class="btn btn-danger">Rejeitar</button>
                   <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
               </div>
             </div>
-            <!-- Footer -->
-            <footer class="footer pt-0">
-              <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-6">
-                  <div class="copyright text-center text-lg-left text-muted">
-                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                      target="_blank">environ.</a>
+          </div>
+
+            <!-- Modal QRCode-->
+            <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+              <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                  <div class="modal-content">
+                    
+                      <div class="modal-header">
+                          <h6 class="modal-title" id="modal-title-default">QRCode do evento</h6>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                      </div>
+                      
+                      <div class="modal-body text-center">
+                       <img id="contentQRCode" src="//placehold.it/600x400" class="img-fluid" alt=""/>
+                      </div>
+                      
+                      <div class="modal-footer">
+                        <a id="downloadAnchor" href="" download=""><button type="button" class="btn btn-danger">Download</button></a>
+                          <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+              <!-- Footer -->
+              <footer class="footer pt-0">
+                <div class="row align-items-center justify-content-lg-between">
+                  <div class="col-lg-6">
+                    <div class="copyright text-center text-lg-left text-muted">
+                      &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                        target="_blank">environ.</a>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                      <li class="nav-item">
+                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
+                      </li>
+                    </ul>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                    <li class="nav-item">
-                      <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </footer>
+              </footer>
+            </div>
           </div>
-        </div>
-        <!-- Argon Scripts -->
-        <!-- Core -->
-        <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-        <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-        <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <!-- Optional JS -->
-        <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
-        <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwnqymgdvpW-toCbHqTcy8ibiKIkIqOp8"></script>
-        <script src="../../assets/js/api/GoogleMaps.js"></script>
+          <!-- Argon Scripts -->
+          <!-- Core -->
+          <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+          <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+          <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+          <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+          <!-- Optional JS -->
+          <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+          <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
+          <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+          <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwnqymgdvpW-toCbHqTcy8ibiKIkIqOp8"></script>
+          <script src="../../assets/js/api/GoogleMaps.js"></script>
 
-        <!-- Argon JS -->
-        <script src="../../assets/js/argon.js?v=1.1.0"></script>
-        <script src="../../assets/js/api/Hubspot.js"></script>
-        <script src="../../assets/js/api/Moloni.js"></script>
-        <script>
-          document.getElementById("img1").src = sessionStorage.getItem('photo');
-          document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
-          getAllEvents();
-        </script>
+          <!-- Argon JS -->
+          <script src="../../assets/js/argon.js?v=1.1.0"></script>
+          <script src="../../assets/js/api/Hubspot.js"></script>
+          <script src="../../assets/js/api/Moloni.js"></script>
+          <script>
+            document.getElementById("img1").src = sessionStorage.getItem('photo');
+            document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
+            getAllEvents();
+          </script>
 </body>
 
 </html>

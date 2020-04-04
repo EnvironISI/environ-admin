@@ -209,6 +209,7 @@ function edit(input) {
         }, function () {
             // Upload completed successfully, now we can get the download URL
             uploadTask.snapshot.ref.getDownloadURL().then(async function (downloadURL) {
+                console.log(downloadURL)
                 document.getElementById("input-photo-url").value = downloadURL;
             });
         });
