@@ -200,11 +200,11 @@ function getAllEvents() {
                 document.getElementById("contentQRCode").src = url;
                 toDataURL(
                     url,
-                    function(dataUrl) {
-                      document.getElementById("downloadAnchor").href = dataUrl;
-                      document.getElementById("downloadAnchor").download = data[0] + ".png"
+                    function (dataUrl) {
+                        document.getElementById("downloadAnchor").href = dataUrl;
+                        document.getElementById("downloadAnchor").download = data[0] + ".png"
                     }
-                  )
+                )
 
             }
         });
@@ -215,22 +215,22 @@ function getAllEvents() {
 function toDataURL(src, callback, outputFormat) {
     var img = new Image();
     img.crossOrigin = 'Anonymous';
-    img.onload = function() {
-      var canvas = document.createElement('CANVAS');
-      var ctx = canvas.getContext('2d');
-      var dataURL;
-      canvas.height = this.naturalHeight;
-      canvas.width = this.naturalWidth;
-      ctx.drawImage(this, 0, 0);
-      dataURL = canvas.toDataURL(outputFormat);
-      callback(dataURL);
+    img.onload = function () {
+        var canvas = document.createElement('CANVAS');
+        var ctx = canvas.getContext('2d');
+        var dataURL;
+        canvas.height = this.naturalHeight;
+        canvas.width = this.naturalWidth;
+        ctx.drawImage(this, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat);
+        callback(dataURL);
     };
     img.src = src;
     if (img.complete || img.complete === undefined) {
-      img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-      img.src = src;
+        img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+        img.src = src;
     }
-  }
+}
 
 //Capitalizar primeira letra de String 
 const capitalize = (s) => {
@@ -342,5 +342,105 @@ function rejeitarEvento() {
                 'error'
             )
         }
+    })
+}
+
+//Eventos por utilizador
+
+function getUserEvents() {
+    var array = []
+    fetch('https://environ-back.herokuapp.com/service/user', {
+        method: 'GET',
+        credentials: 'include'
+    }).then(result => {
+        return result.json();
+    }).then(response => {
+        console.log(response)
+        var results = document.getElementById("eventsByUser")
+        response.forEach(element => {
+            var tipo;
+            var image;
+            if(element.properties[9].value === 'manifestacao') {
+                tipo = 'Manifestação'
+                image = "../../assets/img/default/manifestation.jpg"
+            }
+            if(element.properties[9].value === 'limpeza') {
+                tipo = 'Limpeza'
+                image = "../../assets/img/default/limpeza.jpg"
+            }
+            if(element.properties[9].value === 'plantacao') {
+                tipo = 'Plantação'
+                image = "../../assets/img/default/planting.jpg"
+            }
+            if(element.properties[9].value === 'palestra') {
+                tipo = 'Palestra'
+                image = "../../assets/img/default/palestra.jpg"
+            }
+            if(element.properties[9].value === 'congresso') {
+                tipo = 'Congresso'
+                image = "../../assets/img/default/congresso.jpg"
+            }
+            if(element.properties[9].value === 'formacao') {
+                tipo = 'Formação'
+                image = "../../assets/img/default/formation.jpg"
+            }
+            if(element.properties[9].value === 'curso') {
+                tipo = 'Curso'
+                image = "../../assets/img/default/limpeza.jpeg"
+            }
+            if(element.properties[9].value === 'workshop') {
+                tipo = 'Workshop'
+                image = "../../assets/img/default/workshop.jpg"
+            }
+            if(element.properties[9].value === 'acao') {
+                tipo = 'Ação'
+                image = "../../assets/img/default/acao.jpg"
+            }
+            if(element.properties[9].value === 'feira') {
+                tipo = 'Feira'
+                image = "../../assets/img/default/feira.jpg"
+            }
+            if(element.properties[9].value === 'seminario') {
+                tipo = 'Seminário'
+                image = "../../assets/img/default/seminario.jpg"
+            }
+            if(element.properties[9].value === 'outro') {
+                tipo = 'Outro'
+                image = "../../assets/img/default/outro.jpg"
+            }
+
+        
+            //Estado
+            var css;
+            if(element.properties[0].value === 'Suspenso') {
+                css = "badge badge-pill badge-warning"
+            }
+            if(element.properties[0].value === 'Pendente') {
+                css = "badge badge-pill badge-info"
+            }
+            if(element.properties[0].value === 'Aceite') {
+                css = "badge badge-pill badge-success"
+            }
+            if(element.properties[0].value === 'Rejeitado') {
+                css = "badge badge-pill badge-danger"
+            }
+
+            results.innerHTML +=
+                "<div class='col-lg-3'>" +
+                "<div class='card'>" +
+                "<img class='card-img-top' src='" + image + "' alt='" + tipo + "'>" +
+                "<ul class='list-group list-group-flush'>" +
+                "<li class='list-group-item'>" + tipo + "</li>" +
+                "<li class='list-group-item'><b>" + element.properties[4].value + " participantes" + "</b></li>" +
+                "<li class='list-group-item'>" + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
+                "<li class='list-group-item'><span class='" + css + "'>" + element.properties[0].value + "</span></li>" +
+                "</ul>" +
+                "<div class='card-body'>" +
+                "<h3 class='card-title mb-3'>" + element.name + "</h3>" +
+                "<p class='card-text mb-4'>" + element.summary + "</p>" +
+                " <a href=''class='btn btn-primary'>Mais informações</a>" +
+                "</div></div></div>"
+
+        })
     })
 }

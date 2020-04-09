@@ -2,25 +2,20 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4." />
-  <meta name="author" content="Creative Tim" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Página Inicial for Bootstrap 4.">
+  <meta name="author" content="Environ.">
   <title>environ.</title>
   <!-- Favicon -->
-  <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png" />
+  <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png">
   <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
   <!-- Icons -->
-  <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css" />
-  <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css" />
-  <link rel="stylesheet" href="../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
-  <!-- Page plugins -->
-  <link rel="stylesheet" href="../../assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-  <link rel="stylesheet" href="../../assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
-  <link rel="stylesheet" href="../../assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css" />
+  <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
-  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css" />
+  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
 </head>
 
 <body>
@@ -62,7 +57,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/admin/eventos.html">
+              <a class="nav-link" href="../../pages/camara/eventosCamara.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
@@ -119,18 +114,18 @@
                 <span class="nav-link-text">Notícias</span>
               </a>
             </li>
-               <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="../../pages/all/openChargeMap.html">
                 <i class="fas fa-charging-station" style="color:#cccc14;"></i>
                 <span class="nav-link-text">Elétricos</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/all/chat.html">
-                <i class="fas fa-comments" style="color:#fbb140;"></i>
-                <span class="nav-link-text">Chat</span>
-              </a>
-            </li>
+             <a class="nav-link" href="../../pages/all/chat.html">
+               <i class="fas fa-comments" style="color:#fbb140;"></i>
+               <span class="nav-link-text">Chat</span>
+             </a>
+           </li>
           </ul>
           <hr class="my-3">
           <!-- Heading -->
@@ -184,7 +179,7 @@
                 aria-expanded="false">
                 <i class="ni ni-ungroup"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default dropdown-menu-right">
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-gradient-hugo-daniel dropdown-menu-right">
                 <div class="row shortcuts px-4">
                   <a href="#!" class="col-4 shortcut-item">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-red">
@@ -247,95 +242,20 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-home"></i> Utilizadores</h6>
-              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  </li>
-                </ol>
-              </nav>
+              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-calendar-alt"></i> Eventos</h6>
             </div>
+          </div>
+          <!-- Card stats -->
+          <div class="row">
           </div>
         </div>
       </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
-      <!-- Table -->
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <!-- Card header -->
-            <div class="card-header">
-              <h3 class="mb-0">Utilizadores</h3>
-              <p class="text-sm mb-0">
-                Aqui estão listados todos os utilizadores do sistema e todas as suas informações associadas.
-              </p>
-            </div>
-            <div class="table-responsive py-4">
-              <table id="utilizadores" class="table table-flush" id="datatable-buttons">
-                <thead class="thead-light" id="thead">
-                  <tr>
-                    <th>Organização</th>
-                    <th>Email</th>
-                    <th>Contacto</th>
-                    <th>Tipo</th>
-                    <th>NIF</th>
-                    <th>País</th>
-                    <th>Estado</th>
-                    <!-- <th>Cidade</th> -->
-                    <!-- <th>Setor</th> -->
-                    <!-- <th>Detalhes</th> -->
-
-                  </tr>
-                </thead>
-                <tfoot id="tfoot">
-                  <tr>
-                    <th>Organização</th>
-                    <th>Email</th>
-                    <th>Contacto</th>
-                    <th>Tipo</th>
-                    <th>NIF</th>
-                    <th>País</th>
-                    <th>Estado</th>
-                    <!-- <th>Cidade</th>
-                    <th>Setor</th> -->
-                    <!-- <th>Detalhes</th> -->
-                  </tr>
-                </tfoot>
-                <tbody id="tbody">
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+      <div class="row card-wrapper" id="eventsByUser">
+        <!-- Content News-->
       </div>
-      <div class="card mb-4">
-        <!-- Card header -->
-        <div class="card-header">
-          <h3 class="mb-0">Ações</h3>
-        </div>
-        <!-- Card body -->
-        <div class="card-body">
-          <!-- Form groups used in grid -->
-          <form>
-            <div class="row">
-              <div class="col-md-8">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Email <span
-                    class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input id="email" type="text" class="form-control"
-                    placeholder="Insira o email do utilizador">
-                </div>
-              </div>
-            </div>
-          </form>
-          <button class="btn btn-danger" type="button" onclick="eliminarUtilizador()">Eliminar</button>
-          <button class="btn btn-success" type="button" onclick="ativarUtilizador()">Ativar</button>
-          <button class="btn btn-yellow" type="button" onclick="setAdmin()">Administrador</button>
-          <button class="btn btn-warning" type="button" onclick="emailActivationManually()">Verificar</button>
-        </div>
-      </div>
-
       <!-- Footer -->
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
@@ -357,47 +277,25 @@
     </div>
   </div>
   <!-- Argon Scripts -->
-  <script>
-    //     var results = document.getElementById("tbody");
-    //   var users = JSON.parse(sessionStorage.getItem('Users'));
-    // for (var obj in users) {
-    // //Loop through the object to get each objects data
-    // results.innerHTML +=
-    //     "<tr><td>" + users[obj].id + "</td>" +
-    //     "<td>" + users[obj].properties.name + "</td>" +
-    //     "<td>" + new Date(users[obj].createdAt).toLocaleString()+ "</td>" +
-    //     "<td>" + new Date(users[obj].updatedAt).toLocaleString() + "</td>"
-    //     }
-  </script>
   <!-- Core -->
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Optional JS -->
-  <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-  <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
-
-
-  <!-- Hubspot API-->
-  <script src="../../assets/js/api/Hubspot.js"></script>
+  <!-- Demo JS - remove this in your project -->
+  <script src="../../assets/js/demo.min.js"></script>
+  <!-- News API -->
+  <script src="../../assets/js/api/Moloni.js"></script>
   <script>
-    window.onload = getAllUsers();
-    document.getElementById("img1").src = sessionStorage.getItem('photo');
-    document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
-  </script>
+   window.onload = function () {
+     document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
+     document.getElementById('img1').src = sessionStorage.getItem('photo');
+     getUserEvents();
+   };
+ </script>
 </body>
 
 </html>
