@@ -21,7 +21,7 @@ function getInputValue() {
 }
 
 function test(lat, lng) {
-    fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyCwnqymgdvpW-toCbHqTcy8ibiKIkIqOp8')
+    fetch('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyC_dYg8U5YYn4FVJX7Xis1CAXiyCEMxClI')
         .then(function (response) {
             return response.json()
         }).then(function (data) {

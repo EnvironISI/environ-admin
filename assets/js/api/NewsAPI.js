@@ -2,7 +2,7 @@
     function news() {
         var url =
             "https://newsapi.org/v2/everything?" +
-            "q=Environment&" +
+            "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution" +
             "from=2020-03-15&" +
             "pageSize=20&" +
             "sortBy=popularity&" +

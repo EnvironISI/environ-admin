@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4." />
+  <meta name="author" content="Creative Tim" />
+  <title>environ.</title>
+  <!-- Favicon -->
+  <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png" />
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css" />
+  <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css" />
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css" />
+</head>
+
+<body class="bg-gradient-hugo-daniel">
+  <!-- Navbar -->
+  <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="../../pages/all/dashboard.html">
+        <img src="../../assets/img/brand/white.png" />
+      </a>
+      <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="../../pages/all/dashboard.html">
+                <img src="../../assets/img/brand/blue.png" />
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse"
+                aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr class="d-lg-none" />
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header bg-gradient-hugo-daniel py-7 py-lg-8 pt-lg-9">
+      <div class="separator separator-bottom separator-skew zindex-100">
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-7 col-lg-10">
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>              <img src="../../assets/img/brand/infinitylogo.png" width="200px"alt=""></small>
+              </div>
+              A Câmara Municipal de _______ vem por este meio emitir uma declaração que valida a realização de uma ________ (tipo de evento, exemplo reflorestação) a realizar-se no dia __ de ____ de ____, na_____________ (exemplo praia de Ofir). Mais acrescentamos que este evento cumpre com todos os requisitos legais para que ocorra conforme o espectável, deste modo, as seguintes entidades competentes estarão requisitadas para o efeito: _________ (pack de entidades escolhido), é ainda de referir que a organização deste evento contou com a participação da empresa “environ.”, que se fará representar no evento ao cargo da pessoa,  Francisco Barros da Cunha.
+              Sem mais acrescentar, votos de muito sucesso,
+              Câmara Municipal de _______ (local), ____ de _____ de_____
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="py-5" id="footer-main">
+    <div class="container">
+      <div class="row align-items-center justify-content-xl-between">
+        <div class="col-xl-6">
+          <div class="copyright text-center text-xl-left text-white">
+            &copy; 2020
+            <a href="" class=" text-white font-weight-bold ml-1" target="_blank">environ.</a>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+            <li class="nav-item">
+              <a href="" class="text-white nav-link" target="_blank">environ.</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button style="display: none;" id="FALSELOGIN" class="btn btn-warning" data-toggle="notify"
+      data-message="Credenciais incorretas"
+      data-title="Não foi possível concluir o login uma vez que as credenciais não correspondem com nenhum dos nossos utilizadores"
+      data-placement="top" data-align="center" data-type="warning" data-icon="ni ni-bell-55">
+      Warning
+    </button>
+    <button style="display: none;" id="VERIFIQUEEMAIL" class="btn btn-warning" data-toggle="notify"
+      data-message="Verifique o Email"
+      data-title="Não foi possível concluir o login uma vez que a conta não foi ativada! Verifique o seu email por favor!"
+      data-placement="top" data-align="center" data-type="warning" data-icon="ni ni-bell-55">
+      Warning
+    </button>
+  </footer>
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+  <script src="../../assets/js/api/firebase.js"></script>
+  <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Argon JS -->
+  <script src="../../assets/js/argon.js?v=1.1.0"></script>
+
+
+  <script src="../../assets/js/api/Hubspot.js"></script>
+  <script>
+    function runScript(e) {
+      //See notes about 'which' and 'key'
+      if (e.keyCode == 13) {
+        login();
+        return false;
+      }
+    }
+    function visible() {
+    var x = document.getElementById("loginPassword");
+    var y = document.getElementById("eye");
+    if (x.type === "password") {
+        x.type = "text";
+        y.className = "far fa-eye-slash";
+    } else {
+        x.type = "password";
+        y.className = "far fa-eye"
+    }
+}
+  </script>
+</body>
+
+</html>
