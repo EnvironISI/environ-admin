@@ -2,11 +2,11 @@ var fileTag = document.getElementById("filetag"),
     preview = document.getElementById("preview");
 
 function debug() {
-if (fileTag != null) {
-    fileTag.addEventListener("change", function () {
-        edit(this);
-    });
-}
+    if (fileTag != null) {
+        fileTag.addEventListener("change", function () {
+            edit(this);
+        });
+    }
 }
 
 
@@ -70,7 +70,7 @@ function edit(input) {
 async function createPackage() {
     var itemKey = document.getElementById('itemKey').value;
     var description = document.getElementById('description').value;
-    var summary = `NrParticipantes: ${document.getElementById('autorizacao').value} | EntidadesAutorização: ${document.getElementById('participacao').value} | EntidadesParticipação: ${document.getElementById('tipoEvento').value}`
+    var summary = `NrParticipantes: ${document.getElementById('number').value} | TipoEvento: ${document.getElementById('tipoEvento').value} | EntidadesAutorização: ${document.getElementById('autorizacao').value} | EntidadesParticipação: ${document.getElementById('participacao').value}`
     var image = document.getElementById('input-photo-url').value;
 
     await fetch("https://environ-back.herokuapp.com/package/create", {
@@ -93,6 +93,8 @@ async function createPackage() {
     })
 }
 
+
+
 //getPackages
 function getPackages() {
     fetch('https://environ-back.herokuapp.com/package/all', {
@@ -102,6 +104,102 @@ function getPackages() {
         return response.json();
     }).then(result => {
         console.log(result)
+        result.forEach(element => {
+            //HTML ID
+            var results = document.getElementById("packages")
+
+            //Function to replace at certain string index
+            String.prototype.replaceAt = function (index, replacement) {
+                if (index >= this.length) {
+                    return this.valueOf();
+                }
+
+                var chars = this.split('');
+                chars[index] = replacement;
+                return chars.join('');
+            }
+            
+            //Name
+            var name = element.name;
+
+            //Description
+            var description = element.description;
+
+            //Image
+            var image = element.image.replace(/&#x2F;/gi, "/");
+
+            //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+            var summary = element.summary.split("|");
+
+            //Formation Number of Participants    [number]
+            var number0 = summary[0].split(":");
+            var number = number0[1].replaceAt(0, "").replace(" ", "");
+
+            //Formating Type of Event    [tipo]
+            var tipo0 = summary[1].split(":");
+            var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
+            if(tipo === 'manifestacao') {
+                tipo = 'Manifestação'
+            }
+            if(tipo === 'limpeza') {
+                tipo = 'Limpeza'
+            }
+            if(tipo === 'plantacao') {
+                tipo = 'Plantação'
+            }
+            if(tipo === 'palestra') {
+                tipo = 'Palestra'
+            }
+            if(tipo === 'congresso') {
+                tipo = 'Congresso'
+            }
+            if(tipo === 'formacao') {
+                tipo = 'Formação'
+            }
+            if(tipo === 'curso') {
+                tipo = 'Curso'
+            }
+            if(tipo === 'workshop') {
+                tipo = 'Workshop'
+            }
+            if(tipo === 'acao') {
+                tipo = 'Ação'
+            }
+            if(tipo === 'feira') {
+                tipo = 'Feira'
+            }
+            if(tipo === 'seminario') {
+                tipo = 'Seminário'
+            }
+            if(tipo === 'outro') {
+                tipo = 'Outro'
+            }
+
+
+            //Formating Authorization Entities   [autorizacao]
+            var autorizacao0 = summary[2].split(":");
+            var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi,", ")
+
+            //Formating Participation Entities   [participacao]
+            var participacao0 = summary[3].split(":");
+            var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi,", ");
+
+            //HTML
+            results.innerHTML +=
+            "<div class='col-md-4'>" +
+            "<div class='card'>" +
+            "<img class='card-img-top' src='" + image + "' alt='" + tipo + "'>" +
+            "<ul class='list-group list-group-flush'>" +
+            "<li class='list-group-item'>" + tipo + "</li>" +
+            "<li class='list-group-item'><b>Mais do que " + number + " participantes" + "</b></li>" +
+            "<li class='list-group-item'>Autorização: " + autorizacao + "</li>" +
+            "<li class='list-group-item'>Participação: " + participacao + "</li>" +
+            "</ul>" +
+            "<div class='card-body'>" +
+            "<h3 class='card-title mb-3'>" + name + "</h3>" +
+            "<p class='card-text mb-4'>" + description + "</p>" +
+            "</div></div></div>"
+        })
     }).catch(error => {
         console.log(error)
     })
