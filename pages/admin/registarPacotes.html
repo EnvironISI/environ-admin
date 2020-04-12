@@ -99,7 +99,7 @@
               <div class="collapse" id="navbar-entidades">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                      <a href="../../pages/admin/listarPacotes.html" class="nav-link">Listar Pacotes</a>
+                    <a href="../../pages/admin/listarPacotes.html" class="nav-link">Listar Pacotes</a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/admin/registarPacotes.html" class="nav-link">Registar Pacotes</a>
@@ -120,7 +120,7 @@
                 <span class="nav-link-text">Notícias</span>
               </a>
             </li>
-               <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="../../pages/all/openChargeMap.html">
                 <i class="fas fa-charging-station" style="color:#cccc14;"></i>
                 <span class="nav-link-text">Elétricos</span>
@@ -265,7 +265,15 @@
           <!-- Form groups used in grid -->
           <form>
             <div class="row">
-              <div class="col-md-3">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="form-control-label" for="example3cols1Input">Código de Pacote</label>
+                  <input id="itemKey" type="text" class="form-control" placeholder="e.g. LimpezaPraia001">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
                 <div class="form-group">
                   <label class="form-control-label" for="example2cols1Input">Nº Participantes <span
                       class="badge badge-pill badge-success">maior ou igual a</span></label>
@@ -277,18 +285,18 @@
                   <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
                   <select id="tipoEvento" class="form-control">
                     <option disabled value="" selected="selected">Selecionar opção</option>
-                    <option value="Manifestação">Manifestação</option>
-                    <option value="Limpeza">Limpeza</option>
-                    <option value="Plantação de árvores">Plantação de árvores</option>
-                    <option value="Palestra">Palestra</option>
-                    <option value="Congresso">Congresso</option>
-                    <option value="Formação">Formação</option>
-                    <option value="Curso">Curso</option>
-                    <option value="Workshop">Workshop</option>
-                    <option value="Ação">Ação</option>
-                    <option value="Feira">Feira</option>
-                    <option value="Seminário">Seminário</option>
-                    <option value="Outro">Outro</option>
+                    <option value="manifestacao">Manifestação</option>
+                    <option value="limpeza">Limpeza</option>
+                    <option value="plantacao">Plantação</option>
+                    <option value="palestra">Palestra</option>
+                    <option value="congresso">Congresso</option>
+                    <option value="formacao">Formação</option>
+                    <option value="curso">Curso</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="acao">Ação</option>
+                    <option value="feira">Feira</option>
+                    <option value="seminario">Seminário</option>
+                    <option value="outro">Outro</option>
                   </select>
                 </div>
               </div>
@@ -298,19 +306,41 @@
                 <div class="form-group">
                   <label class="form-control-label" for="example2cols1Input">Entidades de autorização <span
                       class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input class="form-control input-tags" id="autorizacao" data-role="tagsinput">
+                  <input class="form-control input-tags" placeholder="Autorização" id="autorizacao" data-role="tagsinput">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label class="form-control-label" for="example2cols1Input">Entidades de participação <span
                       class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input class="form-control input-tags" id="participacao" data-role="tagsinput">
+                  <input class="form-control input-tags" placeholder="Participação" id="participacao" data-role="tagsinput">
                 </div>
               </div>
             </div>
+            <div class="form-group">
+              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span
+                  class="badge badge-pill badge-danger">detalhada</span></label>
+              <textarea class="form-control" id="description" rows="3"></textarea>
+            </div>
+            <div hidden class="col-lg-4">
+              <div class="form-group">
+                <label class="form-control-label" for="input-country">Photo</label>
+                <input type="text" id="input-photo-url" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="filetag">Imagem de pacote</label>
+                  <input type="file" class="form-control" id="filetag">
+                </div>
+              </div>
+              <div style="display: none;" id="hide" class="col-lg-6 text-center">
+                <img id="preview" src="//placehold.it/600x400" width="600px" height="400px" class="img-fluid" alt="" />
+              </div>
+            </div>
             <div>
-              <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
+              <button class="btn btn-primary" type="button" onclick="createPackage()">Submeter</button>
             </div>
           </form>
         </div>
@@ -353,6 +383,13 @@
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+  <script src="../../assets//js/api/firebase.js"></script>
   <!-- Optional JS -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIJHeQKwL-1zZd-wYsYlnViueWUiwlTT8"></script>
   <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -360,7 +397,7 @@
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
   <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/api/Hubspot.js"></script>
+  <script src="../../assets/js/api/Jasmin.js"></script>
   <script src="../../assets/js/api/Moloni.js"></script>
   <script src="../../assets/js/bootstrap-tagsinput.js"></script>
   <script type="text/javascript">
@@ -384,6 +421,10 @@
     function teste() {
       console.log(document.getElementById("tags").value);
     }
+  </script>
+  <script>
+    debug();
+    getPackages();
   </script>
 </body>
 
