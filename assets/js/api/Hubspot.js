@@ -304,6 +304,7 @@ function debug() {
         setUserInfo(result);
     }).catch(error => {
         console.log(error)
+        window.location.assign("../../pages/all/login.html");
     })
 }
 if (fileTag != null) {

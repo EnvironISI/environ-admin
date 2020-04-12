@@ -192,8 +192,8 @@ function getPackages() {
             "<ul class='list-group list-group-flush'>" +
             "<li class='list-group-item'>" + tipo + "</li>" +
             "<li class='list-group-item'><b>Mais do que " + number + " participantes" + "</b></li>" +
-            "<li class='list-group-item'>Autorização: " + autorizacao + "</li>" +
-            "<li class='list-group-item'>Participação: " + participacao + "</li>" +
+            "<li class='list-group-item'><span class='badge badge-pill badge-danger'> Autorização: </span> " + autorizacao + "</li>" +
+            "<li class='list-group-item'><span class='badge badge-pill badge-success'> Participação: </span> " + participacao + "</li>" +
             "</ul>" +
             "<div class='card-body'>" +
             "<h3 class='card-title mb-3'>" + name + "</h3>" +

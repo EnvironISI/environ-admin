@@ -273,7 +273,7 @@
             <div class="card-header">
               <h3 class="mb-0">Eventos</h3>
               <p class="text-sm mb-0">
-                Aqui estão listados todos os eventos registados no sistema.
+                Aqui estão listados todos os eventos requisitados à sua Câmara Municipal.
               </p>
             </div>
             <div class="table-responsive py-4">
@@ -426,8 +426,8 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="aceitarEventoAdmin()" class="btn btn-success">Aceitar</button>
-                  <button type="button" onclick="rejeitarEventoAdmin()" class="btn btn-danger">Rejeitar</button>
+                  <button type="button" onclick="aceitarEventoCamara()" class="btn btn-success">Aceitar</button>
+                  <button type="button" onclick="rejeitarEventoCamara()" class="btn btn-danger">Rejeitar</button>
                   <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
               </div>
@@ -507,7 +507,7 @@
           <script>
             document.getElementById("img1").src = sessionStorage.getItem('photo');
             document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
-            getAllEvents();
+            getAllEventsCamara();
           </script>
 </body>
 

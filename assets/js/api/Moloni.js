@@ -238,9 +238,160 @@ const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-//Aceitar Evento
+//Todos os eventos por Câmara Municipal
 
-function aceitarEvento() {
+function getAllEventsCamara() {
+    fetch('https://environ-back.herokuapp.com/service/camara', {
+        method: 'GET',
+        credentials: 'include'
+    }).then(result => {
+        return result.json();
+    }).then(response => {
+        var array = []
+        console.log(response)
+        response.forEach(element => {
+            var obj = [];
+
+            //Visiveis ao Utilizador
+
+            //Nome Evento data[0]
+            if (!element.name || element.name === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.name)
+            }
+            //Estado Evento data[1]
+            if (!element.properties[1].value || element.properties[1].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[1].value)
+            }
+            //Número de participantes data[2]
+            if (!element.properties[4].value || element.properties[4].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[4].value)
+            }
+            //Município onde se localiza evento data[3]
+            if (!element.properties[8].value || element.properties[8].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[8].value)
+            }
+            //Data de Início data[4]
+            if (!element.properties[5].value || element.properties[5].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[5].value.replace("&#x2F;", "/"))
+            }
+            //Estado do Evento data[5]
+            if (!element.properties[0].value || element.properties[0].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(capitalize(element.properties[0].value))
+            }
+
+            //Não visiveís ao utilizador 
+
+            //Latitude do evento data[6]
+            if (!element.properties[2].value || element.properties[2].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[2].value)
+            }
+            //Longitude do evento data[7]
+            if (!element.properties[3].value || element.properties[3].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[3].value)
+            }
+            //ID Evento data[8]
+            if (!element.product_id || element.product_id === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.product_id)
+            }
+            //Rua do Evento data[9]
+            if (!element.properties[7].value || element.properties[7].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[7].value)
+            }
+            //Fim do Evento data[10]
+            if (!element.properties[6].value || element.properties[6].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[6].value.replace("&#x2F;", "/"))
+            }
+            //Tipo de evento data[11]
+            if (!element.properties[9].value || element.properties[9].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[9].value)
+            }
+            //Descrição Evento data[12]
+            if (!element.summary || element.summary === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.summary)
+            }
+            array.push(obj);
+        });
+        var table = $('#eventosEnviron').DataTable({
+            data: array,
+            language: {
+                paginate: {
+                    previous: "<i class='fas fa-angle-left'>",
+                    next: "<i class='fas fa-angle-right'>"
+                }
+            },
+            columnDefs: [{
+                targets: -1,
+                data: null,
+                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>'
+            }, ]
+        });
+        $('#eventosEnviron tbody').on('click', 'button', function () {
+            var action = this.id;
+            if (action == 'infoEvent') {
+                $('#modal-notification').modal('show');
+                var data = table.row($(this).parents('tr')).data();
+                console.log(data[4])
+                initMapEvent(parseFloat(data[6].replace(",", ".")), parseFloat(data[7].replace(",", ".")))
+                document.getElementById("modalEventName").value = data[0];
+                document.getElementById("modalEventMunicipio").value = data[3];
+                document.getElementById("modalEventLatitude").value = parseFloat(data[6].replace(",", "."));
+                document.getElementById("modalEventLongitude").value = parseFloat(data[7].replace(",", "."));
+                document.getElementById("modalEventRua").value = data[9];
+                document.getElementById("modalEventInicio").value = data[4].replace("&#x2F;", "/");
+                document.getElementById("modalEventFim").value = data[10].replace("&#x2F;", "/");
+                document.getElementById("modalEventNumero").value = data[2];
+                document.getElementById("modalEventTipo").value = capitalize(data[11]);
+                document.getElementById("modalEventResumo").value = capitalize(data[12]);
+                document.getElementById("modalEventID").value = data[8];
+            }
+
+            if (action == 'modalQRCode') {
+                $('#modal-default').modal('show');
+                var data = table.row($(this).parents('tr')).data();
+                var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
+                document.getElementById("contentQRCode").src = url;
+                toDataURL(
+                    url,
+                    function (dataUrl) {
+                        document.getElementById("downloadAnchor").href = dataUrl;
+                        document.getElementById("downloadAnchor").download = data[0] + ".png"
+                    }
+                )
+
+            }
+        });
+    })
+}
+
+//Aceitar Evento Admin
+
+function aceitarEventoAdmin() {
     var id = document.getElementById("modalEventID").value.toString();
     console.log(id)
     const swalWithBootstrapButtons = Swal.mixin({
@@ -292,9 +443,9 @@ function aceitarEvento() {
     })
 }
 
-//Aceitar Evento
+//Rejeitar Evento Admin
 
-function rejeitarEvento() {
+function rejeitarEventoAdmin() {
     var id = document.getElementById("modalEventID").value;
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -344,6 +495,115 @@ function rejeitarEvento() {
         }
     })
 }
+
+
+//Aceitar Evento Câmara Municipal
+
+function aceitarEventoCamara() {
+    var id = document.getElementById("modalEventID").value.toString();
+    console.log(id)
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a aceitar a realização do evento " + document.getElementById("modalEventName").value + "!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, aceitar evento!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/service/camara/acception', {
+                method: 'PUT',
+                credentials: 'include',
+                body: JSON.stringify({
+                    eventId: id,
+                    accept: true
+                })
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Evento aceite!',
+                'A realização do evento foi aceite com sucesso!',
+                'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
+}
+
+//Rejeitar Evento Camara Municipal
+
+function rejeitarEventoCamara() {
+    var id = document.getElementById("modalEventID").value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a rejeitar a realização do evento " + document.getElementById("modalEventName").value + "!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, rejeitar evento!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/service/camara/acception', {
+                method: 'PUT',
+                credentials: 'include',
+                body: JSON.stringify({
+                    eventId: id,
+                    accept: false
+                })
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Evento rejeitado!',
+                'A realização do evento foi rejeitada com sucesso!',
+                'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
+}
+
 
 //Eventos por utilizador
 
