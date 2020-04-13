@@ -476,10 +476,9 @@ function alterarEmail() {
 // }
 
 
-// Alterar email do utilizador
-function alterarPhone() {
+// Alterar TELEMOVEL do utilizador
+async function alterarPhone() {
     var phone = document.getElementById("altPhone").value;
-
     var applicationVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
     var provider = new firebase.auth.PhoneAuthProvider();
     provider.verifyPhoneNumber(phone, applicationVerifier)
@@ -506,30 +505,35 @@ function alterarPhone() {
                 }
             })
             if (verificationCode) {
-                return firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode);
+                var vc = verificationCode.toString();
+                var vi = verificationId.toString();
+                console.log(vc + "<vc  vi> " + vi)
+                await fetch('https://environ-back.herokuapp.com/user/changePhone', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        verificationCode: vc,
+                        verificationId: vi
+                })
+                }).then(response => {
+                    return response.clone().json();
+                }).then(result => {
+                    console.log(result.msg)
+                    swalWithBootstrapButtons.fire(
+                        'Contacto telefónico alterado!',
+                        'O seu contacto telefónico foi alterado com sucesso.',
+                        'success'
+                        ).then(function () {
+                            location.reload();
+                        });
+                }).catch(error => {
+                    console.log(error)
+                })
             }
         })
-        .then(function (phoneCredential) {
-            fetch('https://environ-back.herokuapp.com/user/changePhone', {
-                method: 'PUT',
-                credentials: 'include',
-                body: JSON.stringify({
-                    credential: phoneCredential,
-                })
-            }).then(response => {
-                console.log(response.json())
-                return response.json();
-            }).then(result => {
-                console.log(result)
-                swalWithBootstrapButtons.fire(
-                    'Contacto telefónico alterado!',
-                    'O seu contacto telefónico foi alterado com sucesso.',
-                    'success'
-                )
-            }).catch(error => {
-                console.log(error)
-            })
-        });
 }
 
 // Block or unblock user info configuration
