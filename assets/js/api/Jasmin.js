@@ -1,7 +1,7 @@
 var fileTag = document.getElementById("filetag"),
     preview = document.getElementById("preview");
 
-function debug() {
+function changePreview() {
     if (fileTag != null) {
         fileTag.addEventListener("change", function () {
             edit(this);

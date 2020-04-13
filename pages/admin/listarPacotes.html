@@ -57,33 +57,47 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../../pages/camara/eventos.html">
-                <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
-                <span class="nav-link-text">Eventos</span>
-              </a>
-            </li>            <li class="nav-item">
+    <a class="nav-link" href="#navbar-todos-eventos-aceites" data-toggle="collapse" role="button" aria-expanded="false"
+      aria-controls="navbar-eventos">
+      <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
+      <span class="nav-link-text">Eventos</span>
+    </a>
+    <div class="collapse" id="navbar-todos-eventos-aceites">
+      <ul class="nav nav-sm flex-column">
+        <li class="nav-item">
+          <a href="../../pages/camara/eventos.html" class="nav-link">Listar Eventos da Câmara</a>
+        </li>
+        <li class="nav-item">
+          <a href="../../pages/all/todosEventosAceites.html" class="nav-link">Listar Todos os Eventos</a>
+        </li>
+      </ul>
+    </div>
+  </li>           <li class="nav-item">
               <a class="nav-link" href="../../pages/admin/eventos.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
-                aria-controls="navbar-eventos">
-                <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
-                <span class="nav-link-text">Eventos</span>
-              </a>
-              <div class="collapse" id="navbar-eventos">
-                <ul class="nav nav-sm flex-column">
-                  <li class="nav-item">
-                    <a href="../../pages/empresa/listarEventos.html" class="nav-link">Listar Eventos</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="../../pages/empresa/registarEvento.html" class="nav-link">Registar Eventos</a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+<li class="nav-item">
+    <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
+      aria-controls="navbar-eventos">
+      <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
+      <span class="nav-link-text">Eventos</span>
+    </a>
+    <div class="collapse" id="navbar-eventos">
+      <ul class="nav nav-sm flex-column">
+        <li class="nav-item">
+          <a href="../../pages/empresa/listarEventos.html" class="nav-link">Listar Eventos</a>
+        </li>
+        <li class="nav-item">
+          <a href="../../pages/empresa/registarEvento.html" class="nav-link">Registar Eventos</a>
+        </li>
+        <li class="nav-item">
+            <a href="../../pages/all/todosEventosAceites.html" class="nav-link">Listar Todos os Eventos</a>
+          </li>
+      </ul>
+    </div>
+  </li>
             <li class="nav-item">
               <a class="nav-link" href="../../pages/admin/users.html">
                 <i class="fas fa-users" style="color:#C4302B;"></i>
@@ -290,9 +304,9 @@
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
-  <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/demo.min.js"></script>
-  <!-- News API -->
+
+  <!-- Hubspot e Jasmin -->
+  <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/api/Jasmin.js"></script>
   <script>
    window.onload = function () {
