@@ -526,7 +526,7 @@
     </div>
   </div>
     <!-- Modal Form for Phone Configuration-->
-  <div class="modal fade" id="modal-form-phone" tabindex="-1" role="dialog" aria-labelledby="modal-form-phone" aria-hidden="true">
+  <div class="modal fade" id="modal-form-phone" role="dialog" aria-labelledby="modal-form-phone" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
       <div class="modal-content">
         <div class="modal-body p-0">
@@ -546,6 +546,7 @@
                       </select>
                     <input type="tel" placeholder="Telefone" class="form-control bfh-phone" data-country="countries_phone1" id="altPhone" />
                   </div>
+                    <div id="recaptcha-container"></div>
                 </div>
                 <div class="text-center">
                   <button type="button" onclick="alterarPhone()" class="btn btn-primary my-4">Alterar contacto</button>
@@ -557,6 +558,20 @@
       </div>
     </div>
     </div>
+    <button
+   style="display: none;"
+   id="SUCCESS"
+   class="btn btn-success"
+   data-toggle="notify"
+   data-message="Email alterado"
+   data-title="Poderá reverter esta situação no email antigo. Terá ainda de ativar novamente a conta no novo email"
+   data-placement="top"
+   data-align="center"
+   data-type="success"
+   data-icon="ni ni-bell-55"
+ >
+   Warning
+ </button>
     <!-- Argon Scripts -->
     <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
     <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
@@ -582,8 +597,11 @@
     <script src="../../assets/js/api/Hubspot.js"></script>
     <script>
       debug();
+      render();
     </script>
     <script src="../../assets/js/permissions.js"></script>
+    <script>
+    </script>
 </body>
 
 </html>

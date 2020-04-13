@@ -110,7 +110,7 @@ async function login() {
 //Recuperar Password Utilizador
 function recoverPassword() {
     var email = document.getElementById("recoverEmail").value;
-    fetch("https://environ-back.herokuapp.com/recoverPassword", {
+    fetch("https://environ-back.herokuapp.com/user/recoverPassword", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -123,8 +123,17 @@ function recoverPassword() {
     }).then((response) => {
         if (response.ok) {
             sessionStorage.clear;
-            window.location.assign('/pages/all/login.html');
+            document.getElementById("recoverEmail").value = "";
+            document.getElementById("SUCCESS").click();
+            setTimeout(function () {
+                window.location.assign('/pages/all/login.html')
+            }, 2000);
         }
+        return response.clone().json();
+    }).then(result => {
+        console.log(result.msg);
+    }).catch(error => {
+        console.log(error)
     })
 }
 
@@ -261,7 +270,6 @@ async function atualizarConta() {
     var city = document.getElementById("input-cidade").value;
     var country = document.getElementById("input-pais").value;
     var nif = document.getElementById("input-nif").value;
-    console.log(document.getElementById("input-photo-url").value)
     var photo;
     if (document.getElementById("input-photo-url").value == "") {
         photo = document.getElementById("preview").src;
@@ -283,11 +291,9 @@ async function atualizarConta() {
             photo_url: photo
         })
     }).then(response => {
-        console.log(response.json())
-        return response.json();
+        return response.clone().json();
     }).then(result => {
-        console.log(result.data);
-        window.location.assign("../../pages/all/profile.html");
+        console.log(result.msg);
     }).catch(error => {
         console.log(error)
     })
@@ -334,9 +340,17 @@ function setUserInfo(result) {
     document.getElementById("input-nif").value = result.user.nif;
     document.getElementById("preview").src = result.user.photoURL;
     document.getElementById("output-city-country").innerHTML = result.user.city + ", " + result.user.country;
-    document.getElementById("output-sector").innerHTML = result.user.setor;
     document.getElementById("preview").src = result.user.photoUrl;
     document.getElementById("img1").src = result.user.photoUrl;
+    if (result.user.role === 'admin') {
+        document.getElementById("output-sector").innerHTML = "Administrador"
+    }
+    if (result.user.role === 'empresa') {
+        document.getElementById("output-sector").innerHTML = "Organização"
+    }
+    if (result.user.role === 'camara') {
+        document.getElementById("output-sector").innerHTML = "Câmara Municiapl"
+    }
 }
 
 //Apgar utilizador
@@ -389,7 +403,6 @@ function deleteUser() {
 
 // Alterar email do utilizador
 function alterarEmail() {
-    var email = document.getElementById("altMail").value;
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -399,7 +412,7 @@ function alterarEmail() {
     })
     swalWithBootstrapButtons.fire({
         title: 'Tem a certeza?',
-        text: "Não será possível reverter esta ação!",
+        text: "Poderá reverter esta ação no seu mail antigo!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sim, alterar email!',
@@ -407,8 +420,13 @@ function alterarEmail() {
         reverseButtons: true
     }).then((result) => {
         if (result.value) {
+            var email = document.getElementById("altMail").value;
             fetch('https://environ-back.herokuapp.com/user/changeEmail', {
-                method: 'POST',
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
                 body: JSON.stringify({
                     email: email,
@@ -423,9 +441,12 @@ function alterarEmail() {
             })
             swalWithBootstrapButtons.fire(
                 'Email alterado!',
-                'O seu email foi alterado com sucesso.',
+                'Poderá reverter esta ação no email antigo. Precisará ainda de ativar novamente esta conta no novo email',
                 'success'
-            )
+            ).then(function(){ 
+                window.location.assign("../../pages/all/profile.html");
+                }
+             );
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
@@ -439,57 +460,75 @@ function alterarEmail() {
     })
 }
 
+// function render() {
+//     var number = document.getElementById("altPhone").value;
+//     var applicationVerifier = new firebase.auth.RecaptchaVerifier(
+//     'recaptcha-container');
+//     var provider = new firebase.auth.PhoneAuthProvider();
+//     provider.verifyPhoneNumber(number, applicationVerifier)
+//         .then(function(verificationId) {
+//           var verificationCode = document.getElementById("verificationCode");
+//           return firebase.auth.PhoneAuthProvider.credential(verificationId,
+//               verificationCode);
+//         })
+//         .then(function(phoneCredential) {
+//             alterarPhone(phoneCredential)
+//           });
+// }
+
+
 // Alterar email do utilizador
 function alterarPhone() {
     var phone = document.getElementById("altPhone").value;
-    console.log(phone)
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: 'Tem a certeza?',
-        text: "Não será possível reverter esta ação!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, alterar contacto telefónico!',
-        cancelButtonText: 'Não, cancelar!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.value) {
+
+    var applicationVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
+    var provider = new firebase.auth.PhoneAuthProvider();
+    provider.verifyPhoneNumber(phone, applicationVerifier)
+        .then(async function(verificationId) {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+            const { value: verificationCode } = await Swal.fire({
+                title: 'Verificação de código',
+                text: "Digite o código que lhe foi enviado para o telemóvel: " + phone,
+                icon: 'warning',
+                input: 'text',
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                      return 'Tens de colocar um código'
+                    }
+                }
+            })
+            if(verificationCode){
+                return firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode);
+            }
+        })
+        .then(function(phoneCredential) {
             fetch('https://environ-back.herokuapp.com/user/changePhone', {
-                method: 'POST',
+                method: 'PUT',
                 credentials: 'include',
                 body: JSON.stringify({
-                    phone: phone,
+                    credential: phoneCredential,
                 })
             }).then(response => {
                 console.log(response.json())
                 return response.json();
             }).then(result => {
-                console.log(result);
+                console.log(result)
+                swalWithBootstrapButtons.fire(
+                    'Contacto telefónico alterado!',
+                    'O seu contacto telefónico foi alterado com sucesso.',
+                    'success'
+                )
             }).catch(error => {
                 console.log(error)
             })
-            swalWithBootstrapButtons.fire(
-                'Contacto telefónico alterado!',
-                'O seu contacto telefónico foi alterado com sucesso.',
-                'success'
-            )
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelada',
-                'Ação cancelada com sucesso',
-                'error'
-            )
-        }
-    })
+        });
 }
 
 // Block or unblock user info configuration
@@ -562,14 +601,13 @@ function getAllUsers() {
             }
             if (!element.role || element.role === '') {
                 obj.push('null')
-            } else if(element.role === "empresa") {
+            } else if (element.role === "empresa") {
                 obj.push('Empresa')
-            } else if(element.role === "camara") {
+            } else if (element.role === "camara") {
                 obj.push('Câmara')
-            } else if(element.role === "admin") {
+            } else if (element.role === "admin") {
                 obj.push('Administrador')
-            }
-             else {
+            } else {
                 obj.push(element.role)
             }
             if (!element.nif || element.nif === '') {
@@ -584,9 +622,9 @@ function getAllUsers() {
             }
             if (element.disabled === 'undefined' || element.disabled === '') {
                 obj.push('null')
-            } else if(element.disabled === false) {
+            } else if (element.disabled === false) {
                 obj.push('Ativo')
-            } else if(element.disabled === true) {
+            } else if (element.disabled === true) {
                 obj.push('Desativo')
             }
             //   if(!element.city  || element.city === ''){ obj.push('null') } else { obj.push(element.city) }
