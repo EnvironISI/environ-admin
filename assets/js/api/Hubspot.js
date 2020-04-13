@@ -443,10 +443,9 @@ function alterarEmail() {
                 'Email alterado!',
                 'Poderá reverter esta ação no email antigo. Precisará ainda de ativar novamente esta conta no novo email',
                 'success'
-            ).then(function(){ 
+            ).then(function () {
                 window.location.assign("../../pages/all/profile.html");
-                }
-             );
+            });
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
@@ -484,7 +483,7 @@ function alterarPhone() {
     var applicationVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container')
     var provider = new firebase.auth.PhoneAuthProvider();
     provider.verifyPhoneNumber(phone, applicationVerifier)
-        .then(async function(verificationId) {
+        .then(async function (verificationId) {
             const swalWithBootstrapButtons = Swal.mixin({
                 customClass: {
                     confirmButton: 'btn btn-success',
@@ -492,7 +491,9 @@ function alterarPhone() {
                 },
                 buttonsStyling: false
             })
-            const { value: verificationCode } = await Swal.fire({
+            const {
+                value: verificationCode
+            } = await Swal.fire({
                 title: 'Verificação de código',
                 text: "Digite o código que lhe foi enviado para o telemóvel: " + phone,
                 icon: 'warning',
@@ -500,15 +501,15 @@ function alterarPhone() {
                 showCancelButton: true,
                 inputValidator: (value) => {
                     if (!value) {
-                      return 'Tens de colocar um código'
+                        return 'Tens de colocar um código'
                     }
                 }
             })
-            if(verificationCode){
+            if (verificationCode) {
                 return firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode);
             }
         })
-        .then(function(phoneCredential) {
+        .then(function (phoneCredential) {
             fetch('https://environ-back.herokuapp.com/user/changePhone', {
                 method: 'PUT',
                 credentials: 'include',
@@ -696,212 +697,243 @@ function eliminarUtilizador() {
     })
 }
 
-//Eliminar Utilizador pelo ADMIN
+//Ativar utilizador ADMIN
 
 function ativarUtilizador() {
     var email = document.getElementById("email").value;
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: 'Tem a certeza?',
-        text: "Está prestes a ativar o utilizador com o email: " + email + "!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, ativar utilizador!',
-        cancelButtonText: 'Não, cancelar!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.value) {
-            fetch('https://environ-back.herokuapp.com/admin/enable/user/', {
-                method: 'DELETE',
-                credentials: 'include',
-                body: JSON.stringify({
-                    email: email,
+    if (email == "") {
+        document.getElementById("vazio").click();
+    } else {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Tem a certeza?',
+            text: "Está prestes a ativar o utilizador com o email: " + email + "!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, ativar utilizador!',
+            cancelButtonText: 'Não, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                fetch('https://environ-back.herokuapp.com/admin/enable/user/', {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: email,
+                    })
+                }).then(response => {
+                    return response.clone().json();
+                }).then(result => {
+                    console.log(result.msg);
+                }).catch(error => {
+                    console.log(error)
                 })
-            }).then(response => {
-                return response.json();
-            }).then(result => {
-                console.log(result);
-            }).catch(error => {
-                console.log(error)
-            })
-            swalWithBootstrapButtons.fire(
-                'Utilizador ativado!',
-                'O utilizador introduzido foi novamente ativado no sistema!',
-                'success'
-            )
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelada',
-                'Ação cancelada com sucesso',
-                'error'
-            )
-        }
-    })
+                swalWithBootstrapButtons.fire(
+                    'Utilizador ativado!',
+                    'O utilizador introduzido foi novamente ativado no sistema!',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelada',
+                    'Ação cancelada com sucesso',
+                    'error'
+                )
+            }
+        })
+    }
 }
 
-//Definir utilizador como Administrador
+//eliminar Utilizador pelo ADMIN
 
 
 function eliminarUtilizador() {
     var email = document.getElementById("email").value;
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: 'Tem a certeza?',
-        text: "Está prestes a eliminar irreversivelmente o utilizador com o email: " + email + "!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, eliminar utilizador!',
-        cancelButtonText: 'Não, cancelar!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.value) {
-            fetch('https://environ-back.herokuapp.com/admin/delete/user/', {
-                method: 'DELETE',
-                credentials: 'include',
-                body: JSON.stringify({
-                    email: email,
+    if (email == "") {
+        document.getElementById("vazio").click();
+    } else {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Tem a certeza?',
+            text: "Está prestes a eliminar irreversivelmente o utilizador com o email: " + email + "!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, eliminar utilizador!',
+            cancelButtonText: 'Não, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                fetch('https://environ-back.herokuapp.com/admin/delete/user/', {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: email,
+                    })
+                }).then(response => {
+                    return response.json();
+                }).then(result => {
+                    console.log(result);
+                }).catch(error => {
+                    console.log(error)
                 })
-            }).then(response => {
-                return response.json();
-            }).then(result => {
-                location = location;
-                console.log(result);
-            }).catch(error => {
-                console.log(error)
-            })
-            swalWithBootstrapButtons.fire(
-                'Utilizador eliminado!',
-                'O utilizador introduzido foi eliminado!',
-                'success'
-            )
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelada',
-                'Ação cancelada com sucesso',
-                'error'
-            )
-        }
-    })
+                swalWithBootstrapButtons.fire(
+                    'Utilizador eliminado!',
+                    'O utilizador introduzido foi eliminado!',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelada',
+                    'Ação cancelada com sucesso',
+                    'error'
+                )
+            }
+        })
+    }
 }
 
-//Eliminar Utilizador pelo ADMIN
+//setAdmin PELO ADMIN
 
 function setAdmin() {
     var email = document.getElementById("email").value;
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: 'Tem a certeza?',
-        text: "Está prestes a tornar administrador o utilizador com o email: " + email + "!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, tornar administrador!',
-        cancelButtonText: 'Não, cancelar!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.value) {
-            fetch('https://environ-back.herokuapp.com/admin/set', {
-                method: 'DELETE',
-                credentials: 'include',
-                body: JSON.stringify({
-                    email: email,
+    if (email == "") {
+        document.getElementById("vazio").click();
+    } else {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Tem a certeza?',
+            text: "Está prestes a tornar administrador o utilizador com o email: " + email + "!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, tornar administrador!',
+            cancelButtonText: 'Não, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                fetch('https://environ-back.herokuapp.com/admin/set', {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: email,
+                    })
+                }).then(response => {
+                    return response.json();
+                }).then(result => {
+                    console.log(result.msg);
+                }).catch(error => {
+                    console.log(error)
                 })
-            }).then(response => {
-                return response.json();
-            }).then(result => {
-                console.log(result);
-            }).catch(error => {
-                console.log(error)
-            })
-            swalWithBootstrapButtons.fire(
-                'Tipo de utilizador atualizado!',
-                'O utilizador introduzido passou a Administrador!',
-                'success'
-            )
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelada',
-                'Ação cancelada com sucesso',
-                'error'
-            )
-        }
-    })
+                swalWithBootstrapButtons.fire(
+                    'Tipo de utilizador atualizado!',
+                    'O utilizador introduzido passou a Administrador!',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelada',
+                    'Ação cancelada com sucesso',
+                    'error'
+                )
+            }
+        })
+    }
 }
 
-//Eliminar Utilizador pelo ADMIN
+//Ativar
 
 function emailActivationManually() {
     var email = document.getElementById("email").value;
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: 'btn btn-success',
-            cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-        title: 'Tem a certeza?',
-        text: "Está prestes a verificar manualmente o utilizador com o email: " + email + "!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sim, verificar email!',
-        cancelButtonText: 'Não, cancelar!',
-        reverseButtons: true
-    }).then((result) => {
-        if (result.value) {
-            fetch('https://environ-back.herokuapp.com/admin/user/accept', {
-                method: 'DELETE',
-                credentials: 'include',
-                body: JSON.stringify({
-                    email: email,
+    if (email === "") {
+        document.getElementById("vazio").click();
+    } else {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Tem a certeza?',
+            text: "Está prestes a verificar manualmente o utilizador com o email: " + email + "!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, verificar email!',
+            cancelButtonText: 'Não, cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                fetch('https://environ-back.herokuapp.com/admin/accept/user', {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify({
+                        email: email,
+                    })
+                }).then(response => {
+                    return response.json();
+                }).then(result => {
+                    console.log(result.msg);
+                }).catch(error => {
+                    console.log(error)
                 })
-            }).then(response => {
-                return response.json();
-            }).then(result => {
-                console.log(result);
-            }).catch(error => {
-                console.log(error)
-            })
-            swalWithBootstrapButtons.fire(
-                'Email verificado!',
-                'O utilizador foi verificado com sucesso!',
-                'success'
-            )
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-            swalWithBootstrapButtons.fire(
-                'Cancelada',
-                'Ação cancelada com sucesso',
-                'error'
-            )
-        }
-    })
+                swalWithBootstrapButtons.fire(
+                    'Email verificado!',
+                    'O utilizador foi verificado com sucesso!',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelada',
+                    'Ação cancelada com sucesso',
+                    'error'
+                )
+            }
+        })
+    }
 }

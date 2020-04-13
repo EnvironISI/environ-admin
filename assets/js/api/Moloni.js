@@ -413,6 +413,10 @@ function aceitarEventoAdmin() {
         if (result.value) {
             fetch('https://environ-back.herokuapp.com/service/admin/acception', {
                 method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
                 body: JSON.stringify({
                     eventId: id,
@@ -466,6 +470,10 @@ function rejeitarEventoAdmin() {
         if (result.value) {
             fetch('https://environ-back.herokuapp.com/service/admin/acception', {
                 method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
                 body: JSON.stringify({
                     eventId: id,
@@ -521,6 +529,10 @@ function aceitarEventoCamara() {
         if (result.value) {
             fetch('https://environ-back.herokuapp.com/service/camara/acception', {
                 method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
                 body: JSON.stringify({
                     eventId: id,
@@ -574,6 +586,10 @@ function rejeitarEventoCamara() {
         if (result.value) {
             fetch('https://environ-back.herokuapp.com/service/camara/acception', {
                 method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
                 credentials: 'include',
                 body: JSON.stringify({
                     eventId: id,

@@ -337,7 +337,7 @@
           <button class="btn btn-danger" type="button" onclick="eliminarUtilizador()">Eliminar</button>
           <button class="btn btn-success" type="button" onclick="ativarUtilizador()">Ativar</button>
           <button class="btn btn-yellow" type="button" onclick="setAdmin()">Administrador</button>
-          <button class="btn btn-warning" type="button" onclick="emailActivationManually()">Verificar</button>
+          <!-- <button class="btn btn-warning" type="button" onclick="emailActivationManually()">Verificar</button> -->
         </div>
       </div>
 
@@ -361,6 +361,20 @@
       </footer>
     </div>
   </div>
+  <button
+  style="display: none;"
+  id="vazio"
+  class="btn btn-danger"
+  data-toggle="notify"
+  data-message="Campos vazios"
+  data-title="Tem de inserir um email válido"
+  data-placement="top"
+  data-align="center"
+  data-type="danger"
+  data-icon="ni ni-bell-55"
+>
+  Warning
+</button>
   <!-- Argon Scripts -->
   <script>
     //     var results = document.getElementById("tbody");
@@ -376,7 +390,7 @@
   </script>
   <!-- Core -->
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  
+  <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
