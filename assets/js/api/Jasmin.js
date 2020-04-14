@@ -1,23 +1,23 @@
-var fileTag = document.getElementById("filetag"),
-    preview = document.getElementById("preview");
+var fileTagPacote = document.getElementById("filetagPacote"),
+    helo = document.getElementById("visualizar");
 
 function changePreview() {
-    if (fileTag != null) {
-        fileTag.addEventListener("change", function () {
-            edit(this);
+    if (fileTagPacote != null) {
+        fileTagPacote.addEventListener("change", function () {
+            editPhoto(this);
         });
     }
 }
 
 
 //Get photo URL with Storage Firebase
-function edit(input) {
+function editPhoto(input) {
     var reader;
     if (input.files && input.files[0]) {
         reader = new FileReader();
         reader.onload = function (e) {
-            preview.setAttribute('src', e.target.result);
-            document.getElementById("hide").style.display = "inline";
+            helo.setAttribute('src', e.target.result);
+            document.getElementById("escondido").style.display = "inline";
         }
         reader.readAsDataURL(input.files[0]);
         var storage = firebase.storage();
