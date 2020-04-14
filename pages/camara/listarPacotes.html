@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="We want the world to be a better place!">
+  <meta name="description" content="Start your development with a Página Inicial for Bootstrap 4.">
   <meta name="author" content="Environ.">
   <title>environ.</title>
   <!-- Favicon -->
@@ -14,18 +14,12 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
-  <link rel="stylesheet" href="../../assets/vendor/select2/dist/css/select2.min.css">
-  <link rel="stylesheet" href="../../assets/css/bootstrap/bootstrap-tagsinput.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> -->
-
 </head>
 
 <body>
+  <!-- Sidenav -->
   <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
@@ -63,52 +57,60 @@
               </a>
             </li>
             <li class="nav-item">
-    <a class="nav-link" href="#navbar-todos-eventos-aceites" data-toggle="collapse" role="button" aria-expanded="false"
-      aria-controls="navbar-eventos">
-      <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
-      <span class="nav-link-text">Eventos</span>
-    </a>
-    <div class="collapse" id="navbar-todos-eventos-aceites">
-      <ul class="nav nav-sm flex-column">
-        <li class="nav-item">
-          <a href="../../pages/camara/eventos.html" class="nav-link">Listar Eventos da Câmara</a>
-        </li>
-        <li class="nav-item">
-          <a href="../../pages/all/todosEventosAceites.html" class="nav-link">Listar Todos os Eventos</a>
-        </li>
-      </ul>
-    </div>
-  </li>           <li class="nav-item">
+              <a class="nav-link" href="#navbar-todos-eventos-aceites" data-toggle="collapse" role="button"
+                aria-expanded="false" aria-controls="navbar-eventos">
+                <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
+                <span class="nav-link-text">Eventos</span>
+              </a>
+              <div class="collapse" id="navbar-todos-eventos-aceites">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="../../pages/camara/eventos.html" class="nav-link">Listar Eventos da Câmara</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../pages/all/todosEventosAceites.html" class="nav-link">Listar Todos os Eventos</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="../../pages/admin/eventos.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
             </li>
-<li class="nav-item">
-    <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
-      aria-controls="navbar-eventos">
-      <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
-      <span class="nav-link-text">Eventos</span>
-    </a>
-    <div class="collapse" id="navbar-eventos">
-      <ul class="nav nav-sm flex-column">
-        <li class="nav-item">
-          <a href="../../pages/empresa/listarEventos.html" class="nav-link">Listar Eventos</a>
-        </li>
-        <li class="nav-item">
-          <a href="../../pages/empresa/registarEvento.html" class="nav-link">Registar Eventos</a>
-        </li>
-        <li class="nav-item">
-            <a href="../../pages/all/todosEventosAceites.html" class="nav-link">Listar Todos os Eventos</a>
-          </li>
-      </ul>
-    </div>
-  </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
+                aria-controls="navbar-eventos">
+                <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
+                <span class="nav-link-text">Eventos</span>
+              </a>
+              <div class="collapse" id="navbar-eventos">
+                <ul class="nav nav-sm flex-column">
+                  <li class="nav-item">
+                    <a href="../../pages/empresa/listarEventos.html" class="nav-link">Listar Eventos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../pages/empresa/registarEvento.html" class="nav-link">Registar Eventos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="../../pages/all/todosEventosAceites.html" class="nav-link">Listar Todos os Eventos</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="../../pages/admin/users.html">
                 <i class="fas fa-users" style="color:#C4302B;"></i>
                 <span class="nav-link-text">Utilizadores</span>
               </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../../pages/admin/listarPacotes.html">
+                <i class="fas fa-fire-alt" style="color:#fb6340"></i>
+                <span class="nav-link-text">Entidades</span>
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="#navbar-entidades" data-toggle="collapse" role="button" aria-expanded="false"
                 aria-controls="navbar-entidades">
@@ -118,10 +120,10 @@
               <div class="collapse" id="navbar-entidades">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../../pages/admin/listarPacotes.html" class="nav-link">Listar Pacotes</a>
+                    <a href="../../pages/camara/listarPacotes.html" class="nav-link">Listar Pacotes</a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/admin/registarPacotes.html" class="nav-link">Registar Pacotes</a>
+                    <a href="../../pages/camara/registarPacotes.html" class="nav-link">Registar Pacotes</a>
                   </li>
                 </ul>
               </div>
@@ -204,7 +206,8 @@
                 aria-expanded="false">
                 <i class="ni ni-ungroup"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default dropdown-menu-right">
+              <div
+                class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-gradient-hugo-daniel dropdown-menu-right">
                 <div class="row shortcuts px-4">
                   <a href="#!" class="col-4 shortcut-item">
                     <span class="shortcut-media avatar rounded-circle bg-gradient-red">
@@ -245,7 +248,7 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Bem-vindo!</h6>
                 </div>
-                <a href="../all/profile.html" class="dropdown-item">
+                <a href="#!" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>Perfil</span>
                 </a>
@@ -261,110 +264,25 @@
       </div>
     </nav>
     <!-- Header -->
+    <!-- Header -->
     <div class="header bg-hugo pb-6">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-fire-alt"></i> Entidades</h6>
+              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-fire-alt"></i> Pacotes de Entidades</h6>
             </div>
+          </div>
+          <!-- Card stats -->
+          <div class="row">
           </div>
         </div>
       </div>
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
-      <div class="card mb-4">
-        <!-- Card header -->
-        <div class="card-header">
-          <h3 class="mb-0">Registar Pacotes de Entidades</h3>
-        </div>
-        <!-- Card body -->
-        <div class="card-body">
-          <!-- Form groups used in grid -->
-          <form>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Código de Pacote</label>
-                  <input id="itemKey" type="text" class="form-control" placeholder="e.g. LimpezaPraia001">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Nº Participantes <span
-                      class="badge badge-pill badge-success">maior ou igual a</span></label>
-                  <input type="number" id="number" class="form-control" placeholder="Insira o número de participantes">
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
-                  <select id="tipoEvento" class="form-control">
-                    <option disabled value="" selected="selected">Selecionar opção</option>
-                    <option value="manifestacao">Manifestação</option>
-                    <option value="limpeza">Limpeza</option>
-                    <option value="plantacao">Plantação</option>
-                    <option value="palestra">Palestra</option>
-                    <option value="congresso">Congresso</option>
-                    <option value="formacao">Formação</option>
-                    <option value="curso">Curso</option>
-                    <option value="workshop">Workshop</option>
-                    <option value="acao">Ação</option>
-                    <option value="feira">Feira</option>
-                    <option value="seminario">Seminário</option>
-                    <option value="outro">Outro</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Entidades de autorização <span
-                      class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input class="form-control input-tags" placeholder="Autorização" id="autorizacao"
-                    data-role="tagsinput">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Entidades de participação <span
-                      class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input class="form-control input-tags" placeholder="Participação" id="participacao"
-                    data-role="tagsinput">
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span
-                  class="badge badge-pill badge-danger">detalhada</span></label>
-              <textarea class="form-control" id="description" rows="3"></textarea>
-            </div>
-            <div hidden class="col-lg-4">
-              <div class="form-group">
-                <label class="form-control-label" for="input-country">Photo</label>
-                <input type="text" id="input-photo-url" class="form-control" placeholder="">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="filetag">Imagem de pacote</label>
-                  <input type="file" class="form-control" id="filetag">
-                </div>
-              </div>
-              <div style="display: none;" id="hide" class="col-lg-6 text-center">
-                <img id="preview" src="//placehold.it/600x400" width="600px" height="400px" class="img-fluid" alt="" />
-              </div>
-            </div>
-            <div>
-              <button class="btn btn-primary" type="button" onclick="createPackage()">Submeter</button>
-            </div>
-          </form>
-        </div>
+      <div class="row card-wrapper" id="packages">
+        <!-- Content News-->
       </div>
       <!-- Footer -->
       <footer class="footer pt-0">
@@ -386,61 +304,33 @@
       </footer>
     </div>
   </div>
-  <button style="display: none;" id="eventocriado" class="btn btn-success" data-toggle="notify"
-    data-message="Pedido de evento registado" data-title="O seu pedido de evento foi registado com sucesso"
-    data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">
-    Warning
-  </button>
-  <button style="display: none;" id="eventonaocriado" class="btn btn-danger" data-toggle="notify"
-    data-message="Erro ao submeter pedido"
-    data-title="Por alguma razão o seu pedido não foi concluído com sucesso. Verifique se preencheu corretamente o formulário."
-    data-placement="top" data-align="center" data-type="danger" data-icon="ni ni-bell-55">
+  <button style="display: none;" id="naoExistente" class="btn btn-danger" data-toggle="notify"
+    data-message="Pacote não encontrado"
+    data-title="O código de pacote que introduziu não corresponde com nenhum existente!" data-placement="top"
+    data-align="center" data-type="danger" data-icon="ni ni-bell-55">
     Warning
   </button>
   <!-- Argon Scripts -->
+  <!-- Core -->
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
   <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
-  <script src="../../assets//js/api/firebase.js"></script>
-  <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIJHeQKwL-1zZd-wYsYlnViueWUiwlTT8"></script>
-  <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
-  <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/api/Jasmin.js"></script>
-  <script src="../../assets/js/api/Moloni.js"></script>
+
+  <!-- Hubspot e Jasmin -->
   <script src="../../assets/js/api/Hubspot.js"></script>
-  <script src="../../assets/js/bootstrap-tagsinput.js"></script>
-  <script type="text/javascript">
-    $(".defaults_select").select2({
-      tags: true,
-      multiple: true,
-      placeholder: "Enter values",
-      allowClear: true,
-      language: 'en',
-      tokenSeparators: [',', '$'],
-      dropdownParent: $('#hello')
-    });
-  </script>
+  <script src="../../assets/js/api/Jasmin.js"></script>
   <script>
     window.onload = function () {
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
       document.getElementById('img1').src = sessionStorage.getItem('photo');
+      getPackagesByCamara();
     };
-  </script>
-  <script>
-    changePreview();
   </script>
 </body>
 

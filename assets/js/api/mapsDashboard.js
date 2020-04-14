@@ -87,7 +87,7 @@ function initMap(lat, lng) {
     })
 
     function getAllEvents() {
-        fetch('https://environ-back.herokuapp.com/service/all', {
+        fetch('https://environ-back.herokuapp.com/event/all', {
             method: 'GET',
             credentials: 'include'
         }).then(response => {

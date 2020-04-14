@@ -89,7 +89,16 @@ async function createPackage() {
     }).then(response => {
         return response.json();
     }).then(result => {
-        location = location;
+        document.getElementById('pacotecriado').click();
+        setTimeout(function () {
+            location.reload();
+        }, 2000);
+    }).catch(error => {
+        console.log(error)
+        document.getElementById('pacotenaocriado').click();
+        setTimeout(function () {
+            location.reload();
+        }, 2000);
     })
 }
 
@@ -118,7 +127,7 @@ function getPackages() {
                 chars[index] = replacement;
                 return chars.join('');
             }
-            
+
             //Name
             var name = element.name;
 
@@ -138,55 +147,162 @@ function getPackages() {
             //Formating Type of Event    [tipo]
             var tipo0 = summary[1].split(":");
             var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
-            if(tipo === 'manifestacao') {
+            if (tipo === 'manifestacao') {
                 tipo = 'Manifestação'
             }
-            if(tipo === 'limpeza') {
+            if (tipo === 'limpeza') {
                 tipo = 'Limpeza'
             }
-            if(tipo === 'plantacao') {
+            if (tipo === 'plantacao') {
                 tipo = 'Plantação'
             }
-            if(tipo === 'palestra') {
+            if (tipo === 'palestra') {
                 tipo = 'Palestra'
             }
-            if(tipo === 'congresso') {
+            if (tipo === 'congresso') {
                 tipo = 'Congresso'
             }
-            if(tipo === 'formacao') {
+            if (tipo === 'formacao') {
                 tipo = 'Formação'
             }
-            if(tipo === 'curso') {
+            if (tipo === 'curso') {
                 tipo = 'Curso'
             }
-            if(tipo === 'workshop') {
+            if (tipo === 'workshop') {
                 tipo = 'Workshop'
             }
-            if(tipo === 'acao') {
+            if (tipo === 'acao') {
                 tipo = 'Ação'
             }
-            if(tipo === 'feira') {
+            if (tipo === 'feira') {
                 tipo = 'Feira'
             }
-            if(tipo === 'seminario') {
+            if (tipo === 'seminario') {
                 tipo = 'Seminário'
             }
-            if(tipo === 'outro') {
+            if (tipo === 'outro') {
                 tipo = 'Outro'
             }
 
 
             //Formating Authorization Entities   [autorizacao]
             var autorizacao0 = summary[2].split(":");
-            var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi,", ")
+            var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
 
             //Formating Participation Entities   [participacao]
             var participacao0 = summary[3].split(":");
-            var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi,", ");
+            var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
 
             //HTML
             results.innerHTML +=
-            "<div class='col-md-4'>" +
+                "<div class='col-md-3'>" +
+                "<div class='card'>" +
+                "<img class='card-img-top' src='" + image + "' alt='" + tipo + "'>" +
+                "<ul class='list-group list-group-flush'>" +
+                "<li class='list-group-item'>" + tipo + "</li>" +
+                "<li class='list-group-item'><b>Mais do que " + number + " participantes" + "</b></li>" +
+                "<li class='list-group-item'><span class='badge badge-pill badge-danger'> Autorização: </span> " + autorizacao + "</li>" +
+                "<li class='list-group-item'><span class='badge badge-pill badge-success'> Participação: </span> " + participacao + "</li>" +
+                "</ul>" +
+                "<div class='card-body'>" +
+                "<h3 class='card-title mb-3'>" + name + "</h3>" +
+                "<p class='card-text mb-4'>" + description + "</p>" +
+                "</div></div></div>"
+        })
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
+function runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+        getPackagesByName();
+        return false;
+    }
+}
+
+//getPackages by name
+function getPackagesByName() {
+    var itemKey = document.getElementById("itemKey").value;
+    fetch('https://environ-back.herokuapp.com/package/' + itemKey, {
+        method: 'GET',
+        credentials: 'include'
+    }).then(response => {
+        return response.json();
+    }).then(result => {
+    
+        //HTML ID
+        var results = document.getElementById("packages")
+
+        //Name
+        var name = result.name;
+
+        //Description
+        var description = result.description;
+
+        //Image
+        var image = result.image.replace(/&#x2F;/gi, "/");
+
+        //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+        var summary = result.summary.split("|");
+
+        //Formation Number of Participants    [number]
+        var number0 = summary[0].split(":");
+        var number = number0[1].replaceAt(0, "").replace(" ", "");
+
+        //Formating Type of Event    [tipo]
+        var tipo0 = summary[1].split(":");
+        var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
+        if (tipo === 'manifestacao') {
+            tipo = 'Manifestação'
+        }
+        if (tipo === 'limpeza') {
+            tipo = 'Limpeza'
+        }
+        if (tipo === 'plantacao') {
+            tipo = 'Plantação'
+        }
+        if (tipo === 'palestra') {
+            tipo = 'Palestra'
+        }
+        if (tipo === 'congresso') {
+            tipo = 'Congresso'
+        }
+        if (tipo === 'formacao') {
+            tipo = 'Formação'
+        }
+        if (tipo === 'curso') {
+            tipo = 'Curso'
+        }
+        if (tipo === 'workshop') {
+            tipo = 'Workshop'
+        }
+        if (tipo === 'acao') {
+            tipo = 'Ação'
+        }
+        if (tipo === 'feira') {
+            tipo = 'Feira'
+        }
+        if (tipo === 'seminario') {
+            tipo = 'Seminário'
+        }
+        if (tipo === 'outro') {
+            tipo = 'Outro'
+        }
+
+
+        //Formating Authorization Entities   [autorizacao]
+        var autorizacao0 = summary[2].split(":");
+        var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
+
+        //Formating Participation Entities   [participacao]
+        var participacao0 = summary[3].split(":");
+        var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
+
+        //HTML
+        results.innerHTML =
+            "<div class='col-md-3'>" +
             "<div class='card'>" +
             "<img class='card-img-top' src='" + image + "' alt='" + tipo + "'>" +
             "<ul class='list-group list-group-flush'>" +
@@ -199,8 +315,183 @@ function getPackages() {
             "<h3 class='card-title mb-3'>" + name + "</h3>" +
             "<p class='card-text mb-4'>" + description + "</p>" +
             "</div></div></div>"
+    }).catch(error => {
+        document.getElementById("naoExistente").click()
+    })
+}
+
+//getPackages
+function getPackagesByCamara() {
+    fetch('https://environ-back.herokuapp.com/package/camara', {
+        method: 'GET',
+        credentials: 'include'
+    }).then(response => {
+        return response.json();
+    }).then(result => {
+        console.log(result)
+        result.forEach(element => {
+            //HTML ID
+            var results = document.getElementById("packages")
+
+            //Function to replace at certain string index
+            String.prototype.replaceAt = function (index, replacement) {
+                if (index >= this.length) {
+                    return this.valueOf();
+                }
+
+                var chars = this.split('');
+                chars[index] = replacement;
+                return chars.join('');
+            }
+
+            //Name
+            var name = element.name;
+
+            //Description
+            var description = element.description;
+
+            //Image
+            var image = element.image.replace(/&#x2F;/gi, "/");
+
+            //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+            var summary = element.summary.split("|");
+
+            //Formation Number of Participants    [number]
+            var number0 = summary[0].split(":");
+            var number = number0[1].replaceAt(0, "").replace(" ", "");
+
+            //Formating Type of Event    [tipo]
+            var tipo0 = summary[1].split(":");
+            var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
+            if (tipo === 'manifestacao') {
+                tipo = 'Manifestação'
+            }
+            if (tipo === 'limpeza') {
+                tipo = 'Limpeza'
+            }
+            if (tipo === 'plantacao') {
+                tipo = 'Plantação'
+            }
+            if (tipo === 'palestra') {
+                tipo = 'Palestra'
+            }
+            if (tipo === 'congresso') {
+                tipo = 'Congresso'
+            }
+            if (tipo === 'formacao') {
+                tipo = 'Formação'
+            }
+            if (tipo === 'curso') {
+                tipo = 'Curso'
+            }
+            if (tipo === 'workshop') {
+                tipo = 'Workshop'
+            }
+            if (tipo === 'acao') {
+                tipo = 'Ação'
+            }
+            if (tipo === 'feira') {
+                tipo = 'Feira'
+            }
+            if (tipo === 'seminario') {
+                tipo = 'Seminário'
+            }
+            if (tipo === 'outro') {
+                tipo = 'Outro'
+            }
+
+
+            //Formating Authorization Entities   [autorizacao]
+            var autorizacao0 = summary[2].split(":");
+            var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
+
+            //Formating Participation Entities   [participacao]
+            var participacao0 = summary[3].split(":");
+            var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
+
+            //HTML
+            results.innerHTML +=
+                "<div class='col-md-3'>" +
+                "<div class='card'>" +
+                "<img class='card-img-top' src='" + image + "' alt='" + tipo + "'>" +
+                "<ul class='list-group list-group-flush'>" +
+                "<li class='list-group-item'>" + tipo + "</li>" +
+                "<li class='list-group-item'><b>Mais do que " + number + " participantes" + "</b></li>" +
+                "<li class='list-group-item'><span class='badge badge-pill badge-danger'> Autorização: </span> " + autorizacao + "</li>" +
+                "<li class='list-group-item'><span class='badge badge-pill badge-success'> Participação: </span> " + participacao + "</li>" +
+                "</ul>" +
+                "<div class='card-body'>" +
+                "<h3 class='card-title mb-3'>" + name + "</h3>" +
+                "<p class='card-text mb-4'>" + description + "</p>" +
+                "</div></div></div>"
         })
     }).catch(error => {
         console.log(error)
+    })
+}
+
+function runScript(e) {
+    //See notes about 'which' and 'key'
+    if (e.keyCode == 13) {
+        getPackagesByName();
+        return false;
+    }
+}
+
+function deletePackage() {
+    var itemKey = document.getElementById("itemKey").value;
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "Está prestes a eliminar o pacote de entidades com o código: " + itemKey + " irreversivelmente!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, eliminar pacote!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/package/delete/' + itemKey, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    eventId: itemKey,
+                })
+            }).then(response => {
+                return response.json();
+            }).then(result => {
+                console.log(result);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Pacote eliminado!',
+                'O pacote de entidades foi eliminado irreversivelmente!',
+                'success'
+            ).then(function () {
+                location.reload();
+            })
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            ).then(function () {
+                location.reload();
+            })
+        }
     })
 }
