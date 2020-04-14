@@ -349,7 +349,7 @@ function setUserInfo(result) {
         document.getElementById("output-sector").innerHTML = "Organização"
     }
     if (result.user.role === 'camara') {
-        document.getElementById("output-sector").innerHTML = "Câmara Municiapl"
+        document.getElementById("output-sector").innerHTML = "Câmara Municipal"
     }
 }
 
@@ -497,6 +497,10 @@ async function alterarPhone() {
                 text: "Digite o código que lhe foi enviado para o telemóvel: " + phone,
                 icon: 'warning',
                 input: 'text',
+                inputPlaceholder: '######',
+                customClass: {
+                    input: 'text-center',
+                },
                 showCancelButton: true,
                 inputValidator: (value) => {
                     if (!value) {
@@ -517,7 +521,7 @@ async function alterarPhone() {
                     body: JSON.stringify({
                         verificationCode: vc,
                         verificationId: vi
-                })
+                    })
                 }).then(response => {
                     return response.clone().json();
                 }).then(result => {
@@ -526,11 +530,11 @@ async function alterarPhone() {
                         'Contacto telefónico alterado!',
                         'O seu contacto telefónico foi alterado com sucesso.',
                         'success'
-                        ).then(function () {
-                            location.reload();
-                        });
+                    ).then(function () {
+                        location.reload();
+                    });
                 }).catch(error => {
-                    console.log(error)
+                    console.log(error.error)
                 })
             }
         })
@@ -687,7 +691,9 @@ function eliminarUtilizador() {
                 'Utilizador eliminado!',
                 'O utilizador introduzido foi eliminado!',
                 'success'
-            )
+            ).then(function () {
+                location.reload();
+            })
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel

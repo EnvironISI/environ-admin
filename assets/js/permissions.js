@@ -20,7 +20,7 @@ if (role == 'admin') {
     dashboardCamara.style.display = "none"
     eventosAdmin.style.display = "none"
     eventosEmpresa.style.display = "none"
-    entidadesAdmin.style.display = "none"
+    // entidadesAdmin.style.display = "none"
     utilizadoresAdmin.style.display = "none"
 } else if(role == 'empresa') {
     dashboardAmin.style.display = "none"
