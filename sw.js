@@ -60,16 +60,16 @@ self.addEventListener("refreshOffline", function() {
 var cacheName = 'environ.';
 var filesToCache = [
 
-  './frontoffice/',
-  './index.html',
-  './frontoffice/css/',
-  './frontoffice/images',
-  './frontoffice/js',
-  './frontoffice/js/main.js',
-  './manifest.json',
-  './sw-register.js',
-  './assets/img/brand/favicon.ico',
-  './assets/img/icons/icon-192x192.png',
+  'https://environ-front.herokuapp.com/frontoffice/',
+  'https://environ-front.herokuapp.com/index.html',
+  'https://environ-front.herokuapp.com/frontoffice/css/',
+  'https://environ-front.herokuapp.com/frontoffice/images',
+  'https://environ-front.herokuapp.com/frontoffice/js',
+  'https://environ-front.herokuapp.com/frontoffice/js/main.js',
+  'https://environ-front.herokuapp.com/manifest.json',
+  'https://environ-front.herokuapp.com/sw-register.js',
+  'https://environ-front.herokuapp.com/assets/img/brand/favicon.ico',
+  'https://environ-front.herokuapp.com/assets/img/icons/icon-192x192.png',
 ];
 
 self.addEventListener('install', function(e) {
