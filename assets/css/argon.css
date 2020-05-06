@@ -17680,6 +17680,16 @@ a.text-dark:focus
     color: black !important;
 }
 
+.text-hugo
+{
+    color: #32325D !important;
+}
+a.text-hugo:hover,
+a.text-hugo:focus
+{
+    color: black !important;
+}
+
 .text-default
 {
     color: #172b4d !important;

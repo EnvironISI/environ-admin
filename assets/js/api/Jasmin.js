@@ -70,8 +70,9 @@ function editPhoto(input) {
 async function createPackage() {
     var itemKey = document.getElementById('itemKey').value;
     var description = document.getElementById('description').value;
-    var summary = `NrParticipantes: ${document.getElementById('number').value} | TipoEvento: ${document.getElementById('tipoEvento').value} | EntidadesAutorização: ${document.getElementById('autorizacao').value} | EntidadesParticipação: ${document.getElementById('participacao').value}`
+    var summary = `NrColaboradores: ${document.getElementById('numberColaboradores').value} | NrParticipantes: ${document.getElementById('number').value} | TipoEvento: ${document.getElementById('tipoEvento').value} | EntidadesAutorização: ${document.getElementById('autorizacao').value} | EntidadesParticipação: ${document.getElementById('participacao').value}`
     var image = document.getElementById('input-photo-url').value;
+
 
     await fetch("https://environ-back.herokuapp.com/package/create", {
         method: "POST",
@@ -102,21 +103,26 @@ async function createPackage() {
     })
 }
 
-
-
-//getPackages
-function getPackages() {
-    fetch('https://environ-back.herokuapp.com/package/all', {
+//getPackages para o evento
+function getPackagesEvento() {
+    fetch('https://environ-back.herokuapp.com/package/camara', {
         method: 'GET',
-        credentials: 'include'
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
     }).then(response => {
         return response.json();
     }).then(result => {
         console.log(result)
-        result.forEach(element => {
-            //HTML ID
-            var results = document.getElementById("packages")
 
+        //HTML ID
+        var results = document.getElementById("pacotesCamara")
+        results.innerHTML = "";
+        
+        result.forEach(element => {
+   
             //Function to replace at certain string index
             String.prototype.replaceAt = function (index, replacement) {
                 if (index >= this.length) {
@@ -129,7 +135,7 @@ function getPackages() {
             }
 
             //Name
-            var name = element.name;
+            var name =  element.name;
 
             //Description
             var description = element.description;
@@ -139,13 +145,18 @@ function getPackages() {
 
             //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
             var summary = element.summary.split("|");
+            console.log(summary)
+
+            //Formation Number of Colaboradores [number]
+            var numberColaboradores0 = summary[0].split(":");
+            var numberColaboradores = numberColaboradores0[1].replaceAt(0, "").replace(" ", "");
 
             //Formation Number of Participants    [number]
-            var number0 = summary[0].split(":");
+            var number0 = summary[1].split(":");
             var number = number0[1].replaceAt(0, "").replace(" ", "");
 
             //Formating Type of Event    [tipo]
-            var tipo0 = summary[1].split(":");
+            var tipo0 = summary[2].split(":");
             var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
             if (tipo === 'manifestacao') {
                 tipo = 'Manifestação'
@@ -186,11 +197,151 @@ function getPackages() {
 
 
             //Formating Authorization Entities   [autorizacao]
-            var autorizacao0 = summary[2].split(":");
+            var autorizacao0 = summary[3].split(":");
             var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
 
             //Formating Participation Entities   [participacao]
-            var participacao0 = summary[3].split(":");
+            var participacao0 = summary[4].split(":");
+            var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
+
+            console.log(numberColaboradores)
+  
+                results.innerHTML +=
+                 `<div class="col-lg-6">
+                <div class="card card-stats">
+                <!-- Card body -->s
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">${tipo}</h5>
+                        <span class="h2 font-weight-bold mb-0">${name}</span>
+                    </div>
+                    <div class="col-auto">
+                    <img width="170px" height="auto" alt="Image placeholder" src="${image}">
+                    </div>
+                </div>
+                <p class="mt-3 mb-0 text-sm text-hugo">
+                    <span class="text-nowrap text-hugo"><b>Colaboradores:</b> ${numberColaboradores}</span><br>
+                    <span class="text-nowrap text-hugo"><b>Participantes:</b> ${number}</span><br>
+                    <div>
+                    <span class='badge badge-pill badge-danger'>Autorização:</span><span class="text-hugo"> ${autorizacao}</span><br>
+                    <span class='badge badge-pill badge-success'>Participação:</span><span class="text-hugo"> ${participacao}</span><br>
+                    </div>
+                    </p>
+                    <div class="row">
+                    <div class="col-auto mr-auto"></div>
+                    <div class="col-auto"><button onclick='campoCodigo(\"${name}\")' type='button' class='btn btn-default ml-auto'>Adicionar</button>"</div>
+                    </div>
+            </div>
+        </div>`
+        })
+    }).catch(error => {
+        console.log(error)
+    })
+}
+
+function campoCodigo(name) {
+    console.log(name)
+    document.getElementById('codigoPacote').value = name;
+    document.getElementById("fecharModal").click()
+}
+
+//getPackages
+function getPackages() {
+    fetch('https://environ-back.herokuapp.com/package/all', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+    }).then(response => {
+        return response.json();
+    }).then(result => {
+        console.log(result)
+        result.forEach(element => {
+            //HTML ID
+            var results = document.getElementById("packages")
+
+            //Function to replace at certain string index
+            String.prototype.replaceAt = function (index, replacement) {
+                if (index >= this.length) {
+                    return this.valueOf();
+                }
+
+                var chars = this.split('');
+                chars[index] = replacement;
+                return chars.join('');
+            }
+
+            //Name
+            var name = element.name;
+
+            //Description
+            var description = element.description;
+
+            //Image
+            var image = element.image.replace(/&#x2F;/gi, "/");
+
+            //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+            var summary = element.summary.split("|");
+            console.log(summary)
+
+            //Formation Number of Colaboradores [number]
+            var numberColaboradores0 = summary[0].split(":");
+            var numberColaboradores = numberColaboradores0[1].replaceAt(0, "").replace(" ", "");
+
+            //Formation Number of Participants    [number]
+            var number0 = summary[1].split(":");
+            var number = number0[1].replaceAt(0, "").replace(" ", "");
+
+            //Formating Type of Event    [tipo]
+            var tipo0 = summary[2].split(":");
+            var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
+            if (tipo === 'manifestacao') {
+                tipo = 'Manifestação'
+            }
+            if (tipo === 'limpeza') {
+                tipo = 'Limpeza'
+            }
+            if (tipo === 'plantacao') {
+                tipo = 'Plantação'
+            }
+            if (tipo === 'palestra') {
+                tipo = 'Palestra'
+            }
+            if (tipo === 'congresso') {
+                tipo = 'Congresso'
+            }
+            if (tipo === 'formacao') {
+                tipo = 'Formação'
+            }
+            if (tipo === 'curso') {
+                tipo = 'Curso'
+            }
+            if (tipo === 'workshop') {
+                tipo = 'Workshop'
+            }
+            if (tipo === 'acao') {
+                tipo = 'Ação'
+            }
+            if (tipo === 'feira') {
+                tipo = 'Feira'
+            }
+            if (tipo === 'seminario') {
+                tipo = 'Seminário'
+            }
+            if (tipo === 'outro') {
+                tipo = 'Outro'
+            }
+
+
+            //Formating Authorization Entities   [autorizacao]
+            var autorizacao0 = summary[3].split(":");
+            var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
+
+            //Formating Participation Entities   [participacao]
+            var participacao0 = summary[4].split(":");
             var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
 
             //HTML
@@ -200,6 +351,7 @@ function getPackages() {
                 "<img class='card-img-top' src='" + image + "' alt='" + tipo + "'>" +
                 "<ul class='list-group list-group-flush'>" +
                 "<li class='list-group-item'>" + tipo + "</li>" +
+                "<li class='list-group-item'><b>" + numberColaboradores + " colaboradores" + "</b></li>" +
                 "<li class='list-group-item'><b>Mais do que " + number + " participantes" + "</b></li>" +
                 "<li class='list-group-item'><span class='badge badge-pill badge-danger'> Autorização: </span> " + autorizacao + "</li>" +
                 "<li class='list-group-item'><span class='badge badge-pill badge-success'> Participação: </span> " + participacao + "</li>" +

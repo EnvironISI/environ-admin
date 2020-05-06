@@ -490,6 +490,20 @@
                   </div>
                 </div>
                 <hr class="my-4" />
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Segurança</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-password">Password</label>
+                        <input disabled id="input-password" class="form-control" placeholder="Password" type="password">
+                        <a href="#" data-toggle="modal" data-target="#modal-form-password"
+                        class="badge badge-pill badge-danger">Alterar</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <!-- Description -->
                 <div class="row justify-content-between">
                   <div class="pl-lg-3">
@@ -559,6 +573,65 @@
       </div>
     </div>
   </div>
+  <!-- Modal Form for Password Configuration-->
+  <div class="modal fade" id="modal-form-password" tabindex="-1" role="dialog" aria-labelledby="modal-form-email"
+    aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-body p-0">
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Alterar password</small>
+              </div>
+              <form role="form">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <input class="form-control" onkeyup="CheckPasswordStrength(this.value); return this.passed" id="passwordAlt" placeholder="Password" type="password">
+                    <button type="button" onclick="visibleForm()" class="btn btn-secondary btn-md">
+                      <i id="eye" class="far fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <input class="form-control" id="passwordConfirmAlt" placeholder="Confirmação de password" type="password">
+                  </div>
+                </div>
+                <div class="text-muted font-italic">
+                  <small>Requisitos:
+                      <span
+                        id=""
+                        class="badge badge-pill badge-warning font-weight-700"
+                        >8 dígitos, Letra Maíuscula e minúscula</span
+                      ></small
+                    >
+                  </div>
+                  <div class="text-muted font-italic">
+                    <small
+                      >Força da password:
+                      <span
+                        id="password_strength"
+                        class="font-weight-700"
+                      ></span
+                    ></small>
+                </div>
+                <div class="text-center">
+                  <button type="button" onclick="verificationPassword()" class="btn btn-primary my-4">Alterar password</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Modal Form for Phone Configuration-->
   <div class="modal fade" id="modal-form-phone" role="dialog" aria-labelledby="modal-form-phone" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
@@ -592,11 +665,21 @@
       </div>
     </div>
   </div>
-  <button style="display: none;" id="SUCCESS" class="btn btn-success" data-toggle="notify" data-message="Email alterado"
-    data-title="Poderá reverter esta situação no email antigo. Terá ainda de ativar novamente a conta no novo email"
+  <button style="display: none;" id="SUCCESS" class="btn btn-success" data-toggle="notify" data-message="Email alterado!"
+    data-title="Poderá reverter esta situação no email antigo. Terá ainda de ativar novamente a conta no novo email."
     data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">
     Warning
   </button>
+  <button style="display: none;" id="incorrespondecia" class="btn btn-danger" data-toggle="notify" data-message="As passwords não correpondem!"
+  data-title="Não foi possível alterar a sua password uma vez que as passwords introduzidas não correspondem.
+  data-placement="top" data-align="center" data-type="danger" data-icon="ni ni-bell-55">
+  Warning
+</button>
+<button style="display: none;" id="naorequisitos" class="btn btn-danger" data-toggle="notify" data-message="A password não preenche os requisitos!"
+data-title="Não foi possível alterar a sua password uma vez que a sua password não preenche os nossos requisitos de segurança.
+data-placement="top" data-align="center" data-type="danger" data-icon="ni ni-bell-55">
+Warning
+</button>
   <!-- Argon Scripts -->
   <script src="../../assets/js/permissions.js"></script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -620,7 +703,7 @@
   <!-- Argon JS -->
   <script src="../../assets/js/argon.js?v=1.1.0"></script>
   <!-- Demo JS - remove this in your project -->
-
+  <script src="../../assets/js/passwords/passwordOptions.js"></script>
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script>
     debug();

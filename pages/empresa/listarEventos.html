@@ -60,7 +60,7 @@
                 <span class="nav-link-text">Início</span>
               </a>
             </li>
-            <li id="dashboardEmpresa"  class="nav-item">
+            <li id="dashboardEmpresa" class="nav-item">
               <a class="nav-link" href="../../pages/empresa/dashboard.html">
                 <i class="fas fa-home" style="color:#006d5b;"></i>
                 <span class="nav-link-text">Início</span>
@@ -89,13 +89,13 @@
                 </ul>
               </div>
             </li>
-            <li  id="eventosAdmin" class="nav-item">
+            <li id="eventosAdmin" class="nav-item">
               <a class="nav-link" href="../../pages/admin/eventos.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
             </li>
-            <li  id="eventosEmpresa" class="nav-item">
+            <li id="eventosEmpresa" class="nav-item">
               <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
                 aria-controls="navbar-eventos">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
@@ -121,7 +121,7 @@
                 <span class="nav-link-text">Utilizadores</span>
               </a>
             </li>
-            <li id="entidadesAdmin"  class="nav-item">
+            <li id="entidadesAdmin" class="nav-item">
               <a class="nav-link" href="../../pages/admin/listarPacotes.html">
                 <i class="fas fa-fire-alt" style="color:#fb6340"></i>
                 <span class="nav-link-text">Entidades</span>
@@ -151,19 +151,19 @@
                 <span class="nav-link-text">Metereologia</span>
               </a>
             </li>
-            <li  id="notíciasTodos" class="nav-item">
+            <li id="notíciasTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/news.html">
                 <i class="fas fa-newspaper" style="color:#1171ef;"></i>
                 <span class="nav-link-text">Notícias</span>
               </a>
             </li>
-            <li  id="eletricosTodos" class="nav-item">
+            <li id="eletricosTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/openChargeMap.html">
                 <i class="fas fa-charging-station" style="color:#cccc14;"></i>
                 <span class="nav-link-text">Elétricos</span>
               </a>
             </li>
-            <li  id="chatTodos" class="nav-item">
+            <li id="chatTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/chat.html">
                 <i class="fas fa-comments" style="color:#fbb140;"></i>
                 <span class="nav-link-text">Chat</span>
@@ -461,9 +461,9 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
+                          <label class="form-control-label" for="example2cols1Input">Código de pacote</label>
                           <input disabled type="text" id="modalEventTipo" class="form-control"
-                            placeholder="Tipo de evento">
+                            placeholder="Código de pacote">
                         </div>
                       </div>
                     </div>
@@ -478,8 +478,6 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" onclick="aceitarEvento()" class="btn btn-success">Aceitar</button>
-              <button type="button" onclick="rejeitarEvento()" class="btn btn-danger">Rejeitar</button>
               <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
             </div>
           </div>
@@ -548,6 +546,15 @@
       <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
       <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
       <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+      <script src="../../assets/js/api/firebase.js"></script>
+
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_dYg8U5YYn4FVJX7Xis1CAXiyCEMxClI"></script>
       <script src="../../assets/js/api/GoogleMaps.js"></script>
 
@@ -560,7 +567,7 @@
         document.getElementById("img1").src = sessionStorage.getItem('photo');
         document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
         getUserEvents();
-        getAllAcceptedEvents();
+        // getAllAcceptedEvents();
       </script>
 </body>
 

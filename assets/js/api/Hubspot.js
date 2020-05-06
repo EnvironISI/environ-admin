@@ -101,7 +101,7 @@ async function login() {
         })
         .then((data) => {
             console.log(data)
-            window.location.assign("../../pages/all/profile.html");
+            window.location.replace("../../pages/all/profile.html");
         }).catch(error => {
             return error;
         })
@@ -164,7 +164,7 @@ async function logout() {
         credentials: 'include'
     }).then(response => {
         if (response.ok) {
-            window.location.assign("../../pages/all/login.html")
+            window.location.assign("../../../index.html")
         }
     })
 }
@@ -388,6 +388,76 @@ function deleteUser() {
                 'A sua conta foi desativada com sucesso.',
                 'success'
             )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Cancelada',
+                'Ação cancelada com sucesso',
+                'error'
+            )
+        }
+    })
+}
+
+//Antes de alterar email verificar se password e confirmação de password são idênticas
+function verificationPassword() {
+    var password = document.getElementById("passwordAlt").value;
+    var passwordConfirmation = document.getElementById("passwordConfirmAlt").value;
+    if (password == passwordConfirmation) {
+        if (CheckPasswordStrength(password) == true) {
+            alterarPassword(password)
+        } else {
+            document.getElementById("naorequisitos").click();
+        }
+    } else {
+        document.getElementById("incorrespondecia").click();
+    }
+}
+// Alterar email do utilizador
+function alterarPassword(password) {
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+        title: 'Tem a certeza?',
+        text: "A sua password será alterada!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sim, alterar password!',
+        cancelButtonText: 'Não, cancelar!',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.value) {
+            fetch('https://environ-back.herokuapp.com/user/changePassword', {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({
+                    password: password,
+                })
+            }).then(response => {
+                return response.clone().json();
+            }).then(result => {
+                console.log(result.msg);
+            }).catch(error => {
+                console.log(error)
+            })
+            swalWithBootstrapButtons.fire(
+                'Password alterada!',
+                'A sua password foi alterada com sucesso!',
+                'success'
+            ).then(function () {
+                location.reload();
+            });
         } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel

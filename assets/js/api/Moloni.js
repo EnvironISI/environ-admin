@@ -5,7 +5,6 @@ async function requestEvent() {
     var address = document.getElementById('rua').value;
     var initTime = document.getElementById('ini').value.toString();
     var endTime = document.getElementById('fim').value.toString();
-    var nrPart = document.getElementById('number').value;
     var municipio = document.getElementById('municipio').value;
     var summary = document.getElementById('resumo').value;
     myDate = initTime.split("/");
@@ -13,12 +12,15 @@ async function requestEvent() {
     var inicio = `${new Date(newDateIni).getTime()}`
     myDate1 = endTime.split("/");
     var newDateFim = myDate1[1] + "/" + myDate1[0] + "/" + myDate1[2];
-    var fim = `${new Date(newDateFim).getTime()}`
-    var tipoEvento = document.getElementById("tipoEvento").value;
-
+    var fim = `${new Date(newDateFim).getTime()}`;
+    var nrPart = document.getElementById("nrPart").value;
+    var codigoPacote = document.getElementById("codigoPacote").value;
+    if (codigoPacote == "") {
+        codigoPacote = "Nenhum"
+    }
     // Formato DD/MM/AAAA 
-    var initTime1 = `${document.getElementById('ini').value}`
-    var endTime1 = `${document.getElementById('fim').value}`
+    // var initTime1 = `${document.getElementById('ini').value}`
+    // var endTime1 = `${document.getElementById('fim').value}`
 
     // console.log(name);
     // console.log(lat);
@@ -46,15 +48,15 @@ async function requestEvent() {
             nrPart: nrPart,
             municipio: municipio,
             summary: summary,
-            eventType: tipoEvento
+            package: codigoPacote
         })
     }).then(result => {
         console.log(result)
         if (result.status == 200) {
             document.getElementById('eventocriado').click();
-            setTimeout(function () {
-                location.reload();
-            }, 2000);
+            // setTimeout(function () {
+            //     location.reload();
+            // }, 2000);
         } else {
             document.getElementById('eventonaocriado').click();
             setTimeout(function () {
@@ -150,7 +152,7 @@ function getAllEvents() {
             } else {
                 obj.push(element.properties[6].value.replace("&#x2F;", "/"))
             }
-            //Tipo de evento data[11]
+            //Código Pacote data[11]
             if (!element.properties[9].value || element.properties[9].value === '') {
                 obj.push('null')
             } else {
@@ -164,6 +166,7 @@ function getAllEvents() {
             }
             array.push(obj);
         });
+        console.log(array)
         var table = $('#eventosEnviron').DataTable({
             data: array,
             language: {
@@ -355,7 +358,7 @@ function getAllEventsCamara() {
             columnDefs: [{
                 targets: -1,
                 data: null,
-                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>'
+                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>   <button id="verificationAction" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-check-circle"></i></span></button>'
             }, ]
         });
         $('#eventosEnviron tbody').on('click', 'button', function () {
@@ -391,6 +394,37 @@ function getAllEventsCamara() {
                     }
                 )
 
+            }
+            if (action == 'verificationAction') {
+                $('#modal-verification').modal('show');
+                var data = table.row($(this).parents('tr')).data();
+                //getPackages by name
+                fetch('https://environ-back.herokuapp.com/package/' + data[11], {
+                    method: 'GET',
+                    credentials: 'include'
+                }).then(response => {
+                    return response.json();
+                }).then(result => {
+                    //Function to replace at certain string index
+                    String.prototype.replaceAt = function (index, replacement) {
+                        if (index >= this.length) {
+                            return this.valueOf();
+                        }
+
+                        var chars = this.split('');
+                        chars[index] = replacement;
+                        return chars.join('');
+                    }
+
+                    //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+                    var summary = result.summary.split("|");
+                    //Formation Number of Participants    [number]
+                    var number0 = summary[0].split(":");
+                    var number = number0[1].replaceAt(0, "").replace(" ", "");
+                    document.getElementById("numColaboradoresSuposto").value = number;
+                }).catch(error => {
+                    console.log(error);
+                })
             }
         });
     })
@@ -886,6 +920,7 @@ function getUserEvents() {
             }
             array.push(obj);
         });
+        console.log(array)
         var table = $('#eventosEnviron').DataTable({
             data: array,
             language: {

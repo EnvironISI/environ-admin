@@ -81,6 +81,19 @@ function visible() {
     }
 }
 
+
+function visibleForm() {
+    var x = document.getElementById("passwordAlt");
+    var y = document.getElementById("eye");
+    if (x.type === "password") {
+        x.type = "text";
+        y.className = "far fa-eye-slash";
+    } else {
+        x.type = "password";
+        y.className = "far fa-eye"
+    }
+}
+
 function onOut() {
     console.log("YOLO")
     console.log(this.verification)
