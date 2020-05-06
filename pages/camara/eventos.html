@@ -489,7 +489,7 @@
                 <div class="modal-footer">
                   <a id="downloadAnchor" href="" download=""><button type="button"
                       class="btn btn-red">Download</button></a>
-                  <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                   <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
 
               </div>
@@ -510,15 +510,15 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <div class="col-lg-12">
-                      <div class="form-group">
-                        <input type="file" class="form-control" id="filetagPacote">
-                      </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <input type="file" class="form-control" id="filetagPacote">
                     </div>
-                    <div id="escondido" style="display: none;" class="text-center">
-                      <img id="visualizar" src="//placehold.it/600x400" width="600px" height="400px" class="img-fluid"
-                        alt="" />
-                    </div>
+                  </div>
+                  <div id="escondido" style="display: none;" class="text-center">
+                    <img id="visualizar" src="//placehold.it/600x400" width="600px" height="400px" class="img-fluid"
+                      alt="" />
+                  </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -544,12 +544,14 @@
                     </div>
                   </div>
                   <div class="text-center">
-                    <button id="naopassou" style="display: none;" type="button" class="btn btn-youtube btn-icon-only rounded-circle">
+                    <button id="naopassou" style="display: none;" type="button"
+                      class="btn btn-youtube btn-icon-only rounded-circle">
                       <span class="btn-inner--icon"><i class="fas fa-times-circle"></i></span>
-                  </button>
-                  <button id="passou" style="display: none;" type="button" class="btn btn-slack btn-icon-only rounded-circle">
+                    </button>
+                    <button id="passou" style="display: none;" type="button"
+                      class="btn btn-slack btn-icon-only rounded-circle">
                       <span class="btn-inner--icon"><i class="fas fa-check-circle"></i></span>
-                  </button>
+                    </button>
                   </div>
                   <div class="modal-footer">
                     <button type="button" onclick="reqVerification()" class="btn btn-red">Verificar</button>
@@ -559,73 +561,100 @@
                 </div>
               </div>
             </div>
-            <!-- Footer -->
-            <footer class="footer pt-0">
-              <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-6">
-                  <div class="copyright text-center text-lg-left text-muted">
-                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                      target="_blank">environ.</a>
-                  </div>
+          </div>
+          <!-- Modal error-->
+          <div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modal-error"
+            aria-hidden="true">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h6 class="modal-title" id="modal-title-default">Erro: Terá acesso a esta opção quando o evento se enontrar no estado "Aceite"</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
                 </div>
-                <div class="col-lg-6">
-                  <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                    <li class="nav-item">
-                      <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
-                    </li>
-                  </ul>
+
+                <div class="modal-body text-center">
+                  <img id="error" src="../../assets/img/theme/error.png" width="512px" height="540px" class="img-fluid" alt="" />
+                </div>
+                <div class="modal-footer">
+                   <button type="button" class="btn btn-danger  ml-auto" data-dismiss="modal">Fechar</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!-- Footer -->
+          <footer class="footer pt-0">
+            <div class="row align-items-center justify-content-lg-between">
+              <div class="col-lg-6">
+                <div class="copyright text-center text-lg-left text-muted">
+                  &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                    target="_blank">environ.</a>
                 </div>
               </div>
-            </footer>
-          </div>
+              <div class="col-lg-6">
+                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                  <li class="nav-item">
+                    <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </footer>
         </div>
-        <!-- Argon Scripts -->
-        <!-- Core -->
-        <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-        <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-        <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-        <!-- Optional JS -->
-        <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
-        <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-        <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+      </div>
+      <!-- Argon Scripts -->
+      <!-- Core -->
+      <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+      <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+      <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+      <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-        <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-        <!-- Add Firebase products that you want to use -->
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
-        <script src="../../assets/js/api/firebase.js"></script>
+      <!-- Optional JS -->
+      <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+      <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
+      <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_dYg8U5YYn4FVJX7Xis1CAXiyCEMxClI"></script>
-        <script src="../../assets/js/api/GoogleMaps.js"></script>
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+      <script src="../../assets/js/api/firebase.js"></script>
 
-        <script src="../../assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_dYg8U5YYn4FVJX7Xis1CAXiyCEMxClI"></script>
+      <script src="../../assets/js/api/GoogleMaps.js"></script>
 
-        <!-- Argon JS -->
-        <script src="../../assets/js/argon.js?v=1.1.0"></script>
-        <script src="../../assets/js/api/Hubspot.js"></script>
-        <script src="../../assets/js/api/Moloni.js"></script>
-        <script src="../../assets/js/permissions.js"></script>
-        <script src="../../assets/js/api/visionAPI.js"></script>
-        <script>
-          document.getElementById("img1").src = sessionStorage.getItem('photo');
-          document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
-          getAllEventsCamara();
-        </script>
-        <script>
-          changePreview();
-        </script>
+      <script src="../../assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
+
+      <!-- Argon JS -->
+      <script src="../../assets/js/argon.js?v=1.1.0"></script>
+      <script src="../../assets/js/api/Hubspot.js"></script>
+      <script src="../../assets/js/api/Moloni.js"></script>
+      <script src="../../assets/js/permissions.js"></script>
+      <script src="../../assets/js/api/visionAPI.js"></script>
+      <script>
+        document.getElementById("img1").src = sessionStorage.getItem('photo');
+        document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
+        getAllEventsCamara();
+      </script>
+      <script>
+        changePreview();
+      </script>
+      <script>
+      </script>
 </body>
 
 </html>

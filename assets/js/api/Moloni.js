@@ -202,8 +202,9 @@ function getAllEvents() {
             }
 
             if (action == 'modalQRCode') {
-                $('#modal-default').modal('show');
                 var data = table.row($(this).parents('tr')).data();
+                if (data[5] == "Aceite") {
+                $('#modal-default').modal('show');
                 var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
                 document.getElementById("contentQRCode").src = url;
                 toDataURL(
@@ -214,7 +215,9 @@ function getAllEvents() {
                     }
                 )
 
-            }
+            }else {
+                $('#modal-error').modal('show');
+            }}
         });
     })
 }
@@ -359,7 +362,12 @@ function getAllEventsCamara() {
                 targets: -1,
                 data: null,
                 defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>   <button id="verificationAction" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-check-circle"></i></span></button>'
-            }, ]
+            }, ],
+            rowCallback: function (row, data, index) {
+                if (data[5] == "Pendente" || "Suspenso") {
+                    //    document.getElementById("verificationAction").style.display == "none";
+                }
+            },
         });
         $('#eventosEnviron tbody').on('click', 'button', function () {
             var action = this.id;
@@ -382,8 +390,9 @@ function getAllEventsCamara() {
             }
 
             if (action == 'modalQRCode') {
-                $('#modal-default').modal('show');
                 var data = table.row($(this).parents('tr')).data();
+                if (data[5] == "Aceite") {
+                $('#modal-default').modal('show');
                 var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
                 document.getElementById("contentQRCode").src = url;
                 toDataURL(
@@ -394,37 +403,44 @@ function getAllEventsCamara() {
                     }
                 )
 
-            }
+            }else {
+                $('#modal-error').modal('show');
+            }}
             if (action == 'verificationAction') {
-                $('#modal-verification').modal('show');
                 var data = table.row($(this).parents('tr')).data();
-                //getPackages by name
-                fetch('https://environ-back.herokuapp.com/package/' + data[11], {
-                    method: 'GET',
-                    credentials: 'include'
-                }).then(response => {
-                    return response.json();
-                }).then(result => {
-                    //Function to replace at certain string index
-                    String.prototype.replaceAt = function (index, replacement) {
-                        if (index >= this.length) {
-                            return this.valueOf();
+                if (data[5] == "Aceite") {
+                    $('#modal-verification').modal('show');
+
+                    //getPackages by name
+                    fetch('https://environ-back.herokuapp.com/package/' + data[11], {
+                        method: 'GET',
+                        credentials: 'include'
+                    }).then(response => {
+                        return response.json();
+                    }).then(result => {
+                        //Function to replace at certain string index
+                        String.prototype.replaceAt = function (index, replacement) {
+                            if (index >= this.length) {
+                                return this.valueOf();
+                            }
+
+                            var chars = this.split('');
+                            chars[index] = replacement;
+                            return chars.join('');
                         }
 
-                        var chars = this.split('');
-                        chars[index] = replacement;
-                        return chars.join('');
-                    }
-
-                    //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
-                    var summary = result.summary.split("|");
-                    //Formation Number of Participants    [number]
-                    var number0 = summary[0].split(":");
-                    var number = number0[1].replaceAt(0, "").replace(" ", "");
-                    document.getElementById("numColaboradoresSuposto").value = number;
-                }).catch(error => {
-                    console.log(error);
-                })
+                        //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+                        var summary = result.summary.split("|");
+                        //Formation Number of Participants    [number]
+                        var number0 = summary[0].split(":");
+                        var number = number0[1].replaceAt(0, "").replace(" ", "");
+                        document.getElementById("numColaboradoresSuposto").value = number;
+                    }).catch(error => {
+                        console.log(error);
+                    })
+                } else {
+                    $('#modal-error').modal('show');
+                }
             }
         });
     })
@@ -956,8 +972,9 @@ function getUserEvents() {
             }
 
             if (action == 'modalQRCode') {
-                $('#modal-default').modal('show');
                 var data = table.row($(this).parents('tr')).data();
+                if (data[5] == "Aceite") {
+                $('#modal-default').modal('show');
                 var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
                 document.getElementById("contentQRCode").src = url;
                 toDataURL(
@@ -968,7 +985,9 @@ function getUserEvents() {
                     }
                 )
 
-            }
+            }else {
+                $('#modal-error').modal('show');
+            }}
         });
     })
 }

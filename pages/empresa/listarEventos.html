@@ -503,12 +503,36 @@
 
             <div class="modal-footer">
               <a id="downloadAnchor" href="" download=""><button type="button" class="btn btn-red">Download</button></a>
-              <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Fechar</button>
             </div>
 
           </div>
         </div>
       </div>
+
+      <!-- Modal error-->
+      <div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modal-error"
+      aria-hidden="true">
+      <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h6 class="modal-title" id="modal-title-default">Erro: Terá acesso a esta opção quando o evento se enontrar no estado "Aceite"</h6>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+
+          <div class="modal-body text-center">
+            <img id="error" src="../../assets/img/theme/error.png" width="512px" height="540px" class="img-fluid" alt="" />
+          </div>
+          <div class="modal-footer">
+             <button type="button" class="btn btn-danger  ml-auto" data-dismiss="modal">Fechar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
       <!-- Footer -->
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
