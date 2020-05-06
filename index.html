@@ -3,13 +3,20 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="Sumon Rahman">
-    <meta name="description" content="">
+    <meta name="author" content="Hugo Carvalho">
+    <meta name="description" content="Environ">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Environ.">
+    <meta name="theme-color" content="#2F3BA2" />
+    <script src="./sw-register.js"></script>
+    <link rel="apple-touch-icon" href="./assets/img/icons/icon-152x152.png">
     <!-- Title -->
     <title>environ.</title>
+    <link rel="manifest" href="./manifest.json">
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="frontoffice/images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="./assets/img/brand/favicon.ico" />
@@ -33,9 +40,9 @@
 
 <body data-spy="scroll" data-target=".mainmenu-area">
     <!-- Preloader-content -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <span><i class="fas fa-spinner"></i></span>
-    </div>
+    </div> -->
     <!-- MainMenu-Area -->
     <nav class="mainmenu-area" data-spy="affix" data-offset-top="200">
         <div class="container-fluid">
@@ -76,31 +83,34 @@
                 </div>
                 <div class="col-xs-12 col-md-7">
                     <div class="space-80 hidden-xs"></div>
-					<h4> Bem-vindo à environ. <h4>
-                    <h2 class="wow fadeInUp" data-wow-delay="0.4s"> <h2>
-                    Agende os seus eventos
-                    de caráter ambiental
-                    connosco.
-                </h1></h1>
-                    <div class="space-20"></div>
-                    <div class="desc wow fadeInUp" data-wow-delay="0.6s">
-					<div class="home-content__buttons">
-					<div class="right-button">
-					<div class="space-50"></div>
-                        <a href="#" class="bttn-white wow fadeInUp" data-wow-delay="0.8s">Quero-me Registar!</a>
+                    <h4> Bem-vindo à environ. <h4>
+                            <h2 class="wow fadeInUp" data-wow-delay="0.4s">
+                                <h2>
+                                    Agende os seus eventos
+                                    de caráter ambiental
+                                    connosco.
+                                    </h1>
+                                    </h1>
+                                    <div class="space-20"></div>
+                                    <div class="desc wow fadeInUp" data-wow-delay="0.6s">
+                                        <div class="home-content__buttons">
+                                            <div class="right-button">
+                                                <div class="space-50"></div>
+                                                <a href="#" class="bttn-white wow fadeInUp"
+                                                    data-wow-delay="0.8s">Quero-me Registar!</a>
 
-                </div>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
+                                            </div>
+                                            <p></p>
+                                            <p></p>
+                                            <p></p>
+                                            <p></p>
+                                            <p></p>
+                                            <p></p>
+                                            <p></p>
 
+                                        </div>
+                                    </div>
                 </div>
-            </div>
-        </div>
     </header>
     <!-- Home-Area-End -->
     <!-- About-Area -->
@@ -113,13 +123,15 @@
                         <div class="space-20"></div>
                         <h5 class="title">Sobre a environ.</h5>
                         <div class="space-30"></div>
-                        <h3 class="blue-color">A environ. é uma empresa que proporciona a preparação do local para eventos de cariz ambiental . </h3>
+                        <h3 class="blue-color">A environ. é uma empresa que proporciona a preparação do local para
+                            eventos de cariz ambiental . </h3>
                         <div class="space-20"></div>
-                        <p>Assim esta existe com o intuito de facilitar os processos existentes numa intervenção no meio ambiente, tendo por base um estudo territorial.</p>
+                        <p>Assim esta existe com o intuito de facilitar os processos existentes numa intervenção no meio
+                            ambiente, tendo por base um estudo territorial.</p>
                     </div>
                 </div>
-				<div class="row about-stats stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
-        </div>
+                <div class="row about-stats stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
+                </div>
             </div>
         </div>
     </section>
@@ -144,12 +156,13 @@
                             <i class="fas fa-edit"></i>
                         </div>
                         <h4>Estudamos o seu pedido</h4>
-                        <p>Todos os pedidos são estudados e tratados com todo o cuidado, de modo a personalizar a experiência dos nossos clientes.</p>
+                        <p>Todos os pedidos são estudados e tratados com todo o cuidado, de modo a personalizar a
+                            experiência dos nossos clientes.</p>
                     </div>
                     <div class="space-60"></div>
                     <div class="service-box wow fadeInUp" data-wow-delay="0.4s">
                         <div class="box-icon">
-						<i class="fas fa-map-pin"></i>
+                            <i class="fas fa-map-pin"></i>
                         </div>
                         <h4>Escolhemos o local</h4>
                         <p> Para cada evento há um local especial, deixe que o encontremos.</p>
@@ -160,7 +173,8 @@
                             <i class="fas fa-leaf"></i>
                         </div>
                         <h4>Tratámo-lo</h4>
-                        <p>Após a seleção do lugar, iremos proceder ao seu tratamento para que o encontre no melhor estado possível.</p>
+                        <p>Após a seleção do lugar, iremos proceder ao seu tratamento para que o encontre no melhor
+                            estado possível.</p>
                     </div>
                     <div class="space-60"></div>
                 </div>
@@ -175,7 +189,8 @@
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
                         <h4>Obtemos as respetivas autorizações</h4>
-                        <p>De modo a que não haja contra-partidas, tratamos de todas as ações legais que pudessem causar constrangimentos ao governo.</p>
+                        <p>De modo a que não haja contra-partidas, tratamos de todas as ações legais que pudessem causar
+                            constrangimentos ao governo.</p>
                     </div>
                     <div class="space-60"></div>
                     <div class="service-box wow fadeInUp" data-wow-delay="0.4s">
@@ -183,7 +198,8 @@
                             <i class="fas fa-phone"></i>
                         </div>
                         <h4>Contactámos as autoridades competentes</h4>
-                        <p>Por sua vez, o contacto com as autoridades competentes para que nada fuja do controlo, nem da normalidade do evento.
+                        <p>Por sua vez, o contacto com as autoridades competentes para que nada fuja do controlo, nem da
+                            normalidade do evento.
                         </p>
                     </div>
                     <div class="space-60"></div>
@@ -207,7 +223,8 @@
                 <div class="col-xs-12">
                     <div class="page-title text-center">
                         <h5 class="title">Eventos</h5>
-                        <h3 class="dark-color">Cuidar, guardar, preservar o meio ambiente - responsabilidade de todos nós.</h3>
+                        <h3 class="dark-color">Cuidar, guardar, preservar o meio ambiente - responsabilidade de todos
+                            nós.</h3>
                         <div class="space-60"></div>
                     </div>
                 </div>
@@ -221,7 +238,8 @@
                             </div>
                             <h4>Reflorestação</h4>
                             <h6 class="position"></h6>
-                            <p>Sabiam que, segundo a compensação ambiental, por cada árvore caída deveriam ser plantadas 25?!.</p>
+                            <p>Sabiam que, segundo a compensação ambiental, por cada árvore caída deveriam ser plantadas
+                                25?!.</p>
                         </div>
                         <div class="team-box">
                             <div class="team-image">
@@ -237,15 +255,17 @@
                             </div>
                             <h4>Praia Limpa</h4>
                             <h6 class="position"></h6>
-                            <p>Sabiam que a poluição nas praias propencia a dispersão de doenças, na medida em que prolifera roedores e insetos?!</p>
+                            <p>Sabiam que a poluição nas praias propencia a dispersão de doenças, na medida em que
+                                prolifera roedores e insetos?!</p>
                         </div>
-                              <div class="team-box">
+                        <div class="team-box">
                             <div class="team-image">
                                 <img src="frontoffice/images/team-2.jpg" alt="">
                             </div>
                             <h4>Reflorestação</h4>
                             <h6 class="position"></h6>
-                            <p>Sabiam que, segundo a compensação ambiental, por cada árvore caída deveriam ser plantadas 25?!.</p>
+                            <p>Sabiam que, segundo a compensação ambiental, por cada árvore caída deveriam ser plantadas
+                                25?!.</p>
                         </div>
                         <div class="team-box">
                             <div class="team-image">
@@ -261,7 +281,8 @@
                             </div>
                             <h4>Praia Limpa</h4>
                             <h6 class="position"></h6>
-                            <p>Sabiam que a poluição nas praias propencia a dispersão de doenças, na medida em que prolifera roedores e insetos?!</p>
+                            <p>Sabiam que a poluição nas praias propencia a dispersão de doenças, na medida em que
+                                prolifera roedores e insetos?!</p>
                         </div>
                     </div>
                 </div>
@@ -269,8 +290,8 @@
         </div>
     </section>
     <!-- Testimonial-Area-End -->
-	<!--Gallery-Area-->
-<section class="gallery-area section-padding" id="gallery_page">
+    <!--Gallery-Area-->
+    <section class="gallery-area section-padding" id="gallery_page">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 gallery-slider">
@@ -282,7 +303,7 @@
                         <div class="item"><img src="frontoffice/images/gallery-1.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-2.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-3.jpg" alt=""></div>
-						<div class="item"><img src="frontoffice/images/gallery-4.jpg" alt=""></div>
+                        <div class="item"><img src="frontoffice/images/gallery-4.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-1.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-2.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-3.jpg" alt=""></div>
@@ -290,7 +311,7 @@
                         <div class="item"><img src="frontoffice/images/gallery-1.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-2.jpg" alt=""></div>
                         <div class="item"><img src="frontoffice/images/gallery-3.jpg" alt=""></div>
-						<div class="item"><img src="frontoffice/images/gallery-4.jpg" alt=""></div>
+                        <div class="item"><img src="frontoffice/images/gallery-4.jpg" alt=""></div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-5 col-lg-3">
@@ -301,7 +322,9 @@
                     </div>
                     <div class="space-20"></div>
                     <div class="desc wow fadeInUp" data-wow-delay="0.6s">
-                        <p>Após o registo e posterior validação da sua conta, terá ao seu dispor, funcionalidades como um feed de notícias, a meteorologia atual com geo-localização, detalhes do evento, bem como um QR-Code do mesmo.</p>
+                        <p>Após o registo e posterior validação da sua conta, terá ao seu dispor, funcionalidades como
+                            um feed de notícias, a meteorologia atual com geo-localização, detalhes do evento, bem como
+                            um QR-Code do mesmo.</p>
                     </div>
                     <div class="space-50"></div>
                     <a href="#" class="bttn-default wow fadeInUp" data-wow-delay="0.8s">Registar!</a>
@@ -309,7 +332,7 @@
             </div>
         </div>
     </section>
-	<!--Gallery-Area-End-->
+    <!--Gallery-Area-End-->
     <!--Questions-Area -->
     <section id="questions_page" class="questions-area section-padding">
         <div class="container">
@@ -327,9 +350,11 @@
                     <div class="toggole-boxs">
                         <h3>Preciso de um local para organizar um evento, o que devo fazer? </h3>
                         <div>
-                            <p>Sugerimos que se regista no nosso site, e aceda à nossa plataforma, temos toda uma solução intuitiva para si, e poderá obter mais informações a falar com um colaborador.</p>
+                            <p>Sugerimos que se regista no nosso site, e aceda à nossa plataforma, temos toda uma
+                                solução intuitiva para si, e poderá obter mais informações a falar com um colaborador.
+                            </p>
                         </div>
-                       <!-- <h3>? </h3>
+                        <!-- <h3>? </h3>
                         <div>
                             <p>.</p>
                         </div>-->
@@ -340,9 +365,10 @@
                     <div class="toggole-boxs">
                         <h3>Sou representante de uma câmara, onde devo proceder ao registo? </h3>
                         <div>
-                            <p>Deverá entrar em contacto com a equipa, através do e-mail "environisi@gmail.com", teremos todo o gosto em ajudar o seu munícipio a crescer, e em crescer também convosco.</p>
+                            <p>Deverá entrar em contacto com a equipa, através do e-mail "environisi@gmail.com", teremos
+                                todo o gosto em ajudar o seu munícipio a crescer, e em crescer também convosco.</p>
                         </div>
-                       <!-- <h3>? </h3>
+                        <!-- <h3>? </h3>
                         <div>
                             <p>.</p>
                         </div>-->
@@ -355,41 +381,45 @@
     <!-- Subscribe-Form -->
     <div class="subscribe-area section-padding">
         <div class="container">
-           
-                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-                    <div class="subscribe-form text-center">
-                        <h3 class="blue-color">Subscreva para receber novidades!</h3>
-                       
-                         <form id="mcform" action="https://formspree.io/mdodzdyv" method="POST">
-                <label>
-				<div class="mt10" for="mc">
-				<input name="contactName" type="text" id="contactName" placeholder="Nome" value="" minlength="2" required="" aria-required="true" class="control">
-				</div>
-				</label>
-                <label>
-				<div class="mt10">
-				<input name="_replyto" type="email" id="contactEmail" placeholder="E-mail" value="" required="" aria-required="true" class="control">
-				</div>
-				</label>
-                <label>
-				<div class="mt10">
-				<input name="contactSubject" type="text" id="contactSubject" placeholder="Assunto" value="" class="control">
-				</div>
-				</label>
-                <label>
-				<div class="mt10">
-				<textarea name="contactMessage" id="contactMessage" placeholder="A sua mensagem" rows="2" cols="50" required="" aria-required="true" class="control"></textarea>
-				</div>
-				</label>  
-				
-				<button class="bttn-default wow fadeInUp" type="submit">Enviar</button>			
-				</form>				
-            </div>
-           
-                    </div>
+
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                <div class="subscribe-form text-center">
+                    <h3 class="blue-color">Subscreva para receber novidades!</h3>
+
+                    <form id="mcform" action="https://formspree.io/mdodzdyv" method="POST">
+                        <label>
+                            <div class="mt10" for="mc">
+                                <input name="contactName" type="text" id="contactName" placeholder="Nome" value=""
+                                    minlength="2" required="" aria-required="true" class="control">
+                            </div>
+                        </label>
+                        <label>
+                            <div class="mt10">
+                                <input name="_replyto" type="email" id="contactEmail" placeholder="E-mail" value=""
+                                    required="" aria-required="true" class="control">
+                            </div>
+                        </label>
+                        <label>
+                            <div class="mt10">
+                                <input name="contactSubject" type="text" id="contactSubject" placeholder="Assunto"
+                                    value="" class="control">
+                            </div>
+                        </label>
+                        <label>
+                            <div class="mt10">
+                                <textarea name="contactMessage" id="contactMessage" placeholder="A sua mensagem"
+                                    rows="2" cols="50" required="" aria-required="true" class="control"></textarea>
+                            </div>
+                        </label>
+
+                        <button class="bttn-default wow fadeInUp" type="submit">Enviar</button>
+                    </form>
                 </div>
+
             </div>
         </div>
+    </div>
+    </div>
     </div>
     <!-- Subscribe-Form-Area -->
     <!-- Footer-Area -->
@@ -412,8 +442,8 @@
                                 <span class="lnr lnr-map-marker"></span>
                             </div>
                             <p>Encontre-nos em: <br /> Alameda da Universidade<br>
-                            4800-058 Guimarães,<br>
-                            Portugal</p>
+                                4800-058 Guimarães,<br>
+                                Portugal</p>
                         </div>
                         <div class="space-30 hidden visible-xs"></div>
                     </div>
@@ -438,15 +468,15 @@
                 </div>
             </div>
         </div>
-		
-   
+
+
         <!-- Footer-Bootom -->
-       <div class="footer-bottom">
+        <div class="footer-bottom">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-5">
-          &copy; 2020 <a href="" class="font-weight-bold ml-1" target="_blank">environ.</a>
-                      <div class="space-30 hidden visible-xs"></div>
+                        &copy; 2020 <a href="" class="font-weight-bold ml-1" target="_blank">environ.</a>
+                        <div class="space-30 hidden visible-xs"></div>
                     </div>
                     <div class="col-xs-12 col-md-7">
                         <div class="footer-menu">
@@ -480,12 +510,33 @@
     <script src="frontoffice/js/wow.min.js"></script>
     <!--Main-active-JS-->
     <script src="frontoffice/js/main.js"></script>
-	<script type='text/javascript' 
-	data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; 
-	(function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; 
-	script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '4b76d634-8a70-405a-9c7e-d9e5254e8093', f: true }); 
-	done = true; } }; })();
-	</script>
+    <script type='text/javascript' data-cfasync='false'>
+        window.purechatApi = {
+            l: [],
+            t: [],
+            on: function () {
+                this.l.push(arguments);
+            }
+        };
+        (function () {
+            var done = false;
+            var script = document.createElement('script');
+            script.async = true;
+            script.type = 'text/javascript';
+            script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript';
+            document.getElementsByTagName('HEAD').item(0).appendChild(script);
+            script.onreadystatechange = script.onload = function (e) {
+                if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState ==
+                    'complete')) {
+                    var w = new PCWidget({
+                        c: '4b76d634-8a70-405a-9c7e-d9e5254e8093',
+                        f: true
+                    });
+                    done = true;
+                }
+            };
+        })();
+    </script>
 </body>
 
 </html>
