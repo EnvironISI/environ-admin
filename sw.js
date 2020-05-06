@@ -59,10 +59,17 @@ self.addEventListener("refreshOffline", function() {
 
 var cacheName = 'environ.';
 var filesToCache = [
+
+  './frontoffice/',
   './index.html',
-  './frontOffice/js/main.js',
+  './frontoffice/css/',
+  './frontoffice/images',
+  './frontoffice/js',
+  './frontoffice/js/main.js',
   './manifest.json',
   './sw-register.js',
+  './assets/img/brand/favicon.ico',
+  './assets/img/icons/icon-192x192.png',
 ];
 
 self.addEventListener('install', function(e) {
@@ -73,7 +80,7 @@ self.addEventListener('install', function(e) {
       return cache.addAll(filesToCache);
     })
   );
-})
+});
 
 self.addEventListener('fetch', function(e) {
   console.log('[ServiceWorker] Fetch', e.request.url);
@@ -82,7 +89,7 @@ self.addEventListener('fetch', function(e) {
       return response || fetch(e.request);
     })
   );
-})
+});
 
 self.addEventListener('activate', evt => {
     console.log("Ativado")
