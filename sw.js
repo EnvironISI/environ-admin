@@ -69,12 +69,12 @@ var filesToCache = [
   './manifest.json',
   './sw-register.js',
   './assets/img/brand/favicon.ico',
-  './assets/img/icons/icon-192x192.png'
-//   'https://dai-18-19-front-a84182.c9users.io/manifest.json',
-//   'https://dai-18-19-front-a84182.c9users.io/sw-register.js',
-//   'https://dai-18-19-front-a84182.c9users.io/views/frontOffice/img/logo_pwa.png',
-//   'https://dai-18-19-front-a84182.c9users.io/views/frontOffice/img/favicon.png'
-
+  './assets/img/icons/icon-192x192.png',
+  'https://environ-front.herokuapp.com/index.html',
+  'https://environ-front.herokuapp.com/manifest.json',
+  'https://environ-front.herokuapp.com/sw-register.js',
+  'https://environ-front.herokuapp.com/assets/img/icons/icon-192x192.png",',
+  'https://environ-front.herokuapp.com/assets/img/brand/favicon.ico'
 ];
 
 self.addEventListener('install', function(e) {
