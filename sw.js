@@ -78,7 +78,7 @@ self.addEventListener('install', function(e) {
       return cache.addAll(filesToCache);
     })
   );
-});
+}).catch(reason => console.error(reason));
 
 self.addEventListener('fetch', function(e) {
   console.log('[ServiceWorker] Fetch', e.request.url);
@@ -87,8 +87,8 @@ self.addEventListener('fetch', function(e) {
       return response || fetch(e.request);
     })
   );
-});
+}).catch(reason => console.error(reason));
 
 self.addEventListener('activate', evt => {
     console.log("Ativado")
-})
+}).catch(reason => console.error(reason))
