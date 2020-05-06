@@ -68,12 +68,6 @@ var filesToCache = [
   './frontOffice/js/main.js',
   './manifest.json',
   './sw-register.js',
-  './assets/img/brand/favicon.ico',
-  './assets/img/icons/icon-192x192.png',
-//   'https://environ-front.herokuapp.com/index.html',
-//   'https://environ-front.herokuapp.com/manifest.json',
-//   'https://environ-front.herokuapp.com/sw-register.js',
-//   'https://environ-front.herokuapp.com/assets/img/icons/icon-192x192.png",'
 ];
 
 self.addEventListener('install', function(e) {
