@@ -59,12 +59,7 @@ self.addEventListener("refreshOffline", function() {
 
 var cacheName = 'environ.';
 var filesToCache = [
-
-  './frontoffice/',
   './index.html',
-  './frontoffice/css/',
-  './frontOffice/images',
-  './frontOffice/js',
   './frontOffice/js/main.js',
   './manifest.json',
   './sw-register.js',
