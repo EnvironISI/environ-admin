@@ -5,7 +5,7 @@
     "background_color": "#ffffff",
     "display": "standalone",
     "Scope": "/",
-    "start_url": "index.html",
+    "start_url": "https://environ-front.herokuapp.com/index.html",
 
     "icons": [{
             "src": "./assets/img/icons/icon-16x16.png",
