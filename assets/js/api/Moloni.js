@@ -1,4 +1,5 @@
 async function requestEvent() {
+    var duration = document.getElementById('duration').value;
     var name = document.getElementById('name').value;
     var lat = document.getElementById('lati').value;
     var long = document.getElementById('long').value;
@@ -48,7 +49,8 @@ async function requestEvent() {
             nrPart: nrPart,
             municipio: municipio,
             summary: summary,
-            package: codigoPacote
+            package: codigoPacote,
+            duration: duration
         })
     }).then(result => {
         console.log(result)
@@ -82,6 +84,7 @@ function getAllEvents() {
             var obj = [];
 
             //Visiveis ao Utilizador
+            //Visiveis ao Utilizador
 
             //Nome Evento data[0]
             if (!element.name || element.name === '') {
@@ -89,31 +92,37 @@ function getAllEvents() {
             } else {
                 obj.push(element.name)
             }
-            //Estado Evento data[1]
+            //Email organizacao data[1]
             if (!element.properties[1].value || element.properties[1].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[1].value)
             }
-            //Número de participantes data[2]
-            if (!element.properties[4].value || element.properties[4].value === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.properties[4].value)
-            }
-            //Município onde se localiza evento data[3]
+            //Município onde se localiza evento data[2]
             if (!element.properties[8].value || element.properties[8].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[8].value)
             }
-            //Data de Início data[4]
+            //Data de Início data[3]
             if (!element.properties[5].value || element.properties[5].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[5].value.replace("&#x2F;", "/"))
             }
-            //Estado do Evento data[5]
+            //Fim do Evento data[4]
+            if (!element.properties[6].value || element.properties[6].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[6].value.replace("&#x2F;", "/"))
+            }
+            //Duração do evento [5]
+            if (!element.properties[10].value || element.properties[10].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[10].value)
+            }
+            //Estado do Evento data[6]
             if (!element.properties[0].value || element.properties[0].value === '') {
                 obj.push('null')
             } else {
@@ -122,37 +131,31 @@ function getAllEvents() {
 
             //Não visiveís ao utilizador 
 
-            //Latitude do evento data[6]
+            //Latitude do evento data[7]
             if (!element.properties[2].value || element.properties[2].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[2].value)
             }
-            //Longitude do evento data[7]
+            //Longitude do evento data[8]
             if (!element.properties[3].value || element.properties[3].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[3].value)
             }
-            //ID Evento data[8]
+            //ID Evento data[9]
             if (!element.product_id || element.product_id === '') {
                 obj.push('null')
             } else {
                 obj.push(element.product_id)
             }
-            //Rua do Evento data[9]
+            //Rua do Evento data[10]
             if (!element.properties[7].value || element.properties[7].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[7].value)
             }
-            //Fim do Evento data[10]
-            if (!element.properties[6].value || element.properties[6].value === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.properties[6].value.replace("&#x2F;", "/"))
-            }
-            //Código Pacote data[11]
+            //Código de pacote data [11]
             if (!element.properties[9].value || element.properties[9].value === '') {
                 obj.push('null')
             } else {
@@ -163,6 +166,12 @@ function getAllEvents() {
                 obj.push('null')
             } else {
                 obj.push(element.summary)
+            }
+            //Número de participantes data[13]
+            if (!element.properties[4].value || element.properties[4].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[4].value)
             }
             array.push(obj);
         });
@@ -186,38 +195,59 @@ function getAllEvents() {
             if (action == 'infoEvent') {
                 $('#modal-notification').modal('show');
                 var data = table.row($(this).parents('tr')).data();
-                console.log(data[4])
-                initMapEvent(parseFloat(data[6].replace(",", ".")), parseFloat(data[7].replace(",", ".")))
+                initMapEvent(parseFloat(data[7].replace(",", ".")), parseFloat(data[8].replace(",", ".")))
                 document.getElementById("modalEventName").value = data[0];
-                document.getElementById("modalEventMunicipio").value = data[3];
-                document.getElementById("modalEventLatitude").value = parseFloat(data[6].replace(",", "."));
-                document.getElementById("modalEventLongitude").value = parseFloat(data[7].replace(",", "."));
-                document.getElementById("modalEventRua").value = data[9];
-                document.getElementById("modalEventInicio").value = data[4].replace("&#x2F;", "/");
-                document.getElementById("modalEventFim").value = data[10].replace("&#x2F;", "/");
-                document.getElementById("modalEventNumero").value = data[2];
+                document.getElementById("modalEventMunicipio").value = data[2];
+                document.getElementById("modalEventLatitude").value = parseFloat(data[7].replace(",", "."));
+                document.getElementById("modalEventLongitude").value = parseFloat(data[8].replace(",", "."));
+                document.getElementById("modalEventRua").value = data[10];
+                document.getElementById("modalEventInicio").value = data[3].replace("&#x2F;", "/");
+                document.getElementById("modalEventFim").value = data[4].replace("&#x2F;", "/");
+                document.getElementById("modalEventNumero").value = data[13];
                 document.getElementById("modalEventTipo").value = capitalize(data[11]);
                 document.getElementById("modalEventResumo").value = capitalize(data[12]);
-                document.getElementById("modalEventID").value = data[8];
+                document.getElementById("modalEventID").value = data[9];
+                document.getElementById("modalDuration").value = data[5];
+                if (data[6] == "Aceite") {
+                    document.getElementById("rejeitarAdmin").style.display = "none"
+                    document.getElementById("aceitarAdmin").style.display = "none"
+                    document.getElementById("eliminarAdmin").style.display = "none"
+                }
+                if (data[6] == "Rejeitado") {
+                    document.getElementById("rejeitarAdmin").style.display = "none"
+                    document.getElementById("aceitarAdmin").style.display = "none"
+                    document.getElementById("eliminarAdmin").style.display = "inline"
+                }
+                if (data[6] == "Suspenso") {
+                    document.getElementById("rejeitarAdmin").style.display = "inline"
+                    document.getElementById("aceitarAdmin").style.display = "inline"
+                    document.getElementById("eliminarAdmin").style.display = "inline"
+                }
+                if (data[6] == "Pendente") {
+                    document.getElementById("rejeitarAdmin").style.display = "none"
+                    document.getElementById("aceitarAdmin").style.display = "none"
+                    document.getElementById("eliminarAdmin").style.display = "none"
+                }
             }
 
             if (action == 'modalQRCode') {
                 var data = table.row($(this).parents('tr')).data();
-                if (data[5] == "Aceite") {
-                $('#modal-default').modal('show');
-                var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
-                document.getElementById("contentQRCode").src = url;
-                toDataURL(
-                    url,
-                    function (dataUrl) {
-                        document.getElementById("downloadAnchor").href = dataUrl;
-                        document.getElementById("downloadAnchor").download = data[0] + ".png"
-                    }
-                )
+                if (data[6] == "Aceite") {
+                    $('#modal-default').modal('show');
+                    var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[9]
+                    document.getElementById("contentQRCode").src = url;
+                    toDataURL(
+                        url,
+                        function (dataUrl) {
+                            document.getElementById("downloadAnchor").href = dataUrl;
+                            document.getElementById("downloadAnchor").download = data[0] + ".png"
+                        }
+                    )
 
-            }else {
-                $('#modal-error').modal('show');
-            }}
+                } else {
+                    $('#modal-error').modal('show');
+                }
+            }
         });
     })
 }
@@ -272,31 +302,37 @@ function getAllEventsCamara() {
                 } else {
                     obj.push(element.name)
                 }
-                //Estado Evento data[1]
+                //Email organizacao data[1]
                 if (!element.properties[1].value || element.properties[1].value === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.properties[1].value)
                 }
-                //Número de participantes data[2]
-                if (!element.properties[4].value || element.properties[4].value === '') {
-                    obj.push('null')
-                } else {
-                    obj.push(element.properties[4].value)
-                }
-                //Município onde se localiza evento data[3]
+                //Município onde se localiza evento data[2]
                 if (!element.properties[8].value || element.properties[8].value === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.properties[8].value)
                 }
-                //Data de Início data[4]
+                //Data de Início data[3]
                 if (!element.properties[5].value || element.properties[5].value === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.properties[5].value.replace("&#x2F;", "/"))
                 }
-                //Estado do Evento data[5]
+                //Fim do Evento data[4]
+                if (!element.properties[6].value || element.properties[6].value === '') {
+                    obj.push('null')
+                } else {
+                    obj.push(element.properties[6].value.replace("&#x2F;", "/"))
+                }
+                //Duração do evento [5]
+                if (!element.properties[10].value || element.properties[10].value === '') {
+                    obj.push('null')
+                } else {
+                    obj.push(element.properties[10].value)
+                }
+                //Estado do Evento data[6]
                 if (!element.properties[0].value || element.properties[0].value === '') {
                     obj.push('null')
                 } else {
@@ -305,37 +341,31 @@ function getAllEventsCamara() {
 
                 //Não visiveís ao utilizador 
 
-                //Latitude do evento data[6]
+                //Latitude do evento data[7]
                 if (!element.properties[2].value || element.properties[2].value === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.properties[2].value)
                 }
-                //Longitude do evento data[7]
+                //Longitude do evento data[8]
                 if (!element.properties[3].value || element.properties[3].value === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.properties[3].value)
                 }
-                //ID Evento data[8]
+                //ID Evento data[9]
                 if (!element.product_id || element.product_id === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.product_id)
                 }
-                //Rua do Evento data[9]
+                //Rua do Evento data[10]
                 if (!element.properties[7].value || element.properties[7].value === '') {
                     obj.push('null')
                 } else {
                     obj.push(element.properties[7].value)
                 }
-                //Fim do Evento data[10]
-                if (!element.properties[6].value || element.properties[6].value === '') {
-                    obj.push('null')
-                } else {
-                    obj.push(element.properties[6].value.replace("&#x2F;", "/"))
-                }
-                //Tipo de evento data[11]
+                //Código de pacote data [11]
                 if (!element.properties[9].value || element.properties[9].value === '') {
                     obj.push('null')
                 } else {
@@ -347,9 +377,16 @@ function getAllEventsCamara() {
                 } else {
                     obj.push(element.summary)
                 }
+                //Número de participantes data[13]
+                if (!element.properties[4].value || element.properties[4].value === '') {
+                    obj.push('null')
+                } else {
+                    obj.push(element.properties[4].value)
+                }
                 array.push(obj);
             }
         });
+        console.log(array)
         var table = $('#eventosEnviron').DataTable({
             data: array,
             language: {
@@ -361,54 +398,57 @@ function getAllEventsCamara() {
             columnDefs: [{
                 targets: -1,
                 data: null,
-                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>   <button id="verificationAction" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-check-circle"></i></span></button>'
-            }, ],
-            rowCallback: function (row, data, index) {
-                if (data[5] == "Pendente" || "Suspenso") {
-                    //    document.getElementById("verificationAction").style.display == "none";
-                }
-            },
+                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>'
+            }, ]
         });
         $('#eventosEnviron tbody').on('click', 'button', function () {
             var action = this.id;
             if (action == 'infoEvent') {
                 $('#modal-notification').modal('show');
                 var data = table.row($(this).parents('tr')).data();
-                console.log(data[4])
-                initMapEvent(parseFloat(data[6].replace(",", ".")), parseFloat(data[7].replace(",", ".")))
+                initMapEvent(parseFloat(data[7].replace(",", ".")), parseFloat(data[8].replace(",", ".")))
                 document.getElementById("modalEventName").value = data[0];
-                document.getElementById("modalEventMunicipio").value = data[3];
-                document.getElementById("modalEventLatitude").value = parseFloat(data[6].replace(",", "."));
-                document.getElementById("modalEventLongitude").value = parseFloat(data[7].replace(",", "."));
-                document.getElementById("modalEventRua").value = data[9];
-                document.getElementById("modalEventInicio").value = data[4].replace("&#x2F;", "/");
-                document.getElementById("modalEventFim").value = data[10].replace("&#x2F;", "/");
-                document.getElementById("modalEventNumero").value = data[2];
+                document.getElementById("modalEventMunicipio").value = data[2];
+                document.getElementById("modalEventLatitude").value = parseFloat(data[7].replace(",", "."));
+                document.getElementById("modalEventLongitude").value = parseFloat(data[8].replace(",", "."));
+                document.getElementById("modalEventRua").value = data[10];
+                document.getElementById("modalEventInicio").value = data[3].replace("&#x2F;", "/");
+                document.getElementById("modalEventFim").value = data[4].replace("&#x2F;", "/");
+                document.getElementById("modalEventNumero").value = data[13];
                 document.getElementById("modalEventTipo").value = capitalize(data[11]);
                 document.getElementById("modalEventResumo").value = capitalize(data[12]);
-                document.getElementById("modalEventID").value = data[8];
+                document.getElementById("modalEventID").value = data[9];
+                document.getElementById("modalDuration").value = data[5];
+                if (data[6] == "Aceite" || "Rejeitado") {
+                    document.getElementById("rejeitarCamara").style.display = "none"
+                    document.getElementById("aceitarCamara").style.display = "none"
+                }
+                if (data[6] == "Pendente") {
+                    document.getElementById("rejeitarCamara").style.display = "inline"
+                    document.getElementById("aceitarCamara").style.display = "inline"
+                }
             }
-
             if (action == 'modalQRCode') {
                 var data = table.row($(this).parents('tr')).data();
-                if (data[5] == "Aceite") {
-                $('#modal-default').modal('show');
-                var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
-                document.getElementById("contentQRCode").src = url;
-                toDataURL(
-                    url,
-                    function (dataUrl) {
-                        document.getElementById("downloadAnchor").href = dataUrl;
-                        document.getElementById("downloadAnchor").download = data[0] + ".png"
-                    }
-                )
+                if (data[6] == "Aceite") {
+                    $('#modal-default').modal('show');
+                    var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[9]
+                    document.getElementById("contentQRCode").src = url;
+                    toDataURL(
+                        url,
+                        function (dataUrl) {
+                            document.getElementById("downloadAnchor").href = dataUrl;
+                            document.getElementById("downloadAnchor").download = data[0] + ".png"
+                        }
+                    )
 
-            }else {
-                $('#modal-error').modal('show');
-            }}
+                } else {
+                    $('#modal-error').modal('show');
+                }
+            }
             if (action == 'verificationAction') {
                 var data = table.row($(this).parents('tr')).data();
-                if (data[5] == "Aceite") {
+                if (data[6] == "Aceite") {
                     $('#modal-verification').modal('show');
 
                     //getPackages by name
@@ -574,6 +614,8 @@ function rejeitarEventoAdmin() {
 
 function aceitarEventoCamara() {
     var id = document.getElementById("modalEventID").value.toString();
+    var initDate = document.getElementById("data_inicial").value
+    var endDate = document.getElementById("data_final").value
     console.log(id)
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
@@ -601,7 +643,9 @@ function aceitarEventoCamara() {
                 credentials: 'include',
                 body: JSON.stringify({
                     eventId: id,
-                    accept: "true"
+                    accept: "true",
+                    initDate: initDate,
+                    endDate: endDate
                 })
             }).then(response => {
                 return response.json();
@@ -859,31 +903,37 @@ function getUserEvents() {
             } else {
                 obj.push(element.name)
             }
-            //Estado Evento data[1]
+            //Email organizacao data[1]
             if (!element.properties[1].value || element.properties[1].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[1].value)
             }
-            //Número de participantes data[2]
-            if (!element.properties[4].value || element.properties[4].value === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.properties[4].value)
-            }
-            //Município onde se localiza evento data[3]
+            //Município onde se localiza evento data[2]
             if (!element.properties[8].value || element.properties[8].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[8].value)
             }
-            //Data de Início data[4]
+            //Data de Início data[3]
             if (!element.properties[5].value || element.properties[5].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[5].value.replace("&#x2F;", "/"))
             }
-            //Estado do Evento data[5]
+            //Fim do Evento data[4]
+            if (!element.properties[6].value || element.properties[6].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[6].value.replace("&#x2F;", "/"))
+            }
+            //Duração do evento [5]
+            if (!element.properties[10].value || element.properties[10].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[10].value)
+            }
+            //Estado do Evento data[6]
             if (!element.properties[0].value || element.properties[0].value === '') {
                 obj.push('null')
             } else {
@@ -892,37 +942,31 @@ function getUserEvents() {
 
             //Não visiveís ao utilizador 
 
-            //Latitude do evento data[6]
+            //Latitude do evento data[7]
             if (!element.properties[2].value || element.properties[2].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[2].value)
             }
-            //Longitude do evento data[7]
+            //Longitude do evento data[8]
             if (!element.properties[3].value || element.properties[3].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[3].value)
             }
-            //ID Evento data[8]
+            //ID Evento data[9]
             if (!element.product_id || element.product_id === '') {
                 obj.push('null')
             } else {
                 obj.push(element.product_id)
             }
-            //Rua do Evento data[9]
+            //Rua do Evento data[10]
             if (!element.properties[7].value || element.properties[7].value === '') {
                 obj.push('null')
             } else {
                 obj.push(element.properties[7].value)
             }
-            //Fim do Evento data[10]
-            if (!element.properties[6].value || element.properties[6].value === '') {
-                obj.push('null')
-            } else {
-                obj.push(element.properties[6].value.replace("&#x2F;", "/"))
-            }
-            //Tipo de evento data[11]
+            //Código de pacote data [11]
             if (!element.properties[9].value || element.properties[9].value === '') {
                 obj.push('null')
             } else {
@@ -933,6 +977,12 @@ function getUserEvents() {
                 obj.push('null')
             } else {
                 obj.push(element.summary)
+            }
+            //Número de participantes data[13]
+            if (!element.properties[4].value || element.properties[4].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[4].value)
             }
             array.push(obj);
         });
@@ -956,38 +1006,82 @@ function getUserEvents() {
             if (action == 'infoEvent') {
                 $('#modal-notification').modal('show');
                 var data = table.row($(this).parents('tr')).data();
-                console.log(data[4])
-                initMapEvent(parseFloat(data[6].replace(",", ".")), parseFloat(data[7].replace(",", ".")))
+                initMapEvent(parseFloat(data[7].replace(",", ".")), parseFloat(data[8].replace(",", ".")))
                 document.getElementById("modalEventName").value = data[0];
-                document.getElementById("modalEventMunicipio").value = data[3];
-                document.getElementById("modalEventLatitude").value = parseFloat(data[6].replace(",", "."));
-                document.getElementById("modalEventLongitude").value = parseFloat(data[7].replace(",", "."));
-                document.getElementById("modalEventRua").value = data[9];
-                document.getElementById("modalEventInicio").value = data[4].replace("&#x2F;", "/");
-                document.getElementById("modalEventFim").value = data[10].replace("&#x2F;", "/");
-                document.getElementById("modalEventNumero").value = data[2];
+                document.getElementById("modalEventMunicipio").value = data[2];
+                document.getElementById("modalEventLatitude").value = parseFloat(data[7].replace(",", "."));
+                document.getElementById("modalEventLongitude").value = parseFloat(data[8].replace(",", "."));
+                document.getElementById("modalEventRua").value = data[10];
+                document.getElementById("modalEventInicio").value = data[3].replace("&#x2F;", "/");
+                document.getElementById("modalEventFim").value = data[4].replace("&#x2F;", "/");
+                document.getElementById("modalEventNumero").value = data[13];
                 document.getElementById("modalEventTipo").value = capitalize(data[11]);
                 document.getElementById("modalEventResumo").value = capitalize(data[12]);
-                document.getElementById("modalEventID").value = data[8];
+                document.getElementById("modalEventID").value = data[9];
+                document.getElementById("modalDuration").value = data[5];
+                if (data[6] == "Aceite") {
+                    document.getElementById("docAutorizacao").style.display = "inline";
+                    document.getElementById("idEvento").value = data[9];
+                    console.log(document.getElementById("idEvento").value)
+                }
             }
-
             if (action == 'modalQRCode') {
                 var data = table.row($(this).parents('tr')).data();
-                if (data[5] == "Aceite") {
-                $('#modal-default').modal('show');
-                var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
-                document.getElementById("contentQRCode").src = url;
-                toDataURL(
-                    url,
-                    function (dataUrl) {
-                        document.getElementById("downloadAnchor").href = dataUrl;
-                        document.getElementById("downloadAnchor").download = data[0] + ".png"
-                    }
-                )
+                if (data[6] == "Aceite") {
+                    $('#modal-default').modal('show');
+                    var url = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + data[8]
+                    document.getElementById("contentQRCode").src = url;
+                    toDataURL(
+                        url,
+                        function (dataUrl) {
+                            document.getElementById("downloadAnchor").href = dataUrl;
+                            document.getElementById("downloadAnchor").download = data[0] + ".png"
+                        }
+                    )
 
-            }else {
-                $('#modal-error').modal('show');
-            }}
+                } else {
+                    $('#modal-error').modal('show');
+                }
+            }
         });
     })
+}
+
+
+//Requisitar autorizacao
+function requisitarAutorizacao() {
+    var id = document.getElementById("idEvento").value;
+    fetch("https://environ-back.herokuapp.com/event/download", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                eventId: id,
+            })
+        })
+        .then(response => response.blob())
+        .then(blob => {
+            var reader = new FileReader();
+            reader.readAsDataURL(blob);
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = "autorizacao.pdf";
+            document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+            a.click();
+            a.remove(); //afterwards we remove the element again
+        }).catch(error => {
+            console.log(error)
+        })
+}
+
+function showModalDate() {
+    $('#modal-notification').modal('hide');
+    $('#modal-form-date').modal('show');
+    document.getElementById("data_inicial").value =  document.getElementById("modalEventInicio").value
+    document.getElementById("data_final").value = document.getElementById("modalEventFim").value
+    document.getElementById("modalEventID").value
 }

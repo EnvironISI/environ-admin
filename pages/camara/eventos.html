@@ -318,21 +318,23 @@
                     <th>Nome</th>
                     <th>Organização</th>
                     <th>Nº Participantes</th>
-                    <th>Município</th>
-                    <th>Data</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Duração</th>
                     <th>Estado</th>
-                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detalhes</th>
+                    <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
                   </tr>
                 </thead>
                 <tfoot id="tfoot">
                   <tr>
                     <th>Nome</th>
                     <th>Organização</th>
-                    <th>Nº Participantes</th>
                     <th>Município</th>
-                    <th>Data</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Duração</th>
                     <th>Estado</th>
-                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detalhes</th>
+                    <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
                   </tr>
                 </tfoot>
                 <tbody id="tbody">
@@ -435,14 +437,21 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example2cols1Input">Duração</label>
+                              <input disabled type="text" id="modalDuration" class="form-control"
+                                placeholder="Duração em dias">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
                             <div class="form-group">
                               <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
                               <input disabled type="text" id="modalEventNumero" class="form-control"
                                 placeholder="Número de participantes">
                             </div>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <div class="form-group">
                               <label class="form-control-label" for="example2cols1Input">Código de pacote</label>
                               <input disabled type="text" id="modalEventTipo" class="form-control"
@@ -461,8 +470,10 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="aceitarEventoCamara()" class="btn btn-success">Aceitar</button>
-                  <button type="button" onclick="rejeitarEventoCamara()" class="btn btn-danger">Rejeitar</button>
+                  <button id="aceitarCamara" type="button"  onclick="showModalDate()"
+                    class="btn btn-success">Atribuir datas</button>
+                  <button id="rejeitarCamara" type="button" onclick="rejeitarEventoCamara()"
+                    class="btn btn-danger">Rejeitar</button>
                   <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
               </div>
@@ -489,9 +500,8 @@
                 <div class="modal-footer">
                   <a id="downloadAnchor" href="" download=""><button type="button"
                       class="btn btn-red">Download</button></a>
-                   <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
-
               </div>
             </div>
           </div>
@@ -569,19 +579,65 @@
               <div class="modal-content">
 
                 <div class="modal-header">
-                  <h6 class="modal-title" id="modal-title-default">Erro: Terá acesso a esta opção quando o evento se enontrar no estado "Aceite"</h6>
+                  <h6 class="modal-title" id="modal-title-default">Erro: Terá acesso a esta opção quando o evento se
+                    enontrar no estado "Aceite"</h6>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
 
                 <div class="modal-body text-center">
-                  <img id="error" src="../../assets/img/theme/error.png" width="512px" height="540px" class="img-fluid" alt="" />
+                  <img id="error" src="../../assets/img/theme/error.png" width="512px" height="540px" class="img-fluid"
+                    alt="" />
                 </div>
                 <div class="modal-footer">
-                   <button type="button" class="btn btn-danger  ml-auto" data-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-danger  ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
 
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Form for Date Configuration-->
+          <div class="modal fade" id="modal-form-date" tabindex="-1" role="dialog"
+            aria-labelledby="modal-form-date" aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-md" role="document">
+              <div class="modal-content bg-gradient-hugo-daniel">
+                <div class="modal-header">
+                  <h3 class="modal-title" id="modal-title-notification"><i class="far fa-calendar-alt fa-3x"></i></h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body p-0">
+                  <div class="card bg-secondary border-0 mb-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                      <div class="text-center text-muted mb-4">
+                        <small>Atribuir datas</small>
+                      </div>
+                      <form role="form">
+                        <div class="row input-daterange datepicker align-items-center">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label">Data Início</label>
+                              <input id="data_inicial" class="form-control" placeholder="Data Início" type="text">
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label class="form-control-label">Data Fim</label>
+                              <input id="data_final" class="form-control" placeholder="Data Fim" type="text">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="text-center">
+                          <button type="button" onclick="aceitarEventoCamara()" class="btn btn-success my-4">Aceitar
+                            evento</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

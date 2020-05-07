@@ -318,8 +318,9 @@
                     <th>Nome</th>
                     <th>Organização</th>
                     <th>Nº Participantes</th>
-                    <th>Município</th>
-                    <th>Data</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Duração</th>
                     <th>Estado</th>
                     <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
                   </tr>
@@ -328,9 +329,10 @@
                   <tr>
                     <th>Nome</th>
                     <th>Organização</th>
-                    <th>Nº Participantes</th>
                     <th>Município</th>
-                    <th>Data</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Duração</th>
                     <th>Estado</th>
                     <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
                   </tr>
@@ -435,14 +437,21 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label class="form-control-label" for="example2cols1Input">Duração</label>
+                              <input disabled type="text" id="modalDuration" class="form-control"
+                                placeholder="Duração em dias">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
                             <div class="form-group">
                               <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
                               <input disabled type="text" id="modalEventNumero" class="form-control"
                                 placeholder="Número de participantes">
                             </div>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <div class="form-group">
                               <label class="form-control-label" for="example2cols1Input">Código de pacote</label>
                               <input disabled type="text" id="modalEventTipo" class="form-control"
@@ -461,9 +470,9 @@
 
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="aceitarEventoAdmin()" class="btn btn-success">Aceitar</button>
-                  <button type="button" onclick="rejeitarEventoAdmin()" class="btn btn-danger">Rejeitar</button>
-                  <button type="button" onclick="apagarEventoAdmin()" class="btn btn-warning">Eliminar</button>
+                  <button id="aceitarAdmin" type="button" onclick="aceitarEventoAdmin()" class="btn btn-success">Aceitar</button>
+                  <button id="rejeitarAdmin" type="button" onclick="rejeitarEventoAdmin()" class="btn btn-danger">Rejeitar</button>
+                  <button id="eliminarAdmin" type="button" onclick="apagarEventoAdmin()" class="btn btn-warning">Eliminar</button>
                   <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
                 </div>
               </div>
