@@ -60,11 +60,7 @@ self.addEventListener("refreshOffline", function() {
 var cacheName = 'environ.';
 var filesToCache = [
 
-  'https://environ-front.herokuapp.com/frontoffice/',
   'https://environ-front.herokuapp.com/index.html',
-  'https://environ-front.herokuapp.com/frontoffice/css/',
-  'https://environ-front.herokuapp.com/frontoffice/images',
-  'https://environ-front.herokuapp.com/frontoffice/js',
   'https://environ-front.herokuapp.com/frontoffice/js/main.js',
   'https://environ-front.herokuapp.com/manifest.json',
   'https://environ-front.herokuapp.com/sw-register.js',
