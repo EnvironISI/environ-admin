@@ -327,6 +327,7 @@ function setUserInfo(result) {
     sessionStorage.setItem('name', result.user.name);
     sessionStorage.setItem('email', result.user.email);
     sessionStorage.setItem('photo', result.user.photoUrl);
+    sessionStorage.setItem('uid', result.user.uid);
     //Profile
     document.getElementById("hello").innerHTML += result.user.name;
     document.getElementById("hello6").innerHTML = result.user.name;
