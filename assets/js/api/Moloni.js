@@ -398,7 +398,7 @@ function getAllEventsCamara() {
             columnDefs: [{
                 targets: -1,
                 data: null,
-                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span>'
+                defaultContent: '<button id="infoEvent" type="button" class="btn btn-vimeo btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-info"></i></span>    <button id="modalQRCode" type="button" class="btn btn-pinterest btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-qrcode"></i></span> <button id="verificationAction" type="button" class="btn btn-slack btn-icon-only rounded-circle"><span class="btn-inner--icon"><i class="fas fa-check-circle"></i></span></button>'
             }, ]
         });
         $('#eventosEnviron tbody').on('click', 'button', function () {
