@@ -1001,11 +1001,18 @@ var PieChart = (function () {
 			type: 'pie',
 			data: {
 				labels: [
-					'Danger',
-					'Warning',
-					'Success',
-					'Primary',
-					'Info'
+					'Manifestação',
+					'Limpeza',
+					'Plantação',
+					'Palestra',
+					'Congresso',
+					'Formação',
+					'Curso',
+					'Workshop',
+					'Ação',
+					'Feira',
+					'Seminário',
+					'Outro'
 				],
 				datasets: [{
 					data: [
@@ -1014,25 +1021,53 @@ var PieChart = (function () {
 						randomScalingFactor(),
 						randomScalingFactor(),
 						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
 					],
 					backgroundColor: [
 						Charts.colors.theme['danger'],
-						Charts.colors.theme['warning'],
-						Charts.colors.theme['success'],
 						Charts.colors.theme['primary'],
+						Charts.colors.theme['success'],
+						Charts.colors.theme['warning'],
 						Charts.colors.theme['info'],
+						Charts.colors.theme['light'],
+						'#eead2d',
+						'#172b4d',
+						'#f5365c',
+						'#8965e0',
+						'#2bffc6',
+						'#f3a4b5'
 					],
-					label: 'Dataset 1'
+					label: 'Tipo de evento',
+					options: {
+						legend: {
+							display: true,
+							position: 'right',
+							labels: {
+								fontColor: "#000000",
+							}
+						},
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
+					}
 				}],
 			},
 			options: {
-				responsive: true,
 				legend: {
-					position: 'top',
-				},
-				animation: {
-					animateScale: true,
-					animateRotate: true
+					display: true,
+					labels: {
+						fontColor: '#212529'
+					}
 				}
 			}
 		});

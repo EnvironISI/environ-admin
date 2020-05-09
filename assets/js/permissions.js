@@ -17,10 +17,10 @@ if (role == 'admin') {
     entidadesCamara.style.display = "none"
 } else if (role == 'camara') {
     dashboardAmin.style.display = "none"
-    dashboardCamara.style.display = "none"
+    dashboardEmpresa.style.display = "none"
     eventosAdmin.style.display = "none"
     eventosEmpresa.style.display = "none"
-    // entidadesAdmin.style.display = "none"
+    entidadesAdmin.style.display = "none"
     utilizadoresAdmin.style.display = "none"
 } else if(role == 'empresa') {
     dashboardAmin.style.display = "none"
