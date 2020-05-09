@@ -1167,7 +1167,7 @@ var SalesChart = (function () {
 
 
 	// Methods
-
+	var joao =  [0, 20, 10, 30, 15, 40, 20, 60, 60, 20, 60, 70]
 	function init($this) {
 		var salesChart = new Chart($this, {
 			type: 'line',
@@ -1185,10 +1185,10 @@ var SalesChart = (function () {
 				}
 			},
 			data: {
-				labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outrubro', 'Novembro', 'Dezembro'],
+				labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
 				datasets: [{
 					label: 'Performance',
-					data: [0, 20, 10, 30, 15, 40, 20, 60, 60, 20, 60, 60]
+					data: joao
 				}]
 			}
 		});

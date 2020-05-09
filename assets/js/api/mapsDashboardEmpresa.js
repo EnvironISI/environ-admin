@@ -88,6 +88,12 @@ function initMap(lat, lng) {
             } else {
                 obj.push(element.properties[5].value.replace("&#x2F;", "/").replace("&#x2F;", "/"))
             }
+            //Tipo de evento data[8]
+            if (!element.properties[11].value || element.properties[11].value === '') {
+                obj.push('null')
+            } else {
+                obj.push(element.properties[11].value)
+            }
             array.push(obj);
         });
         var aceites = 0;
@@ -104,6 +110,20 @@ function initMap(lat, lng) {
         }
         document.getElementById("numMunicipios").innerText = municipioNumb;
         var markers = [];
+
+        var manifestacao = 0;
+        var limpeza = 0;
+        var plantacao = 0;
+        var palestra = 0;
+        var congresso = 0;
+        var formacao = 0;
+        var curso = 0;
+        var workshop = 0;
+        var acao = 0;
+        var feira = 0;
+        var seminario = 0;
+        var outro = 0;
+        var totalEventos = 0;
 
         //var data for chart
         var data1 = Array.apply(null, new Array(12)).map(Number.prototype.valueOf, 0);
@@ -130,61 +150,213 @@ function initMap(lat, lng) {
             }
             i = parseInt(i)
             console.log(i)
-            data1[i-1] += 1;
+            data1[i - 1] += 1;
+            var tipo = element[8]
+            console.log(tipo)
+            if (tipo === 'manifestacao') {
+                manifestacao += 1;
+            }
+            if (tipo === 'limpeza') {
+                limpeza += 1;
+            }
+            if (tipo === 'plantacao') {
+                plantacao += 1;
+            }
+            if (tipo === 'palestra') {
+                palestra += 1;
+            }
+            if (tipo === 'congresso') {
+                congresso += 1;
+            }
+            if (tipo === 'formacao') {
+                formacao += 1;
+            }
+            if (tipo === 'curso') {
+                curso += 1;
+            }
+            if (tipo === 'workshop') {
+                workshop += 1;
+            }
+            if (tipo === 'acao') {
+                acao += 1;
+            }
+            if (tipo === 'feira') {
+                feira += 1;
+            }
+            if (tipo === 'seminario') {
+                seminario += 1;
+            }
+            if (tipo === 'outro') {
+                outro += 1;
+            }
         })
-        console.log(data1)
+        console.log(limpeza)
+        totalEventos = array.length
         document.getElementById("numEventos").innerText = array.length;
         document.getElementById("eventosAceites").innerText = aceites;
         document.getElementById("numParticipantes").innerText = participantes;
-        
-var SalesChart = (function () {
 
-    // Variables
+        var SalesChart = (function () {
 
-    var $chart = $('#chart-sales-hugo');
+            // Variables
+
+            var $chart = $('#chart-sales-hugo');
 
 
-    // Methods
+            // Methods
+            console.log(data1)
 
-    function init($this) {
-        var salesChart = new Chart($this, {
-            type: 'line',
-            options: {
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            color: Charts.colors.gray[700],
-                            zeroLineColor: Charts.colors.gray[700]
-                        },
-                        ticks: {
-
+            function init($this) {
+                var salesChart = new Chart($this, {
+                    type: 'line',
+                    borderColor: '#FF003F',
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                angleLines: {
+                                    display: false
+                                },
+                                gridLines: {
+                                    color: Charts.colors.gray[700],
+                                    zeroLineColor: Charts.colors.gray[700]
+                                },
+                                ticks: {}
+                            }]
                         }
-                    }]
-                }
-            },
-            data: {
-                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outrubro', 'Novembro', 'Dezembro'],
-                datasets: [{
-                    label: 'Eventos',
-                    data: data1
-                }]
+                    },
+                    data: {
+                        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                        datasets: [{
+                            label: 'Eventos',
+                            data: data1
+                        }]
+                    }
+                });
+
+                // Save to jQuery object
+
+                $this.data('chart', salesChart);
+
+            };
+
+
+            // Events
+
+            if ($chart.length) {
+                init($chart);
             }
-        });
 
-        // Save to jQuery object
+        })();
 
-        $this.data('chart', salesChart);
+        var manifestacaoSTAT = ((manifestacao / totalEventos) * 100);
+        var limpezaSTAT = ((limpeza / totalEventos) * 100);
+        var plantacaoSTAT = ((plantacao / totalEventos) * 100);
+        var palestraSTAT = ((palestra / totalEventos) * 100);
+        var congressoSTAT = ((congresso / totalEventos) * 100);
+        var formacaoSTAT = ((formacao / totalEventos) * 100);
+        var cursoSTAT = ((curso / totalEventos) * 100);
+        var workshopSTAT = ((workshop / totalEventos) * 100);
+        var acaoSTAT = ((acao / totalEventos) * 100);
+        var feiraSTAT = ((feira / totalEventos) * 100);
+        var seminarioSTAT = ((seminario / totalEventos) * 100);
+        var outroSTAT = ((outro / totalEventos) * 100);
+        var PieChart = (function () {
 
-    };
+            // Variables
+
+            var $chart = $('#chart-pie-hugo');
 
 
-    // Events
+            // Methods
 
-    if ($chart.length) {
-        init($chart);
-    }
+            function init($this) {
+                var randomScalingFactor = function () {
+                    return Math.round(Math.random() * 100);
+                };
 
-})();
+                var pieChart = new Chart($this, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            'Manifestação',
+                            'Limpeza',
+                            'Plantação',
+                            'Palestra',
+                            'Congresso',
+                            'Formação',
+                            'Curso',
+                            'Workshop',
+                            'Ação',
+                            'Feira',
+                            'Seminário',
+                            'Outro'
+                        ],
+                        datasets: [{
+                            data: [
+                                manifestacaoSTAT,
+                                limpezaSTAT,
+                                plantacaoSTAT,
+                                palestraSTAT,
+                                congressoSTAT,
+                                formacaoSTAT,
+                                cursoSTAT,
+                                workshopSTAT,
+                                acaoSTAT,
+                                feiraSTAT,
+                                seminarioSTAT,
+                                outroSTAT
+                            ],
+                            backgroundColor: [
+                                Charts.colors.theme['danger'],
+                                Charts.colors.theme['info'],
+                                Charts.colors.theme['success'],
+                                Charts.colors.theme['warning'],
+                                '#9f7a42',
+                                '#808080',
+                                '#ffc631',
+                                '#172b4d',
+                                '#9dea4f',
+                                '#8965e0',
+                                '#fff62e',
+                                '#f3a4b5'
+                            ],
+                            label: 'Tipo de evento',
+                            options: {
+                                legend: {
+                                    display: true,
+                                    position: 'right',
+                                    labels: {
+                                        fontColor: "#000000",
+                                    }
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        }],
+                    },
+                    options: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                fontColor: '#212529'
+                            }
+                        }
+                    }
+                });
+                // Save to jQuery object
+                $this.data('chart', pieChart);
+            };
+            // Events
+            if ($chart.length) {
+                init($chart);
+            }
+
+        })();
     })
     map = new google.maps.Map(map, mapOptions);
 

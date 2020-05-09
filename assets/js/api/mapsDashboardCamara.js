@@ -228,7 +228,7 @@ function initMap(lat, lng) {
                         }
                     },
                     data: {
-                        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outrubro', 'Novembro', 'Dezembro'],
+                        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                         datasets: [{
                             label: 'Eventos',
                             data: data1
@@ -311,16 +311,16 @@ function initMap(lat, lng) {
                             ],
                             backgroundColor: [
                                 Charts.colors.theme['danger'],
-                                Charts.colors.theme['primary'],
+                                Charts.colors.theme['info'],
                                 Charts.colors.theme['success'],
                                 Charts.colors.theme['warning'],
-                                Charts.colors.theme['info'],
+                                '#9f7a42',
                                 '#808080',
-                                '#eead2d',
+                                '#ffc631',
                                 '#172b4d',
-                                '#f5365c',
+                                '#9dea4f',
                                 '#8965e0',
-                                '#2bffc6',
+                                '#fff62e',
                                 '#f3a4b5'
                             ],
                             label: 'Tipo de evento',
