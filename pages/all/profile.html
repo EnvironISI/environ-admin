@@ -214,7 +214,7 @@
               </div>
             </li>
             <label class="custom-toggle">
-              <input id="changeTheme" type="checkbox" onclick="changeTheme()">
+              <input id="changeTheme" type="checkbox" onclick="clickTheme()">
               <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
             </label>
             <li class="nav-item dropdown">
@@ -704,21 +704,25 @@ data-placement=" top" data-align="center" data-type="danger" data-icon="ni ni-be
   <!-- Demo JS - remove this in your project -->
   <script src="../../assets/js/passwords/passwordOptions.js"></script>
   <script src="../../assets/js/api/Hubspot.js"></script>
+
   <script>
-    window.onload = function() {
+    window.onload = function () {
       var theme = localStorage.getItem("darker");
-      changeTheme(theme)
+      if(theme == "true"){
+        theme = true;
+      }else{
+        theme = false
+      }
       document.getElementById('changeTheme').checked = theme;
+      changeTheme(theme);
     }
   </script>
   <script>
     debug();
 
-
-    function changeTheme(theme) {
+    function clickTheme() {
+      console.log('goodbye')
       var themeDarker = document.getElementById('changeTheme').checked;
-      console.log("theme: " + theme)
-      console.log("themeDarker: " + themeDarker)
       var navbar = document.getElementsByClassName("navbar")[1];
       var bg = document.getElementsByClassName("sidenav");
       if (themeDarker) {
@@ -735,9 +739,8 @@ data-placement=" top" data-align="center" data-type="danger" data-icon="ni ni-be
 
     color: white;
     background-color: #303030;`
-    document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
-      background: #303030;`
-      navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
+        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; background: #303030;`
+        navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
       } else {
         navbar.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
         bg[0].classList.replace("navbar-dark", "navbar-light");
@@ -753,10 +756,52 @@ data-placement=" top" data-align="center" data-type="danger" data-icon="ni ni-be
 
     color: #525f7f;
     background-color: #f8f9fe;`
-    document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
-      background: #f8f9fe;`
+        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; background: #f8f9fe;`
       }
       localStorage.setItem("darker", themeDarker)
+    }
+
+
+    function changeTheme(theme) {
+      console.log(theme)
+      var navbar = document.getElementsByClassName("navbar")[1];
+      var bg = document.getElementsByClassName("sidenav");
+      if (theme) {
+        bg[0].classList.replace("navbar-light", "navbar-dark");
+        bg[0].classList.replace("bg-white", "bg-dark");
+        document.body.style = `font-family: Open Sans, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+
+    margin: 0;
+
+    text-align: left;
+
+    color: white;
+    background-color: #303030;`
+        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
+      background: #303030;`
+        navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
+      } else {
+        console.log('normal')
+        navbar.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
+        bg[0].classList.replace("navbar-dark", "navbar-light");
+        bg[0].classList.replace("bg-dark", "bg-white");
+        document.body.style = `font-family: Open Sans, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+
+    margin: 0;
+
+    text-align: left;
+
+    color: #525f7f;
+    background-color: #f8f9fe;`
+        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
+      background: #f8f9fe;`
+      }
     }
   </script>
   <script>
