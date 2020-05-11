@@ -19619,13 +19619,13 @@ a.btn-icon-only
 }
 .custom-toggle input:checked + .custom-toggle-slider
 {
-    border: 1px solid #1d84b5;
+    border: 1px solid #282829;
 }
 .custom-toggle input:checked + .custom-toggle-slider:before
 {
     transform: translateX(28px); 
 
-    background: #1d84b5;
+    background: #282829;
 }
 .custom-toggle input:disabled + .custom-toggle-slider
 {
@@ -19682,7 +19682,7 @@ a.btn-icon-only
 
     content: attr(data-label-on);
 
-    color: #1d84b5;
+    color: #282829;
 }
 
 .custom-toggle-slider:after
