@@ -101,7 +101,15 @@ async function login() {
         })
         .then((data) => {
             console.log(data)
-            window.location.replace("../../pages/all/profile.html");
+            if(data.type == 'admin') {
+                window.location.replace("../../../pages/admin/dashboard.html");
+            }
+            if(data.type == 'camara') {
+                window.location.replace("../../../pages/camara/dashboard.html");
+            }
+            if(data.type == 'empresa') {
+                window.location.replace("../../../pages/empresa/dashboard.html");
+            }
         }).catch(error => {
             return error;
         })
