@@ -24,6 +24,9 @@
 </head>
 
 <body>
+  <div class="preloader">
+    <span><i class="fas fa-infinity"></i></span>
+  </div>
   <!-- Sidenav -->
   <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
@@ -61,7 +64,7 @@
                 <span class="nav-link-text">Início</span>
               </a>
             </li>
-            <li id="dashboardEmpresa"  class="nav-item">
+            <li id="dashboardEmpresa" class="nav-item">
               <a class="nav-link" href="../../pages/empresa/dashboard.html">
                 <i class="fas fa-home" style="color:#006d5b;"></i>
                 <span class="nav-link-text">Início</span>
@@ -90,13 +93,13 @@
                 </ul>
               </div>
             </li>
-            <li  id="eventosAdmin" class="nav-item">
+            <li id="eventosAdmin" class="nav-item">
               <a class="nav-link" href="../../pages/admin/eventos.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
             </li>
-            <li  id="eventosEmpresa" class="nav-item">
+            <li id="eventosEmpresa" class="nav-item">
               <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
                 aria-controls="navbar-eventos">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
@@ -122,7 +125,7 @@
                 <span class="nav-link-text">Utilizadores</span>
               </a>
             </li>
-            <li id="entidadesAdmin"  class="nav-item">
+            <li id="entidadesAdmin" class="nav-item">
               <a class="nav-link" href="../../pages/admin/listarPacotes.html">
                 <i class="fas fa-fire-alt" style="color:#fb6340"></i>
                 <span class="nav-link-text">Entidades</span>
@@ -152,19 +155,19 @@
                 <span class="nav-link-text">Metereologia</span>
               </a>
             </li>
-            <li  id="notíciasTodos" class="nav-item">
+            <li id="notíciasTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/news.html">
                 <i class="fas fa-newspaper" style="color:#1171ef;"></i>
                 <span class="nav-link-text">Notícias</span>
               </a>
             </li>
-            <li  id="eletricosTodos" class="nav-item">
+            <li id="eletricosTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/openChargeMap.html">
                 <i class="fas fa-charging-station" style="color:#cccc14;"></i>
                 <span class="nav-link-text">Elétricos</span>
               </a>
             </li>
-            <li  id="chatTodos" class="nav-item">
+            <li id="chatTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/chat.html">
                 <i class="fas fa-comments" style="color:#fbb140;"></i>
                 <span class="nav-link-text">Chat</span>
@@ -177,7 +180,7 @@
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="" target="_blank">
+              <a class="nav-link" href="https://www.facebook.com/Environ-109765900647547/" target="_blank">
                 <i class="fab fa-facebook" style="color:#3b5999;"></i>
                 <span class="nav-link-text">Facebook</span>
               </a>
@@ -218,6 +221,10 @@
                 </div>
               </div>
             </li>
+            <label class="custom-toggle">
+              <input id="changeTheme" type="checkbox" onclick="clickTheme()">
+              <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
+            </label>
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -254,7 +261,7 @@
                 aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img id="img1" alt="Image placeholder" src="">
+                    <img id="img1" alt="" src="">
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm text-white font-weight-bold" id="hello6"></span>
@@ -282,7 +289,7 @@
     </nav>
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-hugo pb-6">
+    <div class="header bg-hugo pb-6 ederbranco">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -303,7 +310,7 @@
       <!-- Table -->
       <div class="row">
         <div class="col">
-          <div class="card">
+          <div class="card darkmode">
             <!-- Card header -->
             <div class="card-header">
               <h3 class="mb-0">Utilizadores</h3>
@@ -437,12 +444,13 @@
 
   <!-- Hubspot API-->
   <script src="../../assets/js/api/Hubspot.js"></script>
+  <script src="../../assets/js/darkmode.js"></script>
   <script src="../../assets/js/permissions.js"></script>
 
   <script>
-    window.onload = getAllUsers();
-    document.getElementById("img1").src = sessionStorage.getItem('photo');
-    document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
+      getAllUsers();
+      document.getElementById("img1").src = sessionStorage.getItem('photo');
+      document.getElementById("hello6").innerHTML = sessionStorage.getItem('name');
   </script>
 </body>
 

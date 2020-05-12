@@ -19,6 +19,9 @@
 </head>
 
 <body>
+  <div class="preloader">
+    <span><i class="fas fa-infinity"></i></span>
+  </div>
    <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
@@ -35,7 +38,7 @@
               <i class="sidenav-toggler-line"></i>
               <i class="sidenav-toggler-line"></i>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
       <div class="navbar-inner">
@@ -171,7 +174,7 @@
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="" target="_blank">
+              <a class="nav-link" href="https://www.facebook.com/Environ-109765900647547/" target="_blank">
                 <i class="fab fa-facebook" style="color:#3b5999;"></i>
                 <span class="nav-link-text">Facebook</span>
               </a>
@@ -211,7 +214,10 @@
                   <i class="sidenav-toggler-line"></i>
                 </div>
               </div>
-            </li>
+            </li><label class="custom-toggle">
+              <input id="changeTheme" type="checkbox" onclick="clickTheme()">
+              <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
+            </label>
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -248,7 +254,7 @@
                 aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img id="img1" alt="Image placeholder" src="">
+                    <img id="img1" alt="" src="">
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm text-white font-weight-bold" id="hello6"></span>
@@ -276,7 +282,7 @@
     </nav>
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-hugo pb-6">
+    <div class="header bg-hugo pb-6 ederbranco">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -292,7 +298,7 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
-      <div class="row card-wrapper" id="eventsByUser">
+      <div class="row card-wrapper darkmode" id="eventsByUser">
         <!-- Content News-->
       </div>
       <!-- Footer -->
@@ -327,16 +333,14 @@
   <!-- Demo JS - remove this in your project -->
  
   <script src="../../assets/js/api/Hubspot.js"></script>
-  <script src="../../assets/js/permissions.js"></script>
+  <script src="../../assets/js/permissions.js"></script>  <script src="../../assets/js/darkmode.js"></script>
 
   <!-- News API -->
   <script src="../../assets/js/api/Moloni.js"></script>
   <script>
-   window.onload = function () {
      document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
      document.getElementById('img1').src = sessionStorage.getItem('photo');
      getAllAcceptedEvents();
-   };
  </script>
 </body>
 

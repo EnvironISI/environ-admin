@@ -10,25 +10,24 @@ var entidadesAdmin = document.getElementById("entidadesAdmin")
 var entidadesCamara = document.getElementById("entidadesCamara")
 
 if (role == 'admin') {
-    dashboardCamara.style.display = "none"
-    dashboardEmpresa.style.display = "none"
-    eventosCamara.style.display = "none"
-    eventosEmpresa.style.display = "none"
-    entidadesCamara.style.display = "none"
+    if(dashboardCamara) dashboardCamara.style.display = "none"
+    if(dashboardEmpresa) dashboardEmpresa.style.display = "none"
+    if(eventosCamara) eventosCamara.style.display = "none"
+    if(eventosEmpresa) eventosEmpresa.style.display = "none"
+    if(entidadesCamara) entidadesCamara.style.display = "none"
 } else if (role == 'camara') {
-    dashboardAmin.style.display = "none"
-    dashboardEmpresa.style.display = "none"
-    eventosAdmin.style.display = "none"
-    eventosEmpresa.style.display = "none"
-    entidadesAdmin.style.display = "none"
-    utilizadoresAdmin.style.display = "none"
+    if(dashboardAmin) dashboardAmin.style.display = "none"
+    if(dashboardEmpresa) dashboardEmpresa.style.display = "none"
+    if(eventosAdmin) eventosAdmin.style.display = "none"
+    if(eventosEmpresa) eventosEmpresa.style.display = "none"
+    if(entidadesAdmin) entidadesAdmin.style.display = "none"
+    if(utilizadoresAdmin) utilizadoresAdmin.style.display = "none"
 } else if(role == 'empresa') {
-    dashboardAmin.style.display = "none"
-    dashboardCamara.style.display = "none"
-    eventosCamara.style.display = "none"
-    eventosAdmin.style.display = "none"
-    entidadesCamara.style.display = "none"
-    entidadesAdmin.style.display = "none"
-    utilizadoresAdmin.style.display = "none"
-} else {
+    if(dashboardAmin) dashboardAmin.style.display = "none"
+    if(dashboardCamara) dashboardCamara.style.display = "none"
+    if(eventosCamara) eventosCamara.style.display = "none"
+    if(eventosAdmin) eventosAdmin.style.display = "none"
+    if(entidadesCamara) entidadesCamara.style.display = "none"
+    if(entidadesAdmin) entidadesAdmin.style.display = "none"
+    if(utilizadoresAdmin) utilizadoresAdmin.style.display = "none"
 }

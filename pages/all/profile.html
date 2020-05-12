@@ -20,6 +20,9 @@
 </head>
 
 <body>
+  <div class="preloader">
+    <span><i class="fas fa-infinity"></i></span>
+  </div>
   <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
@@ -36,7 +39,7 @@
               <i class="sidenav-toggler-line"></i>
               <i class="sidenav-toggler-line"></i>
             </div>
-          </div>
+          </div> 
         </div>
       </div>
       <div class="navbar-inner">
@@ -172,7 +175,7 @@
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="" target="_blank">
+              <a class="nav-link" href="https://www.facebook.com/Environ-109765900647547/" target="_blank">
                 <i class="fab fa-facebook" style="color:#3b5999;"></i>
                 <span class="nav-link-text">Facebook</span>
               </a>
@@ -212,11 +215,11 @@
                   <i class="sidenav-toggler-line"></i>
                 </div>
               </div>
-            </li>
-            <label class="custom-toggle">
+            </li><label class="custom-toggle">
               <input id="changeTheme" type="checkbox" onclick="clickTheme()">
               <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
             </label>
+            
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -253,7 +256,7 @@
                 aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img id="img1" alt="Image placeholder" src="">
+                    <img id="img1" alt="" src="">
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm text-white font-weight-bold" id="hello6"></span>
@@ -302,7 +305,7 @@
       <div class="row">
         <div class="col-xl-4 order-xl-2">
           <div class="card card-profile">
-            <img src="../../assets/img/theme/img-1-1000x600.jpg" alt="Image placeholder" class="card-img-top">
+            <img src="../../assets/img/theme/img-1-1000x600.jpg" alt="" class="card-img-top">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
@@ -318,7 +321,7 @@
                 <a href="#" class="btn btn-sm btn-default float-right">Message</a>
               </div> -->
             </div>
-            <div class="card-body pt-0">
+            <div class="card-body pt-0 darkmode">
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center">
@@ -680,7 +683,7 @@ data-placement=" top" data-align="center" data-type="danger" data-icon="ni ni-be
     Warning
   </button>
   <!-- Argon Scripts -->
-  <script src="../../assets/js/permissions.js"></script>
+  <script src="../../assets/js/permissions.js"></script>  <script src="../../assets/js/darkmode.js"></script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.js"></script>
@@ -704,105 +707,9 @@ data-placement=" top" data-align="center" data-type="danger" data-icon="ni ni-be
   <!-- Demo JS - remove this in your project -->
   <script src="../../assets/js/passwords/passwordOptions.js"></script>
   <script src="../../assets/js/api/Hubspot.js"></script>
-
-  <script>
-    window.onload = function () {
-      var theme = localStorage.getItem("darker");
-      if(theme == "true"){
-        theme = true;
-      }else{
-        theme = false
-      }
-      document.getElementById('changeTheme').checked = theme;
-      changeTheme(theme);
-    }
-  </script>
+  <script src="../../assets/js/darkmode.js"></script>
   <script>
     debug();
-
-    function clickTheme() {
-      console.log('goodbye')
-      var themeDarker = document.getElementById('changeTheme').checked;
-      var navbar = document.getElementsByClassName("navbar")[1];
-      var bg = document.getElementsByClassName("sidenav");
-      if (themeDarker) {
-        bg[0].classList.replace("navbar-light", "navbar-dark");
-        bg[0].classList.replace("bg-white", "bg-dark");
-        document.body.style = `font-family: Open Sans, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-
-    margin: 0;
-
-    text-align: left;
-
-    color: white;
-    background-color: #303030;`
-        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; background: #303030;`
-        navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
-      } else {
-        navbar.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
-        bg[0].classList.replace("navbar-dark", "navbar-light");
-        bg[0].classList.replace("bg-dark", "bg-white");
-        document.body.style = `font-family: Open Sans, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-
-    margin: 0;
-
-    text-align: left;
-
-    color: #525f7f;
-    background-color: #f8f9fe;`
-        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; background: #f8f9fe;`
-      }
-      localStorage.setItem("darker", themeDarker)
-    }
-
-
-    function changeTheme(theme) {
-      console.log(theme)
-      var navbar = document.getElementsByClassName("navbar")[1];
-      var bg = document.getElementsByClassName("sidenav");
-      if (theme) {
-        bg[0].classList.replace("navbar-light", "navbar-dark");
-        bg[0].classList.replace("bg-white", "bg-dark");
-        document.body.style = `font-family: Open Sans, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-
-    margin: 0;
-
-    text-align: left;
-
-    color: white;
-    background-color: #303030;`
-        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
-      background: #303030;`
-        navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
-      } else {
-        console.log('normal')
-        navbar.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
-        bg[0].classList.replace("navbar-dark", "navbar-light");
-        bg[0].classList.replace("bg-dark", "bg-white");
-        document.body.style = `font-family: Open Sans, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-
-    margin: 0;
-
-    text-align: left;
-
-    color: #525f7f;
-    background-color: #f8f9fe;`
-        document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
-      background: #f8f9fe;`
-      }
-    }
   </script>
   <script>
     if (!window.location.hash) {

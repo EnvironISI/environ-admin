@@ -20,6 +20,9 @@
 </head>
 
 <body>
+  <div class="preloader">
+    <span><i class="fas fa-infinity"></i></span>
+  </div>
   <!-- Sidenav -->
  <!-- Sidenav -->
  <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
@@ -214,6 +217,10 @@
               </div>
             </div>
           </li>
+          <label class="custom-toggle">
+            <input id="changeTheme" type="checkbox" onclick="clickTheme()">
+            <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
+          </label>
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false">
@@ -250,7 +257,7 @@
               aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img id="img1" alt="Image placeholder" src="">
+                  <img id="img1" alt="" src="">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm text-white font-weight-bold" id="hello6"></span>
@@ -278,7 +285,7 @@
   </nav>
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-hugo pb-6">
+    <div class="header bg-hugo pb-6 ederbranco">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
@@ -354,14 +361,13 @@
 
   <!-- Hubspot e Jasmin -->
   <script src="../../assets/js/api/Hubspot.js"></script>
-  <script src="../../assets/js/permissions.js"></script>
+  <script src="../../assets/js/darkmode.js"></script>
+  <script src="../../assets/js/permissions.js"></script>  
   <script src="../../assets/js/api/Jasmin.js"></script>
   <script>
-    window.onload = function () {
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
       document.getElementById('img1').src = sessionStorage.getItem('photo');
       getPackages();
-    };
   </script>
 </body>
 

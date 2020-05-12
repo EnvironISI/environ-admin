@@ -217,7 +217,7 @@ function getPackagesEvento() {
                         <span class="h2 font-weight-bold mb-0">${name}</span>
                     </div>
                     <div class="col-auto">
-                    <img width="170px" height="auto" alt="Image placeholder" src="${image}">
+                    <img width="170px" height="auto" alt="" src="${image}">
                     </div>
                 </div>
                 <p class="mt-3 mb-0 text-sm text-hugo">

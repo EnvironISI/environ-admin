@@ -1,24 +1,27 @@
- <!DOCTYPE html>
- <html>
+<!DOCTYPE html>
+<html>
 
- <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description" content="Start your development with a Página Inicial for Bootstrap 4.">
-   <meta name="author" content="Environ.">
-   <title>environ.</title>
-   <!-- Favicon -->
-   <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png">
-   <!-- Fonts -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-   <!-- Icons -->
-   <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
-   <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-   <!-- Argon CSS -->
-   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
- </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Página Inicial for Bootstrap 4.">
+  <meta name="author" content="Environ.">
+  <title>environ.</title>
+  <!-- Favicon -->
+  <link rel="icon" href="../../assets/img/brand/favicon.ico" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
+</head>
 
- <body>
+<body>
+  <div class="preloader">
+    <span><i class="fas fa-infinity"></i></span>
+  </div>
   <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
@@ -55,7 +58,7 @@
                 <span class="nav-link-text">Início</span>
               </a>
             </li>
-            <li id="dashboardEmpresa"  class="nav-item">
+            <li id="dashboardEmpresa" class="nav-item">
               <a class="nav-link" href="../../pages/empresa/dashboard.html">
                 <i class="fas fa-home" style="color:#006d5b;"></i>
                 <span class="nav-link-text">Início</span>
@@ -84,13 +87,13 @@
                 </ul>
               </div>
             </li>
-            <li  id="eventosAdmin" class="nav-item">
+            <li id="eventosAdmin" class="nav-item">
               <a class="nav-link" href="../../pages/admin/eventos.html">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
                 <span class="nav-link-text">Eventos</span>
               </a>
             </li>
-            <li  id="eventosEmpresa" class="nav-item">
+            <li id="eventosEmpresa" class="nav-item">
               <a class="nav-link" href="#navbar-eventos" data-toggle="collapse" role="button" aria-expanded="false"
                 aria-controls="navbar-eventos">
                 <i class="far fa-calendar-alt" style="color:#11cdef;"></i>
@@ -116,7 +119,7 @@
                 <span class="nav-link-text">Utilizadores</span>
               </a>
             </li>
-            <li id="entidadesAdmin"  class="nav-item">
+            <li id="entidadesAdmin" class="nav-item">
               <a class="nav-link" href="../../pages/admin/listarPacotes.html">
                 <i class="fas fa-fire-alt" style="color:#fb6340"></i>
                 <span class="nav-link-text">Entidades</span>
@@ -146,19 +149,19 @@
                 <span class="nav-link-text">Metereologia</span>
               </a>
             </li>
-            <li  id="notíciasTodos" class="nav-item">
+            <li id="notíciasTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/news.html">
                 <i class="fas fa-newspaper" style="color:#1171ef;"></i>
                 <span class="nav-link-text">Notícias</span>
               </a>
             </li>
-            <li  id="eletricosTodos" class="nav-item">
+            <li id="eletricosTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/openChargeMap.html">
                 <i class="fas fa-charging-station" style="color:#cccc14;"></i>
                 <span class="nav-link-text">Elétricos</span>
               </a>
             </li>
-            <li  id="chatTodos" class="nav-item">
+            <li id="chatTodos" class="nav-item">
               <a class="nav-link" href="../../pages/all/chat.html">
                 <i class="fas fa-comments" style="color:#fbb140;"></i>
                 <span class="nav-link-text">Chat</span>
@@ -171,7 +174,7 @@
           <!-- Navigation -->
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item">
-              <a class="nav-link" href="" target="_blank">
+              <a class="nav-link" href="https://www.facebook.com/Environ-109765900647547/" target="_blank">
                 <i class="fab fa-facebook" style="color:#3b5999;"></i>
                 <span class="nav-link-text">Facebook</span>
               </a>
@@ -211,7 +214,10 @@
                   <i class="sidenav-toggler-line"></i>
                 </div>
               </div>
-            </li>
+            </li><label class="custom-toggle">
+              <input id="changeTheme" type="checkbox" onclick="clickTheme()">
+              <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
+            </label>
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
@@ -248,7 +254,7 @@
                 aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img id="img1" alt="Image placeholder" src="">
+                    <img id="img1" alt="" src="">
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm text-white font-weight-bold" id="hello6"></span>
@@ -274,97 +280,110 @@
         </div>
       </div>
     </nav>
-     <!-- Main content -->
-     <div class="main-content" id="panel">
-       <!-- Header -->
-       <!-- Header -->
-       <div class="header bg-hugo pb-6">
-         <div class="container-fluid">
-           <div class="header-body">
-             <div class="row align-items-center py-4">
-               <div class="col-lg-6 col-7">
-                 <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-cloud-sun"></i> Metereologia</h6>
-                 <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+      <!-- Header -->
+      <!-- Header -->
+      <div class="header bg-hugo pb-6 ederbranco">
+        <div class="container-fluid">
+          <div class="header-body">
+            <div class="row align-items-center py-4">
+              <div class="col-lg-6 col-7">
+                <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-cloud-sun"></i> Metereologia</h6>
+                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
 
-                 </nav>
+                </nav>
 
-                 <!-- Search form -->
-               </div>
-             </div>
-           </div>
-         </div>
-         <div class="container">
-           <div class="row">
-             <div class="input-group mb-3 col-md-4">
-               <input id="inputCidade" type="text" class="form-control" onkeypress="return runScript(event)"
-                 placeholder="Insira uma cidade" aria-label="Example text with button addon"
-                 aria-describedby="button-addon1">
-               <div class="input-group-prepend">
-                 <button class="btn btn-white" type="button" onclick="getInputValue()" id="button-addon1"><i
-                     class="fas fa-search-location fa-lg" style="color:#1d84b5"></i></button>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
+                <!-- Search form -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="input-group mb-3 col-md-4">
+              <input id="inputCidade" type="text" class="form-control" onkeypress="return runScript(event)"
+                placeholder="Insira uma cidade" aria-label="Example text with button addon"
+                aria-describedby="button-addon1">
+              <div class="input-group-prepend">
+                <button class="btn btn-white" type="button" onclick="getInputValue()" id="button-addon1"><i
+                    class="fas fa-search-location fa-lg" style="color:#1d84b5"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-       <!-- Page content -->
-       <div class="container-fluid mt--6">
-         <div class="row justify-content-center">
-           <div class="col-lg-5 card-wrapper">
-             <div class="card">
-               <div class="card-header bg-transparent">
-                 <h3 class="mb-0">Metereologia</h3>
-               </div>
-               <div class="card-body">
-                 <div class="timeline timeline-center" data-timeline-content="axis" data-timeline-axis-style="dashed"
-                   id="weather">
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-         <!-- Footer -->
-         <footer class="footer pt-0">
-           <div class="row align-items-center justify-content-lg-between">
-             <div class="col-lg-6">
-               <div class="copyright text-center text-lg-left text-muted">
-                 &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                   target="_blank">environ.</a>
-               </div>
-             </div>
-             <div class="col-lg-6">
-               <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                 <li class="nav-item">
-                   <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
-                 </li>
-               </ul>
-             </div>
-           </div>
-         </footer>
-       </div>
-     </div>
-     <!-- Argon Scripts -->
-     <!-- Core -->
-     <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-     <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-     <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-     <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-     <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-     <!-- Argon JS -->
-     <script src="../../assets/js/argon.js?v=1.1.0"></script>
-     <!-- Demo JS - remove this in your project -->
+      <!-- Page content -->
+      <div class="container-fluid mt--6">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 card-wrapper">
+            <div class="card">
+              <div class="card-header bg-transparent">
+                <h3 class="mb-0">Metereologia</h3>
+              </div>
+              <div class="card-body">
+                <div class="timeline timeline-center" data-timeline-content="axis" data-timeline-axis-style="dashed"
+                  id="weather">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <footer class="footer pt-0">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6">
+              <div class="copyright text-center text-lg-left text-muted">
+                &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                  target="_blank">environ.</a>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com" class="nav-link" target="_blank">environ.</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- Argon Scripts -->
+    <!-- Core -->
+    <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="../../assets/js/argon.js?v=1.1.0"></script>
+    <!-- Demo JS - remove this in your project -->
 
-     <!-- Weather API -->
-     <script src="../../assets/js/api/OpenWeatherMap.js"></script>
-     <script src="../../assets/js/api/Hubspot.js"></script>
-     <script src="../../assets/js/permissions.js"></script>
-     <script>
-       window.onload = function () {
-         document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
-         document.getElementById('img1').src = sessionStorage.getItem('photo');
-       };
-     </script>
- </body>
+    <!-- Weather API -->
+    <script src="../../assets/js/api/OpenWeatherMap.js"></script>
+    <script src="../../assets/js/api/Hubspot.js"></script>
+    <script src="../../assets/js/permissions.js"></script>
+    <script src="../../assets/js/darkmode.js"></script>
+    <script>
+      window.onload = function () {
+        document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
+        document.getElementById('img1').src = sessionStorage.getItem('photo');
 
- </html>
+        var theme = localStorage.getItem("darker");
+        $('.preloader').fadeOut(500);
+
+        if (theme == "true") {
+          theme = true;
+        } else {
+          theme = false
+        }
+        document.getElementById('changeTheme').checked = theme;
+        changeTheme(theme);
+
+      };
+    </script>
+</body>
+
+</html>
