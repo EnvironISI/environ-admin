@@ -2,7 +2,7 @@ var info;
 var manualInfo;
 var city;
 var manualCity;
-window.onload(getLocation());
+//window.onload(getLocation());
 
 function getLocation() {
     if (navigator.geolocation) {

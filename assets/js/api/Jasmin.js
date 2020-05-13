@@ -248,7 +248,7 @@ function campoCodigo(name) {
 
 //getPackages
 function getPackages() {
-    fetch('https://environ-back.herokuapp.com/package/all', {
+    fetch('https://environ-back.herokuapp.com/package/camara', {
         method: 'GET',
         credentials: 'include',
         headers: {

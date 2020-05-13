@@ -3,6 +3,7 @@
 //
 navigator.geolocation.getCurrentPosition(showPosition);
 
+
 function showPosition(position) {
     var lat = position.coords.latitude;
     var lng = position.coords.longitude;

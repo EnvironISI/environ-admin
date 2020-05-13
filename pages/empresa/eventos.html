@@ -14,15 +14,13 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <!-- Page plugins -->
+  <link rel="stylesheet" href="../../assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
-  <link rel="stylesheet" href="../../assets/vendor/select2/dist/css/select2.min.css">
-  <link rel="stylesheet" href="../../assets/css/bootstrap/bootstrap-tagsinput.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> -->
-
 </head>
 
 <body>
@@ -376,117 +374,276 @@
       </div>
     </nav>
     <!-- Header -->
+    <!-- Header -->
     <div class="header bg-hugo pb-6 ederbranco">
       <div class="container-fluid">
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-fire-alt"></i> Entidades</h6>
+              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-calendar-alt"></i> Eventos</h6>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--6">
-      <div class="card mb-4">
-        <!-- Card header -->
-        <div class="card-header">
-          <h3 class="mb-0">Registar Pacotes de Entidades</h3>
+    <div class="container-fluid mt--6 darkmode">
+      <!-- <div class="row">
+        <div class="col">
+          <div class="card border-0">
+            <div id="map-camaras" draggable class="map-canvas" style="height: 300px;"></div>
+          </div>
         </div>
-        <!-- Card body -->
-        <div class="card-body">
-          <!-- Form groups used in grid -->
-          <form>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="form-control-label" for="example3cols1Input">Código de Pacote</label>
-                  <input id="itemKey" type="text" class="form-control" placeholder="e.g. LimpezaPraia001">
+      </div> -->
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">Os seus eventos</h3>
+              <p class="text-sm mb-0">
+                Aqui estão listados todos os eventos que a sua organização requisitou.
+              </p>
+            </div>
+            <div class="table-responsive py-4">
+              <table id="eventosEnviron" class="table table-flush">
+                <thead class="thead-light" id="thead">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Organização</th>
+                    <th>Nº Participantes</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Duração</th>
+                    <th>Estado</th>
+                    <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
+                  </tr>
+                </thead>
+                <tfoot id="tfoot">
+                  <tr>
+                    <th>Nome</th>
+                    <th>Organização</th>
+                    <th>Município</th>
+                    <th>Data Início</th>
+                    <th>Data Fim</th>
+                    <th>Duração</th>
+                    <th>Estado</th>
+                    <th>&nbsp;&nbsp;&nbsp;Detalhes</th>
+                  </tr>
+                </tfoot>
+                <tbody id="tbody">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">Todos os eventos aceites</h3>
+              <p class="text-sm mb-0">
+                Aqui estão listados todos os eventos do sistema que passaram o processo de aprovação.
+              </p>
+            </div>
+            <div class="row card-wrapper" id="eventsByUser">
+              <!-- Content News-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal Individual para cada evento-->
+      <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification"
+        aria-hidden="true">
+        <div class="modal-dialog modal-danger modal-dialog-centered modal-xl" role="document">
+          <div class="modal-content bg-gradient-hugo-daniel">
+            <div class="modal-header">
+              <h3 class="modal-title" id="modal-title-notification"><i class="far fa-calendar-alt fa-3x"></i></h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <div class="row">
+                <div class="col">
+                  <div class="card border-0">
+                    <div id="map-evento" draggable class="map-canvas" style="height: 200px;"></div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Nº Participantes <span
-                      class="badge badge-pill badge-success">maior ou igual a</span></label>
-                  <input type="number" id="number" class="form-control" placeholder="Insira o número de participantes">
+              <div class="card mb-4">
+                <!-- Card header -->
+                <div class="card-header">
+                  <h3 class="mb-0">Detalhes de evento</h3>
+                </div>
+                <!-- Card body -->
+                <div class="card-body">
+                  <!-- Form groups used in grid -->
+                  <form>
+                    <div class="row">
+                      <div class="col-md-6" style="display: none;">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example3cols1Input">Nome</label>
+                          <input disabled id="modalEventID" type="text" class="form-control"
+                            placeholder="Nome do evento">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example3cols1Input">Nome</label>
+                          <input disabled id="modalEventName" type="text" class="form-control"
+                            placeholder="Nome do evento">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example3cols2Input">Município</label>
+                          <input disabled id="modalEventMunicipio" type="text" class="form-control"
+                            placeholder="Município" disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example3cols1Input">Latitude</label>
+                          <input disabled id="modalEventLatitude" type="text" class="form-control"
+                            placeholder="Latitude">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example3cols2Input">Longitude</label>
+                          <input disabled id="modalEventLongitude" type="text" class="form-control"
+                            placeholder="Longitude">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example3cols2Input">Rua</label>
+                          <input disabled id="modalEventRua" type="text" class="form-control" placeholder="Rua">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label">Sugestão - Início</label>
+                          <input disabled id="modalEventInicio" class="form-control" placeholder="Sugestão - Início"
+                            type="text">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label">Sugestão - Fim</label>
+                          <input disabled id="modalEventFim" class="form-control" placeholder="Sugestão - Fim"
+                            type="text">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example2cols1Input">Duração</label>
+                          <input disabled type="text" id="modalDuration" class="form-control"
+                            placeholder="Duração em dias">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example2cols1Input">Nº Participantes</label>
+                          <input disabled type="text" id="modalEventNumero" class="form-control"
+                            placeholder="Número de participantes">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example2cols1Input">Código de pacote</label>
+                          <input disabled type="text" id="modalEventTipo" class="form-control"
+                            placeholder="Código de pacote">
+                        </div>
+                      </div>
+                      <div style="display: none" class="col-md-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="example2cols1Input">ID Evento</label>
+                          <input disabled type="text" id="idEvento" class="form-control" placeholder="ID de Evento">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do
+                        evento</label>
+                      <textarea disabled class="form-control" id="modalEventResumo" rows="4"></textarea>
+                    </div>
+                  </form>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Nº Colaboradores </label>
-                  <input type="number" id="numberColaboradores" class="form-control"
-                    placeholder="Insira o número de participantes">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Tipo de evento</label>
-                  <select id="tipoEvento" class="form-control">
-                    <option disabled value="" selected="selected">Selecionar opção</option>
-                    <option value="manifestacao">Manifestação</option>
-                    <option value="limpeza">Limpeza</option>
-                    <option value="plantacao">Plantação</option>
-                    <option value="palestra">Palestra</option>
-                    <option value="congresso">Congresso</option>
-                    <option value="formacao">Formação</option>
-                    <option value="curso">Curso</option>
-                    <option value="workshop">Workshop</option>
-                    <option value="acao">Ação</option>
-                    <option value="feira">Feira</option>
-                    <option value="seminario">Seminário</option>
-                    <option value="outro">Outro</option>
-                  </select>
-                </div>
-              </div>
+
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Entidades de autorização <span
-                      class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input class="form-control input-tags" placeholder="Autorização" id="autorizacao"
-                    data-role="tagsinput">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example2cols1Input">Entidades de participação <span
-                      class="badge badge-pill badge-danger">obrigatório</span></label>
-                  <input class="form-control input-tags" placeholder="Participação" id="participacao"
-                    data-role="tagsinput">
-                </div>
-              </div>
+            <div class="modal-footer">
+              <button id="docAutorizacao" style="display: none;" type="button" onclick="requisitarAutorizacao()"
+                class="btn btn-red">Requisitar Autorização</button>
+              <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Fechar</button>
             </div>
-            <div class="form-group">
-              <label class="form-control-label" for="exampleFormControlTextarea1">Descrição do evento <span
-                  class="badge badge-pill badge-danger">detalhada</span></label>
-              <textarea class="form-control" id="description" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal QRCode-->
+      <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default"
+        aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h6 class="modal-title" id="modal-title-default">QRCode do evento</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-            <div hidden class="col-lg-4">
-              <div class="form-group">
-                <label class="form-control-label" for="input-country">Photo</label>
-                <input type="text" id="input-photo-url" class="form-control" placeholder="">
-              </div>
+
+            <div class="modal-body text-center">
+              <img id="contentQRCode" src="//placehold.it/600x400" class="img-fluid" alt="" />
             </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="filetag">Imagem de pacote</label>
-                  <input type="file" class="form-control" id="filetagPacote">
-                </div>
-              </div>
-              <div id="escondido" style="display: none;" class="col-lg-6 text-center">
-                <img id="visualizar" src="//placehold.it/600x400" width="600px" height="400px" class="img-fluid"
-                  alt="" />
-              </div>
+
+            <div class="modal-footer">
+              <a id="downloadAnchor" href="" download=""><button type="button" class="btn btn-red">Download</button></a>
+              <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Fechar</button>
             </div>
-            <div>
-              <button class="btn btn-primary" type="button" onclick="createPackage()">Submeter</button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal error-->
+      <div class="modal fade" id="modal-error" tabindex="-1" role="dialog" aria-labelledby="modal-error"
+        aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h6 class="modal-title" id="modal-title-default">Erro: Terá acesso a esta opção quando o evento se
+                enontrar no estado "Aceite"</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-          </form>
+
+            <div class="modal-body text-center">
+              <img id="error" src="../../assets/img/theme/error.png" width="512px" height="540px" class="img-fluid"
+                alt="" />
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger  ml-auto" data-dismiss="modal">Fechar</button>
+            </div>
+
+          </div>
         </div>
       </div>
       <!-- Footer -->
@@ -507,53 +664,50 @@
           </div>
         </div>
       </footer>
-    </div>
-  </div>
-  <button style="display: none;" id="pacotecriado" class="btn btn-success" data-toggle="notify"
-    data-message="Pacote criado com sucesso" data-title="Este pacote de entidades foi criado com sucesso"
-    data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">
-    Warning
-  </button>
-  <button style="display: none;" id="pacotenaocriado" class="btn btn-danger" data-toggle="notify"
-    data-message="Erro ao submeter pacote"
-    data-title="Por alguma razão a criação de pacote de entidades não foi concluída com sucesso. Verifique se preencheu corretamente o formulário."
-    data-placement="top" data-align="center" data-type="danger" data-icon="ni ni-bell-55">
-    Warning
-  </button>
-  <!-- Argon Scripts -->
-  <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
-  <script src="../../assets//js/api/firebase.js"></script>
-  <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIJHeQKwL-1zZd-wYsYlnViueWUiwlTT8"></script>
-  <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-  <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
-  <!-- Argon JS -->
-  <script src="../../assets/js/argon.js?v=1.1.0"></script>
-  <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/api/Jasmin.js"></script>
-  <script src="../../assets/js/api/Moloni.js"></script>
-  <script src="../../assets/js/api/Hubspot.js"></script>
-  <script src="../../assets/js/permissions.js"></script>
-  <script src="../../assets/js/darkmode.js"></script>
-  <script src="../../assets/js/bootstrap-tagsinput.js"></script>
+      <!-- Argon Scripts -->
+      <!-- Core -->
+      <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+      <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
+      <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+      <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+      <!-- Optional JS -->
+      <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+      <script src="../../assets/vendor/select2/dist/js/select2.min.js"></script>
+      <script src="../../assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+      <script src="../../assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
 
-  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
-  <!-- Add Firebase products that you want to use -->
-  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
-  <script src="../../assets/js/api/firebase-messaging.js"></script>
-  <script src="../../assets/js/loadContent.js"></script>
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-storage.js"></script>
+      <script src="../../assets/js/api/firebase.js"></script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_dYg8U5YYn4FVJX7Xis1CAXiyCEMxClI"></script>
+      <script src="../../assets/js/api/GoogleMaps.js"></script>
+
+      <!-- Argon JS -->
+      <script src="../../assets/js/argon.js?v=1.1.0"></script>
+      <script src="../../assets/js/api/Hubspot.js"></script>
+      <script src="../../assets/js/api/Moloni.js"></script>
+      <script src="../../assets/js/permissions.js"></script>
+      <script src="../../assets/js/darkmode.js"></script>
+
+      <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+      <!-- Add Firebase products that you want to use -->
+      <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
+      <script src="../../assets/js/api/firebase-messaging.js"></script>
+      <script src="../../assets/js/loadContent.js"></script>
 </body>
 
 </html>

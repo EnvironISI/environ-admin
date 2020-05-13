@@ -30,7 +30,7 @@ function initMap(lat, lng) {
     }).then(result => {
         return result.json();
     }).then(response => {
-        var months  = Array.apply(null, new Array(12)).map(Number.prototype.valueOf, 0);
+        var months = Array.apply(null, new Array(12)).map(Number.prototype.valueOf, 0);
         console.log(response)
         var empresas = 0;
         var camaras = 0;
@@ -47,60 +47,60 @@ function initMap(lat, lng) {
 
             months[i - 1] += 1;
         })
-        
-var PointsChart = (function () {
 
-	// Variables
+        var PointsChart = (function () {
 
-	var $chart = $('#chart-points-admin');
+            // Variables
 
-
-	// Methods
-    var maior = Math.max.apply(null, months);
-	function init($this) {
-		var salesChart = new Chart($this, {
-			type: 'line',
-			options: {
-				scales: {
-					yAxes: [{
-						gridLines: {
-							color: Charts.colors.gray[200],
-							zeroLineColor: Charts.colors.gray[200]
-						},
-						ticks: {
-                            autoSkip: false,
-                            max: maior+1,
-						}
-					}]
-				}
-			},
-			data: {
-				labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-				datasets: [{
-					label: 'Utilizadores',
-					data: months,
-					pointRadius: 10,
-					pointHoverRadius: 15,
-                    showLine: false,
-                    backgroundColor: '#11CDEF'
-				}]
-			}
-		});
-
-		// Save to jQuery object
-
-		$this.data('chart', salesChart);
-
-	};
+            var $chart = $('#chart-points-admin');
 
 
-	// Events
+            // Methods
+            var maior = Math.max.apply(null, months);
+            function init($this) {
+                var salesChart = new Chart($this, {
+                    type: 'line',
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                gridLines: {
+                                    color: Charts.colors.gray[200],
+                                    zeroLineColor: Charts.colors.gray[200]
+                                },
+                                ticks: {
+                                    autoSkip: false,
+                                    max: maior + 1,
+                                }
+                            }]
+                        }
+                    },
+                    data: {
+                        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                        datasets: [{
+                            label: 'Utilizadores',
+                            data: months,
+                            pointRadius: 10,
+                            pointHoverRadius: 15,
+                            showLine: false,
+                            backgroundColor: '#11CDEF'
+                        }]
+                    }
+                });
 
-	if ($chart.length) {
-		init($chart);
-	}
+                // Save to jQuery object
 
-})();
+                $this.data('chart', salesChart);
+
+            };
+
+
+            // Events
+
+            if ($chart.length) {
+                init($chart);
+            }
+
+        })();
 
         document.getElementById('numEmpresas').innerText = empresas;
         document.getElementById('numCamaras').innerText = camaras;
@@ -367,7 +367,7 @@ var PointsChart = (function () {
                                         zeroLineColor: Charts.colors.gray[700]
                                     },
                                     ticks: {
-                                        max: maior1+1
+                                        max: maior1 + 1
                                     }
                                 }],
                             }
@@ -514,75 +514,75 @@ var PointsChart = (function () {
             document.getElementById("pendentesEV").innerText = pendente
             document.getElementById("aceitesEV").innerText = aceite;
             document.getElementById("rejeitadosEV").innerText = rejeitado;
-var DoughnutChart = (function () {
+            var DoughnutChart = (function () {
 
-	// Variables
+                // Variables
 
-	var $chart = $('#chart-doughnut-admin');
-
-
-	// Methods
-
-	function init($this) {
-		var randomScalingFactor = function () {
-			return Math.round(Math.random() * 100);
-		};
-
-		var doughnutChart = new Chart($this, {
-			type: 'doughnut',
-			data: {
-				labels: [
-					'Suspenso',
-					'Pendente',
-					'Aceite',
-					'Rejeitado',
-				],
-				datasets: [{
-					data: [
-						suspensoSTAT.toFixed(2),
-						pendenteSTAT.toFixed(2),
-						aceiteSTAT.toFixed(2),
-						rejeitadoSTAT.toFixed(2)
-					],
-					backgroundColor: [
-						Charts.colors.theme['info'],
-                        '#ffc631',
-						Charts.colors.theme['success'],
-						Charts.colors.theme['danger'],
-					],
-					label: 'Estado evento'
-				}],
-			},
-			options: {
-                legend: {
-                    display: true,
-                    position: 'right',
-                    labels: {
-                        fontColor: "#000000",
-                    }
-                },
-				responsive: true,
-				animation: {
-					animateScale: true,
-					animateRotate: true
-				}
-			}
-		});
-
-		// Save to jQuery object
-
-		$this.data('chart', doughnutChart);
-
-	};
+                var $chart = $('#chart-doughnut-admin');
 
 
-	// Events
+                // Methods
 
-	if ($chart.length) {
-		init($chart);
-	}
+                function init($this) {
+                    var randomScalingFactor = function () {
+                        return Math.round(Math.random() * 100);
+                    };
 
-})();
+                    var doughnutChart = new Chart($this, {
+                        type: 'doughnut',
+                        data: {
+                            labels: [
+                                'Suspenso',
+                                'Pendente',
+                                'Aceite',
+                                'Rejeitado',
+                            ],
+                            datasets: [{
+                                data: [
+                                    suspensoSTAT.toFixed(2),
+                                    pendenteSTAT.toFixed(2),
+                                    aceiteSTAT.toFixed(2),
+                                    rejeitadoSTAT.toFixed(2)
+                                ],
+                                backgroundColor: [
+                                    Charts.colors.theme['info'],
+                                    '#ffc631',
+                                    Charts.colors.theme['success'],
+                                    Charts.colors.theme['danger'],
+                                ],
+                                label: 'Estado evento'
+                            }],
+                        },
+                        options: {
+                            legend: {
+                                display: true,
+                                position: 'right',
+                                labels: {
+                                    fontColor: "#000000",
+                                }
+                            },
+                            responsive: true,
+                            animation: {
+                                animateScale: true,
+                                animateRotate: true
+                            }
+                        }
+                    });
+
+                    // Save to jQuery object
+
+                    $this.data('chart', doughnutChart);
+
+                };
+
+
+                // Events
+
+                if ($chart.length) {
+                    init($chart);
+                }
+
+            })();
 
         })
         map1 = new google.maps.Map(map1, mapOptions1);
@@ -603,7 +603,6 @@ function weather(latitude, longitude) {
             document.getElementById("openPressao").innerText = data.main.pressure + " hPa";
             document.getElementById("openHumidade").innerText = data.main.humidity + " %";
             document.getElementById("openDescricao").innerText = data.weather[0].main + " - " + data.weather[0].description;
-
         })
         .catch(function () {
             // catch any errors

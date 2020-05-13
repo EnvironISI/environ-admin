@@ -15,7 +15,6 @@
 
 */
 
-
 //
 // Layout
 //
@@ -1166,7 +1165,7 @@ var SalesChart = (function () {
 
 
 	// Methods
-	var joao =  [0, 20, 10, 30, 15, 40, 20, 60, 60, 20, 60, 70]
+	var joao = [0, 20, 10, 30, 15, 40, 20, 60, 60, 20, 60, 70]
 	function init($this) {
 		var salesChart = new Chart($this, {
 			type: 'line',
@@ -1671,7 +1670,7 @@ var Datepicker = (function () {
 			autoclose: false,
 			format: 'dd/mm/yyyy'
 		};
-		
+
 
 		$this.datepicker(options);
 	}
@@ -1831,7 +1830,7 @@ var Fullcalendar = (function () {
 				className: 'bg-red',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 2,
 				title: 'Base de Dados',
@@ -1840,7 +1839,7 @@ var Fullcalendar = (function () {
 				className: 'bg-orange',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 3,
 				title: 'Primavera',
@@ -1849,7 +1848,7 @@ var Fullcalendar = (function () {
 				className: 'bg-green',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 4,
 				title: 'ETICADATA',
@@ -1858,7 +1857,7 @@ var Fullcalendar = (function () {
 				className: 'bg-blue',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 5,
 				title: 'Futebol',
@@ -1867,7 +1866,7 @@ var Fullcalendar = (function () {
 				className: 'bg-red',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 6,
 				title: 'Copos',
@@ -1876,7 +1875,7 @@ var Fullcalendar = (function () {
 				className: 'bg-warning',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 7,
 				title: 'Marketing',
@@ -1885,7 +1884,7 @@ var Fullcalendar = (function () {
 				className: 'bg-purple',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 8,
 				title: 'Jantar com a babe',
@@ -1894,7 +1893,7 @@ var Fullcalendar = (function () {
 				className: 'bg-red',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 9,
 				title: 'Black Friday',
@@ -1903,7 +1902,7 @@ var Fullcalendar = (function () {
 				className: 'bg-blue',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 			{
 				id: 10,
 				title: 'Cyber Week',
@@ -1912,7 +1911,7 @@ var Fullcalendar = (function () {
 				className: 'bg-yellow',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
 			},
-		
+
 		],
 
 
@@ -2212,41 +2211,41 @@ var VectorMap = (function () {
 					},
 				},
 				markers: [{
-						latLng: [41.90, 12.45],
-						name: 'Vatican City'
-					},
-					{
-						latLng: [43.73, 7.41],
-						name: 'Monaco'
-					},
-					{
-						latLng: [35.88, 14.5],
-						name: 'Malta'
-					},
-					{
-						latLng: [1.3, 103.8],
-						name: 'Singapore'
-					},
-					{
-						latLng: [1.46, 173.03],
-						name: 'Kiribati'
-					},
-					{
-						latLng: [-21.13, -175.2],
-						name: 'Tonga'
-					},
-					{
-						latLng: [15.3, -61.38],
-						name: 'Dominica'
-					},
-					{
-						latLng: [-20.2, 57.5],
-						name: 'Mauritius'
-					},
-					{
-						latLng: [26.02, 50.55],
-						name: 'Bahrain'
-					}
+					latLng: [41.90, 12.45],
+					name: 'Vatican City'
+				},
+				{
+					latLng: [43.73, 7.41],
+					name: 'Monaco'
+				},
+				{
+					latLng: [35.88, 14.5],
+					name: 'Malta'
+				},
+				{
+					latLng: [1.3, 103.8],
+					name: 'Singapore'
+				},
+				{
+					latLng: [1.46, 173.03],
+					name: 'Kiribati'
+				},
+				{
+					latLng: [-21.13, -175.2],
+					name: 'Tonga'
+				},
+				{
+					latLng: [15.3, -61.38],
+					name: 'Dominica'
+				},
+				{
+					latLng: [-20.2, 57.5],
+					name: 'Mauritius'
+				},
+				{
+					latLng: [26.02, 50.55],
+					name: 'Bahrain'
+				}
 				],
 				series: {
 					regions: [{
@@ -2625,7 +2624,7 @@ var Tags = (function () {
 			init($(this));
 		});
 	}
-	
+
 })();
 
 

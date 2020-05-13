@@ -76,11 +76,11 @@ function getAllEvents() {
     fetch('https://environ-back.herokuapp.com/event/all', {
         method: 'GET',
         credentials: 'include'
-    }).then(result => {
-        return result.json();
-    }).then(response => {
+    }).then(async result => {
+        var go = await result.json()
+        return go;
+    }).then(async response => {
         var array = []
-        console.log(response)
         response.forEach(element => {
             var obj = [];
 

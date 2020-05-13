@@ -75,6 +75,9 @@ function registarUtilizador() {
 
 //Login Utilizador
 async function login() {
+
+    document.getElementById('loginButton').innerHTML = `<div class="loader" style="margin-top: 3.0rem; margin-left: auto; margin-right: auto"></div>`
+
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
     await fetch("https://environ-back.herokuapp.com/login", {
@@ -101,10 +104,11 @@ async function login() {
         return response.json()
     })
         .then((data) => {
-            console.log(data)
-            localStorage.setItem("role", data.type);
-            window.location.replace("../../../pages/" + data.type + "/dashboard.html");
+            debug();
         }).catch(error => {
+            document.getElementById('loginButton').innerHTML = `<button onclick="login()" type="button" class="btn btn-primary my-4">
+            Entrar
+          </button>`
             return error;
         })
 }
@@ -168,6 +172,7 @@ async function logout() {
         if (response.ok) {
             window.location.assign("../../../index.html")
             localStorage.removeItem('notiToken');
+            sessionStorage.removeItem('user');
         }
     })
 }
@@ -310,7 +315,9 @@ function debug() {
     }).then(response => {
         return response.json();
     }).then(result => {
-        setUserInfo(result);
+        var user = JSON.stringify(result.user);
+        sessionStorage.setItem("user", user);
+        window.location.replace("../../../pages/" + result.user.role + "/dashboard.html");
     }).catch(error => {
         console.log(error)
         window.location.assign("../../pages/all/login.html");
@@ -323,36 +330,39 @@ if (fileTag != null) {
 }
 
 // Colocar info do user no profile
-function setUserInfo(result) {
+function setUserInfo() {
+
     //Session Storage
-    console.log(result);
-    sessionStorage.setItem('role', result.user.role);
+    var user = JSON.parse(sessionStorage.getItem("user"));
+
+    /*sessionStorage.setItem('role', result.user.role);
     sessionStorage.setItem('name', result.user.name);
     sessionStorage.setItem('email', result.user.email);
     sessionStorage.setItem('photo', result.user.photoUrl);
-    sessionStorage.setItem('uid', result.user.uid);
+    sessionStorage.setItem('uid', result.user.uid);*/
+
     //Profile
-    document.getElementById("hello").innerHTML += result.user.name;
-    document.getElementById("hello6").innerHTML = result.user.name;
-    document.getElementById("nameInfo").innerHTML = result.user.name;
-    document.getElementById("input-name").value = result.user.name;
-    document.getElementById("input-email").value = result.user.email;
-    document.getElementById("output-email").innerHTML = result.user.email;
-    document.getElementById("input-phone").value = result.user.phoneNumber;
-    document.getElementById("input-cidade").value = result.user.city;
-    document.getElementById("input-pais").value = result.user.country;
-    document.getElementById("input-nif").value = result.user.nif;
-    document.getElementById("preview").src = result.user.photoURL;
-    document.getElementById("output-city-country").innerHTML = result.user.city + ", " + result.user.country;
-    document.getElementById("preview").src = result.user.photoUrl;
-    document.getElementById("img1").src = result.user.photoUrl;
-    if (result.user.role === 'admin') {
+    document.getElementById("hello").innerHTML += user.name;
+    document.getElementById("hello6").innerHTML = user.name;
+    document.getElementById("nameInfo").innerHTML = user.name;
+    document.getElementById("input-name").value = user.name;
+    document.getElementById("input-email").value = user.email;
+    document.getElementById("output-email").innerHTML = user.email;
+    document.getElementById("input-phone").value = user.phoneNumber;
+    document.getElementById("input-cidade").value = user.city;
+    document.getElementById("input-pais").value = user.country;
+    document.getElementById("input-nif").value = user.nif;
+    document.getElementById("preview").src = user.photoURL;
+    document.getElementById("output-city-country").innerHTML = user.city + ", " + user.country;
+    document.getElementById("preview").src = user.photoUrl;
+    document.getElementById("img1").src = user.photoUrl;
+    if (user.role === 'admin') {
         document.getElementById("output-sector").innerHTML = "Administrador"
     }
-    if (result.user.role === 'empresa') {
+    if (user.role === 'empresa') {
         document.getElementById("output-sector").innerHTML = "Organização"
     }
-    if (result.user.role === 'camara') {
+    if (user.role === 'camara') {
         document.getElementById("output-sector").innerHTML = "Câmara Municipal"
     }
 }
@@ -655,8 +665,9 @@ function getAllUsers() {
     fetch('https://environ-back.herokuapp.com/admin/users', {
         method: 'GET',
         credentials: 'include'
-    }).then(result => {
-        return result.json();
+    }).then(async result => {
+        var go = await result.json();
+        return go;
     }).then(response => {
         var array = []
         console.log(response)
@@ -782,6 +793,24 @@ function eliminarUtilizador() {
 }
 
 //Ativar utilizador ADMIN
+$("#email").on("change keyup paste", function () {
+    var email = document.getElementById('email').value;
+
+    var table = $('#utilizadores').DataTable();
+
+    for(var i=0;i<table.rows().data().length;i++){
+        var rows = table.rows(i).data();
+
+        if(rows[0][1] == email && rows[0][6] == "Ativo"){
+            document.getElementById('ativarUser').disabled = true;
+            break;
+        }else{
+            document.getElementById('ativarUser').disabled = false;
+        }
+
+    }
+
+})
 
 function ativarUtilizador() {
     var email = document.getElementById("email").value;
@@ -1022,38 +1051,38 @@ function emailActivationManually() {
     }
 }
 
-function getNotifications(){
+function getNotifications() {
     fetch('https://environ-back.herokuapp.com/user/notifications', {
-          method: 'GET',
-          credentials: 'include'
-        }).then(response => {
-          return response.json()
-        }).then(result => {
-          if (result.msg) {
+        method: 'GET',
+        credentials: 'include'
+    }).then(response => {
+        return response.json()
+    }).then(result => {
+        if (result.msg) {
             document.getElementById('numberNotifications').innerHTML = `<h6 class="text-sm text-muted m-0" style="text-align: center">${result.msg}</h6>`
-          }
-          else {
+        }
+        else {
             document.getElementById('numberNotifications').innerHTML = `<h6 class="text-sm text-muted m-0">Você tem <strong class="text-primary">${result.length}</strong> notificações por ler.
           </h6>`
 
             document.getElementById('contentNotification').innerHTML = ``;
 
             var count = 0;
-            if(!result.notifications.length > 4){
+            if (!result.notifications.length > 4) {
                 count = result.notifications.length - 5;
             }
 
             for (var i = result.notifications.length - 1; i >= count; i--) {
-              var notification = result.notifications[i];
+                var notification = result.notifications[i];
 
-              var hours = Math.floor(((Date.now() - notification.date) % 86400000) / 3600000);
-              var mins = Math.round((((Date.now() - notification.date) % 86400000) % 3600000) / 60000);
-              var msgHours;
-              if (hours < 1) msgHours = "há " + mins + " minutos atrás"
-              else if (hours > 24) msgHours = "há mais de 24 horas atrás";
-              else msgHours = "há " + hours + " horas atrás";
-              if (notification.status == "unread") {
-                document.getElementById('contentNotification').innerHTML += `
+                var hours = Math.floor(((Date.now() - notification.date) % 86400000) / 3600000);
+                var mins = Math.round((((Date.now() - notification.date) % 86400000) % 3600000) / 60000);
+                var msgHours;
+                if (hours < 1) msgHours = "há " + mins + " minutos atrás"
+                else if (hours > 24) msgHours = "há mais de 24 horas atrás";
+                else msgHours = "há " + hours + " horas atrás";
+                if (notification.status == "unread") {
+                    document.getElementById('contentNotification').innerHTML += `
                 <a href="#!" id="${notification.notificationID}" onclick="readNotification(this, '${notification.type}')" class="list-group-item-read list-group-item-action">
                     <div class="row align-items-center">
                       <div class="col-auto">
@@ -1075,9 +1104,9 @@ function getNotifications(){
                     </div>
                   </a>
                 `
-              }
-              else if (notification.status == "read") {
-                document.getElementById('contentNotification').innerHTML += `
+                }
+                else if (notification.status == "read") {
+                    document.getElementById('contentNotification').innerHTML += `
                 <a href="#!" id="${notification.notificationID}" onclick="readNotification(this, '${notification.type}')" class="list-group-item list-group-item-action">
                     <div class="row align-items-center">
                       <div class="col-auto">
@@ -1099,13 +1128,13 @@ function getNotifications(){
                     </div>
                   </a>
                 `
-              }
+                }
             };
-          }
-        })
+        }
+    })
 }
 
-function readNotification(element, type){
+function readNotification(element, type) {
     var notificationID = element.getAttribute("id");
 
     console.log(type)
@@ -1116,12 +1145,12 @@ function readNotification(element, type){
             'Content-Type': 'application/json'
         },
         credentials: 'include',
-        body: JSON.stringify({notificationID: notificationID})
+        body: JSON.stringify({ notificationID: notificationID })
     }).then(resp => {
-        if(resp.ok){
-            if(type == "evento"){
-                var role = localStorage.getItem('role');
-                window.location.replace("../../../pages/" + role + "/eventos.html");
+        if (resp.ok) {
+            if (type == "evento") {
+                var user = JSON.parse(sessionStorage.getItem('user'));
+                window.location.replace("../../../pages/" + user.role + "/eventos.html");
             }
         }
     })

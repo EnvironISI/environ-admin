@@ -1,17 +1,3 @@
-window.onload = function () {
-
-    $('.preloader').fadeOut(500);
-
-    var theme = localStorage.getItem("darker");
-    if(theme == "true"){
-      theme = true;
-    }else{
-      theme = false
-    }
-    document.getElementById('changeTheme').checked = theme;
-    changeTheme(theme);
-}
-
 function clickTheme() {
   var themeDarker = document.getElementById('changeTheme').checked;
   var navbar = document.getElementsByClassName("navbar")[1];
@@ -35,13 +21,13 @@ color: white;
 background-color: #303030;`
     document.getElementsByClassName("footer")[0].style = `padding: 30px 0; background: #303030;`
     navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
-    if(eder) eder.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
-    if(ederbranco) ederbranco.classList.replace("bg-hugo", "bg-gradient-dark")
-    if(darkmode) darkmode.style = "color: #525f7f !important";
-} else {
-    if(darkmode) darkmode.style = "color: #525f7f !important";
-    if(ederbranco) ederbranco.classList.replace("bg-gradient-dark", "bg-hugo")
-    if(eder) eder.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
+    if (eder) eder.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
+    if (ederbranco) ederbranco.classList.replace("bg-hugo", "bg-gradient-dark")
+    if (darkmode) darkmode.style = "color: #525f7f !important";
+  } else {
+    if (darkmode) darkmode.style = "color: #525f7f !important";
+    if (ederbranco) ederbranco.classList.replace("bg-gradient-dark", "bg-hugo")
+    if (eder) eder.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
     navbar.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
     bg[0].classList.replace("navbar-dark", "navbar-light");
     bg[0].classList.replace("bg-dark", "bg-white");
@@ -85,13 +71,13 @@ background-color: #303030;`
     document.getElementsByClassName("footer")[0].style = `padding: 30px 0; 
   background: #303030;`
     navbar.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark");
-    if(eder) eder.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
-    if(ederbranco) ederbranco.classList.replace("bg-hugo", "bg-gradient-dark")
-    if(darkmode) darkmode.style = "color: #525f7f !important";
-} else {
-    if(darkmode) darkmode.style = "color: #525f7f !important";
-    if(ederbranco) ederbranco.classList.replace("bg-gradient-dark", "bg-hugo")
-    if(eder) eder.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
+    if (eder) eder.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
+    if (ederbranco) ederbranco.classList.replace("bg-hugo", "bg-gradient-dark")
+    if (darkmode) darkmode.style = "color: #525f7f !important";
+  } else {
+    if (darkmode) darkmode.style = "color: #525f7f !important";
+    if (ederbranco) ederbranco.classList.replace("bg-gradient-dark", "bg-hugo")
+    if (eder) eder.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
     navbar.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
     bg[0].classList.replace("navbar-dark", "navbar-light");
     bg[0].classList.replace("bg-dark", "bg-white");
