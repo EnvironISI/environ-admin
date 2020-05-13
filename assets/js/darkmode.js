@@ -1,5 +1,5 @@
 function clickTheme() {
-  var themeDarker = document.getElementById('changeTheme').checked;
+  var themeDarker = document.getElementById('slider').checked;
   var navbar = document.getElementsByClassName("navbar")[1];
   var eder = document.getElementsByClassName("eder")[0];
   var ederbranco = document.getElementsByClassName("ederbranco")[0];

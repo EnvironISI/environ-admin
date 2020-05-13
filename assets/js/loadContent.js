@@ -7,7 +7,8 @@ window.onload = function () {
     } else {
         theme = false
     }
-    document.getElementById('changeTheme').checked = theme;
+    
+    document.getElementById('slider').checked = theme;
     changeTheme(theme);
     this.console.log('Tema carregado')
 

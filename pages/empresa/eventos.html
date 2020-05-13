@@ -315,11 +315,14 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item custom-toggle" style="margin-right: 0.5rem">
-              <label>
-                <input id="changeTheme" type="checkbox" onclick="clickTheme()">
-                <span class="custom-toggle-slider rounded-circle" data-label-off="Normal"
-                  data-label-on="Noturno"></span>
+          </ul>
+          <ul class="navbar-nav align-items-center ml-auto ml-md-0">
+            <li class="nav-item container" style="margin-top: 10px !important">
+              <label class="switch" for="checkbox" title="Change color scheme to dark mode">
+                <input id="changeTheme" type="checkbox" onclick="clickTheme()" />
+                <div class="slider round"></div>
+                <div class="toggle-moon">🌙</div>
+                <div class="toggle-sun">☀️</div>
               </label>
             </li>
             <li class="nav-item dropdown">
@@ -339,9 +342,6 @@
                 <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
               </div>
             </li>
-            
-          </ul>
-          <ul class="navbar-nav align-items-center ml-auto ml-md-0">
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
