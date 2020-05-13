@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="../../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/darkmodeinput.css" type="text/css">
 </head>
 
 <body>
@@ -313,12 +314,10 @@
             </li>
           </ul>
           <ul class="navbar-nav align-items-center ml-auto ml-md-0">
-            <li class="nav-item container" style="margin-top: 10px !important">
-              <label class="switch" for="checkbox" title="Change color scheme to dark mode">
-                <input id="changeTheme" type="checkbox" onclick="clickTheme()" />
-                <div class="slider round"></div>
-                <div class="toggle-moon">🌙</div>
-                <div class="toggle-sun">☀️</div>
+            <li class="nav-item" style="margin-right: 1rem; margin-top: 0.5rem;">
+              <label id="switch" class="switch">
+                <input type="checkbox" onchange="clickTheme()" id="slider">
+                <span class="slider round"></span>
               </label>
             </li>
             <li class="nav-item dropdown">
