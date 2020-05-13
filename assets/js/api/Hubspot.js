@@ -1,3 +1,4 @@
+
 var fileTag = document.getElementById("filetag"),
     preview = document.getElementById("preview");
 let user;
@@ -77,39 +78,32 @@ async function login() {
     var email = document.getElementById("loginEmail").value;
     var password = document.getElementById("loginPassword").value;
     await fetch("https://environ-back.herokuapp.com/login", {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        }).then((response) => {
-            var myStatus = response.status;
-            if (myStatus == 400) {
-                document.getElementById("VERIFIQUEEMAIL").click();
-                throw new Error("verificar email");
-            }
-            if (myStatus != 200 && myStatus != 400) {
-                document.getElementById("FALSELOGIN").click();
-                throw new Error("credenciais");
-            }
-            return response.json()
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+            email: email,
+            password: password
         })
+    }).then((response) => {
+        var myStatus = response.status;
+        if (myStatus == 400) {
+            document.getElementById("VERIFIQUEEMAIL").click();
+            throw new Error("verificar email");
+        }
+        if (myStatus != 200 && myStatus != 400) {
+            document.getElementById("FALSELOGIN").click();
+            throw new Error("credenciais");
+        }
+        return response.json()
+    })
         .then((data) => {
             console.log(data)
-            if(data.type == 'admin') {
-                window.location.replace("../../../pages/admin/dashboard.html");
-            }
-            if(data.type == 'camara') {
-                window.location.replace("../../../pages/camara/dashboard.html");
-            }
-            if(data.type == 'empresa') {
-                window.location.replace("../../../pages/empresa/dashboard.html");
-            }
+            localStorage.setItem("role", data.type);
+            window.location.replace("../../../pages/" + data.type + "/dashboard.html");
         }).catch(error => {
             return error;
         })
@@ -173,6 +167,7 @@ async function logout() {
     }).then(response => {
         if (response.ok) {
             window.location.assign("../../../index.html")
+            localStorage.removeItem('notiToken');
         }
     })
 }
@@ -1025,4 +1020,109 @@ function emailActivationManually() {
             }
         })
     }
+}
+
+function getNotifications(){
+    fetch('https://environ-back.herokuapp.com/user/notifications', {
+          method: 'GET',
+          credentials: 'include'
+        }).then(response => {
+          return response.json()
+        }).then(result => {
+          if (result.msg) {
+            document.getElementById('numberNotifications').innerHTML = `<h6 class="text-sm text-muted m-0" style="text-align: center">${result.msg}</h6>`
+          }
+          else {
+            document.getElementById('numberNotifications').innerHTML = `<h6 class="text-sm text-muted m-0">Você tem <strong class="text-primary">${result.length}</strong> notificações por ler.
+          </h6>`
+
+            document.getElementById('contentNotification').innerHTML = ``;
+
+            var count = 0;
+            if(!result.notifications.length > 4){
+                count = result.notifications.length - 5;
+            }
+
+            for (var i = result.notifications.length - 1; i >= count; i--) {
+              var notification = result.notifications[i];
+
+              var hours = Math.floor(((Date.now() - notification.date) % 86400000) / 3600000);
+              var mins = Math.round((((Date.now() - notification.date) % 86400000) % 3600000) / 60000);
+              var msgHours;
+              if (hours < 1) msgHours = "há " + mins + " minutos atrás"
+              else if (hours > 24) msgHours = "há mais de 24 horas atrás";
+              else msgHours = "há " + hours + " horas atrás";
+              if (notification.status == "unread") {
+                document.getElementById('contentNotification').innerHTML += `
+                <a href="#!" id="${notification.notificationID}" onclick="readNotification(this, '${notification.type}')" class="list-group-item-read list-group-item-action">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <!-- Avatar -->
+                        <img alt="Image placeholder" src="${notification.avatar}"
+                          class="avatar rounded-circle">
+                      </div>
+                      <div class="col ml--2">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h4 class="mb-0 text-sm">${notification.from}</h4>
+                          </div>
+                          <div class="text-right text-muted">
+                            <small>${msgHours}</small>
+                          </div>
+                        </div>
+                        <p class="text-sm mb-0">${notification.msg}</p>
+                      </div>
+                    </div>
+                  </a>
+                `
+              }
+              else if (notification.status == "read") {
+                document.getElementById('contentNotification').innerHTML += `
+                <a href="#!" id="${notification.notificationID}" onclick="readNotification(this, '${notification.type}')" class="list-group-item list-group-item-action">
+                    <div class="row align-items-center">
+                      <div class="col-auto">
+                        <!-- Avatar -->
+                        <img alt="Image placeholder" src="${notification.avatar}"
+                          class="avatar rounded-circle">
+                      </div>
+                      <div class="col ml--2">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h4 class="mb-0 text-sm">${notification.from}</h4>
+                          </div>
+                          <div class="text-right text-muted">
+                            <small>${msgHours}</small>
+                          </div>
+                        </div>
+                        <p class="text-sm mb-0">${notification.msg}</p>
+                      </div>
+                    </div>
+                  </a>
+                `
+              }
+            };
+          }
+        })
+}
+
+function readNotification(element, type){
+    var notificationID = element.getAttribute("id");
+
+    console.log(type)
+
+    fetch('https://environ-back.herokuapp.com/user/read/notification', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({notificationID: notificationID})
+    }).then(resp => {
+        if(resp.ok){
+            if(type == "evento"){
+                var role = localStorage.getItem('role');
+                window.location.replace("../../../pages/" + role + "/eventos.html");
+            }
+        }
+    })
 }

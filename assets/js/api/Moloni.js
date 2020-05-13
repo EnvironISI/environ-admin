@@ -50,7 +50,8 @@ async function requestEvent() {
             municipio: municipio,
             summary: summary,
             package: codigoPacote,
-            duration: duration
+            duration: duration,
+            notiToken: localStorage.getItem('notiToken')
         })
     }).then(result => {
         console.log(result)

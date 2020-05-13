@@ -215,10 +215,29 @@
                   <i class="sidenav-toggler-line"></i>
                 </div>
               </div>
-            </li><label class="custom-toggle">
-              <input id="changeTheme" type="checkbox" onclick="clickTheme()">
-              <span class="custom-toggle-slider rounded-circle" data-label-off="Normal" data-label-on="Noturno"></span>
-            </label>
+            </li>            <li class="nav-item custom-toggle">
+              <label>
+                <input id="changeTheme" type="checkbox" onclick="clickTheme()">
+                <span class="custom-toggle-slider rounded-circle" data-label-off="Normal"
+                  data-label-on="Noturno"></span>
+              </label>
+            </li> <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="ni ni-bell-55"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
+                <!-- Dropdown header -->
+                <div class="px-3 py-3" id="numberNotifications">
+                </div>
+                <!-- List group -->
+                <div class="list-group list-group-flush" id="contentNotification">
+
+                </div>
+                <!-- View all -->
+                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
+              </div>
+            </li>
             
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -708,8 +727,15 @@ data-placement=" top" data-align="center" data-type="danger" data-icon="ni ni-be
   <script src="../../assets/js/passwords/passwordOptions.js"></script>
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/darkmode.js"></script>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
+  <script src="../../assets/js/api/firebase-messaging.js"></script>
   <script>
     debug();
+    getNotifications();
   </script>
   <script>
     if (!window.location.hash) {

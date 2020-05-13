@@ -341,9 +341,17 @@
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/darkmode.js"></script>
   <script src="../../assets/js/permissions.js"></script>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
+  <script src="../../assets/js/api/firebase-messaging.js"></script>
+
   <script>
       document.getElementById('hello6').innerHTML = sessionStorage.getItem('name');
       document.getElementById('img1').src = sessionStorage.getItem('photo');
+      getNotifications();
   </script>
 </body>
 
