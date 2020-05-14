@@ -809,13 +809,16 @@ $("#email").on("change keyup paste", function () {
 
         if(rows[0][1] == email && rows[0][6] == "Ativo"){
             document.getElementById('ativarUser').disabled = true;
-            
+            if(rows[0][1] == email && rows[0][3] == "Administrador"){
+                document.getElementById('setAdmin').disabled = true;
+            }else{
+                document.getElementById('setAdmin').disabled = false;
+            }
+            break;
         }
         else{
             document.getElementById('ativarUser').disabled = false;
         }
-
-        break;
     }
 
 })
