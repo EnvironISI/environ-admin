@@ -77,7 +77,7 @@ section
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
   }
-
+  
 .preloader {
     background-color: #ffffff;
     bottom: 0;
@@ -88,58 +88,14 @@ section
     z-index: 99999999;
 }
 
-.preloader span {
-    background: rgb(72, 44, 191);
-    background: -webkit-linear-gradient(87deg, #3A9BED 0, #235ECF 100%) !important;
-    background: -o-linear-gradient(87deg, #3A9BED 0, #235ECF 100%) !important;
-    background: linear-gradient(87deg, #3A9BED 0, #235ECF 100%) !important;
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#482cbf', endColorstr='#6ac6f0', GradientType=1);
-    border-radius: 100%;
-    height: 60px;
-    width: 60px;
-    line-height: 60px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    text-align: center;
-    color: #ffffff;
-    font-size: 24px;
-    margin: auto;
-    -webkit-animation: mymove 1.5s infinite linear;
-    animation: mymove 1.5s infinite linear;
-}
-
 svg {
     display:block;
-  width:258px;
-  height:258px;
+  width:400px;
+  height:400px;
   position:absolute;
   left:50%;
   top:50%;
   transform:translate(-50%,-50%);
-  }
-  
-  .tree {
-    fill: rgb(13, 151, 231);
-  }
-  
-  .circle-mask {
-    transform-origin: 50% 90%;
-    animation: scale 5s infinite ease-out;
-  }
-  
-  @keyframes scale {
-    0%, 100% {
-      transform: scale(0.0);
-    }
-    7%, 90% {
-      transform: scale(0.4);
-    }
-    50% {
-      transform: scale(1);
-    }
   }
 
 .spinner{

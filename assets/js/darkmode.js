@@ -5,6 +5,7 @@ function clickTheme() {
   var ederbranco = document.getElementsByClassName("ederbranco")[0];
   var darkmode = document.getElementsByClassName("darkmode")[0];
   var bg = document.getElementsByClassName("sidenav");
+  var loading = document.getElementById('loading');
   if (themeDarker) {
     bg[0].classList.replace("navbar-light", "navbar-dark");
     bg[0].classList.replace("bg-white", "bg-dark");
@@ -24,7 +25,9 @@ background-color: #303030;`
     if (eder) eder.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
     if (ederbranco) ederbranco.classList.replace("bg-hugo", "bg-gradient-dark")
     if (darkmode) darkmode.style = "color: #525f7f !important";
+    loading.setAttribute("stroke", "#000");
   } else {
+    loading.setAttribute("stroke", "#5699d2");
     if (darkmode) darkmode.style = "color: #525f7f !important";
     if (ederbranco) ederbranco.classList.replace("bg-gradient-dark", "bg-hugo")
     if (eder) eder.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")
@@ -47,13 +50,13 @@ background-color: #f8f9fe;`
   localStorage.setItem("darker", themeDarker)
 }
 
-
 function changeTheme(theme) {
   var navbar = document.getElementsByClassName("navbar")[1];
   var bg = document.getElementsByClassName("sidenav");
   var eder = document.getElementsByClassName("eder")[0];
   var ederbranco = document.getElementsByClassName("ederbranco")[0];
   var darkmode = document.getElementsByClassName("darkmode")[0];
+  var loading = document.getElementById('loading');
   if (theme) {
     bg[0].classList.replace("navbar-light", "navbar-dark");
     bg[0].classList.replace("bg-white", "bg-dark");
@@ -74,7 +77,9 @@ background-color: #303030;`
     if (eder) eder.classList.replace("bg-gradient-hugo-daniel", "bg-gradient-dark")
     if (ederbranco) ederbranco.classList.replace("bg-hugo", "bg-gradient-dark")
     if (darkmode) darkmode.style = "color: #525f7f !important";
+    loading.setAttribute("stroke", "#000");
   } else {
+    loading.setAttribute("stroke", "#5699d2");
     if (darkmode) darkmode.style = "color: #525f7f !important";
     if (ederbranco) ederbranco.classList.replace("bg-gradient-dark", "bg-hugo")
     if (eder) eder.classList.replace("bg-gradient-dark", "bg-gradient-hugo-daniel")

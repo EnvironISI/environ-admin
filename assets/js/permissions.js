@@ -7,7 +7,6 @@ var permissionUser = JSON.parse(sessionStorage.getItem('user'));
 var role = permissionUser.role;
 
 function goTo(){
-    console.log('hello')
     window.location.assign("../../pages/" + role + "/dashboard.html");
 }
 
