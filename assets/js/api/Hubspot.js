@@ -801,13 +801,21 @@ $("#email").on("change keyup paste", function () {
     for(var i=0;i<table.rows().data().length;i++){
         var rows = table.rows(i).data();
 
+        if(rows[0][1] == email && rows[0][3] == "Administrador"){
+            document.getElementById('setAdmin').disabled = true;
+        }else{
+            document.getElementById('setAdmin').disabled = false;
+        }
+
         if(rows[0][1] == email && rows[0][6] == "Ativo"){
             document.getElementById('ativarUser').disabled = true;
-            break;
-        }else{
+            
+        }
+        else{
             document.getElementById('ativarUser').disabled = false;
         }
 
+        break;
     }
 
 })
