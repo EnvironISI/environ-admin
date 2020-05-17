@@ -28,7 +28,7 @@
         navText: ['<i class="lnr lnr-chevron-left"></i>', '<i class="lnr lnr-chevron-right"></i>'],
         responsive: {
             0: {
-                items: 1,
+                items: 1
             },
             600: {
                 items: 2
