@@ -30,6 +30,10 @@ function test(lat, lng) {
                 result.types.forEach(type => {
                     if (type == "administrative_area_level_2") {
                         document.getElementById('municipio').value = result.address_components[0].long_name;
+
+                        document.getElementById("from").value = JSON.parse(sessionStorage.getItem("user")).email;
+                        document.getElementById("toMunicipio").value = result.address_components[0].long_name;
+                        document.getElementById("btnEnviar").disabled = false;
                     } else if (type == "street_address") {
                         document.getElementById('rua').value = result.formatted_address;
                     }

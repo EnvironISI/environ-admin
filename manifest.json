@@ -3,7 +3,7 @@
     "short_name": "Environ.",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
-    "display": "minimal-ui",
+    "display": "fullscreen",
     "Scope": "/",
     "start_url": "https://environ-front.herokuapp.com/index.html",
     "icons": [{

@@ -1062,6 +1062,16 @@ input:-webkit-autofill:focus {
     animation: mymove 1.5s infinite linear;
 }
 
+svg {
+    display:block;
+  width:400px;
+  height:400px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  }
+
 @-webkit-keyframes mymove {
     0 {
         -webkit-box-shadow: 0 0 0 0 rgba(94, 136, 252, 0.6), 0 0 0 0 rgba(94, 136, 252, 0.6);

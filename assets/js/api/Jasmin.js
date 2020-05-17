@@ -105,109 +105,110 @@ async function createPackage() {
 
 //getPackages para o evento
 function getPackagesEvento() {
-    fetch('https://environ-back.herokuapp.com/package/camara', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    }).then(response => {
-        return response.json();
-    }).then(result => {
-        console.log(result)
+    if (document.getElementById('municipio').value != "") {
+        fetch('https://environ-back.herokuapp.com/package/camara', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+        }).then(response => {
+            return response.json();
+        }).then(result => {
+            console.log(result)
 
-        //HTML ID
-        var results = document.getElementById("pacotesCamara")
-        results.innerHTML = "";
-        
-        result.forEach(element => {
-   
-            //Function to replace at certain string index
-            String.prototype.replaceAt = function (index, replacement) {
-                if (index >= this.length) {
-                    return this.valueOf();
+            //HTML ID
+            var results = document.getElementById("pacotesCamara")
+            results.innerHTML = "";
+
+            result.forEach(element => {
+
+                //Function to replace at certain string index
+                String.prototype.replaceAt = function (index, replacement) {
+                    if (index >= this.length) {
+                        return this.valueOf();
+                    }
+
+                    var chars = this.split('');
+                    chars[index] = replacement;
+                    return chars.join('');
                 }
 
-                var chars = this.split('');
-                chars[index] = replacement;
-                return chars.join('');
-            }
+                //Name
+                var name = element.name;
 
-            //Name
-            var name =  element.name;
+                //Description
+                var description = element.description;
 
-            //Description
-            var description = element.description;
+                //Image
+                var image = element.image.replace(/&#x2F;/gi, "/");
 
-            //Image
-            var image = element.image.replace(/&#x2F;/gi, "/");
+                //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
+                var summary = element.summary.split("|");
+                console.log(summary)
 
-            //Spliting summary into the 4 information it has (Number of Participants, Type of Event, Authorization Entities and Participation Entitities)
-            var summary = element.summary.split("|");
-            console.log(summary)
+                //Formation Number of Colaboradores [number]
+                var numberColaboradores0 = summary[0].split(":");
+                var numberColaboradores = numberColaboradores0[1].replaceAt(0, "").replace(" ", "");
 
-            //Formation Number of Colaboradores [number]
-            var numberColaboradores0 = summary[0].split(":");
-            var numberColaboradores = numberColaboradores0[1].replaceAt(0, "").replace(" ", "");
+                //Formation Number of Participants    [number]
+                var number0 = summary[1].split(":");
+                var number = number0[1].replaceAt(0, "").replace(" ", "");
 
-            //Formation Number of Participants    [number]
-            var number0 = summary[1].split(":");
-            var number = number0[1].replaceAt(0, "").replace(" ", "");
-
-            //Formating Type of Event    [tipo]
-            var tipo0 = summary[2].split(":");
-            var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
-            if (tipo === 'manifestacao') {
-                tipo = 'Manifestação'
-            }
-            if (tipo === 'limpeza') {
-                tipo = 'Limpeza'
-            }
-            if (tipo === 'plantacao') {
-                tipo = 'Plantação'
-            }
-            if (tipo === 'palestra') {
-                tipo = 'Palestra'
-            }
-            if (tipo === 'congresso') {
-                tipo = 'Congresso'
-            }
-            if (tipo === 'formacao') {
-                tipo = 'Formação'
-            }
-            if (tipo === 'curso') {
-                tipo = 'Curso'
-            }
-            if (tipo === 'workshop') {
-                tipo = 'Workshop'
-            }
-            if (tipo === 'acao') {
-                tipo = 'Ação'
-            }
-            if (tipo === 'feira') {
-                tipo = 'Feira'
-            }
-            if (tipo === 'seminario') {
-                tipo = 'Seminário'
-            }
-            if (tipo === 'outro') {
-                tipo = 'Outro'
-            }
+                //Formating Type of Event    [tipo]
+                var tipo0 = summary[2].split(":");
+                var tipo = tipo0[1].replaceAt(0, "").replace(" ", "")
+                if (tipo === 'manifestacao') {
+                    tipo = 'Manifestação'
+                }
+                if (tipo === 'limpeza') {
+                    tipo = 'Limpeza'
+                }
+                if (tipo === 'plantacao') {
+                    tipo = 'Plantação'
+                }
+                if (tipo === 'palestra') {
+                    tipo = 'Palestra'
+                }
+                if (tipo === 'congresso') {
+                    tipo = 'Congresso'
+                }
+                if (tipo === 'formacao') {
+                    tipo = 'Formação'
+                }
+                if (tipo === 'curso') {
+                    tipo = 'Curso'
+                }
+                if (tipo === 'workshop') {
+                    tipo = 'Workshop'
+                }
+                if (tipo === 'acao') {
+                    tipo = 'Ação'
+                }
+                if (tipo === 'feira') {
+                    tipo = 'Feira'
+                }
+                if (tipo === 'seminario') {
+                    tipo = 'Seminário'
+                }
+                if (tipo === 'outro') {
+                    tipo = 'Outro'
+                }
 
 
-            //Formating Authorization Entities   [autorizacao]
-            var autorizacao0 = summary[3].split(":");
-            var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
+                //Formating Authorization Entities   [autorizacao]
+                var autorizacao0 = summary[3].split(":");
+                var autorizacao = autorizacao0[1].replaceAt(0, "").replace(/,/gi, ", ")
 
-            //Formating Participation Entities   [participacao]
-            var participacao0 = summary[4].split(":");
-            var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
+                //Formating Participation Entities   [participacao]
+                var participacao0 = summary[4].split(":");
+                var participacao = participacao0[1].replaceAt(0, "").replace(/,/gi, ", ");
 
-            console.log(numberColaboradores)
-  
+                console.log(numberColaboradores)
+
                 results.innerHTML +=
-                 `<div class="col-lg-6">
+                    `<div class="col-lg-6">
                 <div class="card card-stats">
                 <!-- Card body -->s
             <div class="card-body">
@@ -234,9 +235,31 @@ function getPackagesEvento() {
                     </div>
             </div>
         </div>`
+            })
+        }).catch(error => {
+            console.log(error)
         })
-    }).catch(error => {
-        console.log(error)
+    }
+}
+
+function requestPackage() {
+    var municipio = document.getElementById('toMunicipio').value;
+    var msg = document.getElementById('msg').value;
+
+    fetch('https://environ-back.herokuapp.com/package/sendMail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({ municipio: municipio, msg: msg })
+    }).then(response => {
+        return response.json();
+    }).then(() => {
+        document.getElementById("successMsg").click();
+        window.location.reload();
+    }).catch(() => {
+        document.getElementById("errorMsg").click();
     })
 }
 
@@ -258,7 +281,6 @@ function getPackages() {
     }).then(response => {
         return response.json();
     }).then(result => {
-        console.log(result)
         result.forEach(element => {
             //HTML ID
             var results = document.getElementById("packages")
@@ -383,7 +405,7 @@ function getPackagesByName() {
     }).then(response => {
         return response.json();
     }).then(result => {
-    
+
         //HTML ID
         var results = document.getElementById("packages")
 
@@ -647,3 +669,4 @@ function deletePackage() {
         }
     })
 }
+
