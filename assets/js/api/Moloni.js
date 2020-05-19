@@ -871,16 +871,18 @@ function getAllAcceptedEvents() {
                     "<ul class='list-group list-group-flush'>" +
                     "<li class='list-group-item'>" + tipo + "</li>" +
                     "<li class='list-group-item'><b>" + element.properties[4].value + " participantes" + "</b></li>" +
-                    "<li class='list-group-item'>Ínicio: " + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
-                    "<li class='list-group-item'>Local: " + element.properties[8].value + "</li>" +
+                    "<li class='list-group-item'>" + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
+                    "<li class='list-group-item'>" + element.properties[8].value + "</li>" +
                     "</ul>" +
                     "<div class='card-body'>" +
-                    "<h3 class='card-title mb-3'>Evento: " + element.name + "</h3>" +
-                    "<p class='card-text mb-4'>Descrição: " + element.summary + "</p>" +
+                    "<h3 class='card-title mb-3'>" + element.name + "</h3>" +
+                    "<p class='card-text mb-4'>" + element.summary + "</p>" +
                     " <a href=''class='btn btn-primary'>Mais informações</a>" +
                     "</div></div></div>"
             }
         })
+    }).catch(error => {
+        console.log(error);
     })
 }
 
