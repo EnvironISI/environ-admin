@@ -815,55 +815,55 @@ function getAllAcceptedEvents() {
         response.forEach(element => {
             var tipo;
             var image;
-            if (element.properties[9].value === 'manifestacao') {
+            if (element.properties[11].value === 'manifestacao') {
                 tipo = 'Manifestação'
                 image = "../../assets/img/default/manifestation.jpg"
             }
-            if (element.properties[9].value === 'limpeza') {
+            if (element.properties[11].value === 'limpeza') {
                 tipo = 'Limpeza'
                 image = "../../assets/img/default/limpeza.jpg"
             }
-            if (element.properties[9].value === 'plantacao') {
+            if (element.properties[11].value === 'plantacao') {
                 tipo = 'Plantação'
                 image = "../../assets/img/default/planting.jpg"
             }
-            if (element.properties[9].value === 'palestra') {
+            if (element.properties[11].value === 'palestra') {
                 tipo = 'Palestra'
                 image = "../../assets/img/default/palestra.jpg"
             }
-            if (element.properties[9].value === 'congresso') {
+            if (element.properties[11].value === 'congresso') {
                 tipo = 'Congresso'
                 image = "../../assets/img/default/congresso.jpg"
             }
-            if (element.properties[9].value === 'formacao') {
+            if (element.properties[11].value === 'formacao') {
                 tipo = 'Formação'
                 image = "../../assets/img/default/formation.jpg"
             }
-            if (element.properties[9].value === 'curso') {
+            if (element.properties[11].value === 'curso') {
                 tipo = 'Curso'
                 image = "../../assets/img/default/limpeza.jpeg"
             }
-            if (element.properties[9].value === 'workshop') {
+            if (element.properties[11].value === 'workshop') {
                 tipo = 'Workshop'
                 image = "../../assets/img/default/workshop.jpg"
             }
-            if (element.properties[9].value === 'acao') {
+            if (element.properties[11].value === 'acao') {
                 tipo = 'Ação'
                 image = "../../assets/img/default/acao.jpg"
             }
-            if (element.properties[9].value === 'feira') {
+            if (element.properties[11].value === 'feira') {
                 tipo = 'Feira'
                 image = "../../assets/img/default/feira.jpg"
             }
-            if (element.properties[9].value === 'seminario') {
+            if (element.properties[11].value === 'seminario') {
                 tipo = 'Seminário'
                 image = "../../assets/img/default/seminario.jpg"
             }
-            if (element.properties[9].value === 'outro') {
+            if (element.properties[11].value === 'outro') {
                 tipo = 'Outro'
                 image = "../../assets/img/default/outro.jpg"
             }
-            if (element.properties[0].value === 'Aceite') {
+            if (element.properties[11].value === 'Aceite') {
                 results.innerHTML +=
                     "<div class='col-lg-3'>" +
                     "<div class='card'>" +
@@ -871,12 +871,12 @@ function getAllAcceptedEvents() {
                     "<ul class='list-group list-group-flush'>" +
                     "<li class='list-group-item'>" + tipo + "</li>" +
                     "<li class='list-group-item'><b>" + element.properties[4].value + " participantes" + "</b></li>" +
-                    "<li class='list-group-item'>" + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
-                    "<li class='list-group-item'>" + element.properties[8].value + "</li>" +
+                    "<li class='list-group-item'>Ínicio: " + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
+                    "<li class='list-group-item'>Local: " + element.properties[8].value + "</li>" +
                     "</ul>" +
                     "<div class='card-body'>" +
-                    "<h3 class='card-title mb-3'>" + element.name + "</h3>" +
-                    "<p class='card-text mb-4'>" + element.summary + "</p>" +
+                    "<h3 class='card-title mb-3'>Evento: " + element.name + "</h3>" +
+                    "<p class='card-text mb-4'>Descrição: " + element.summary + "</p>" +
                     " <a href=''class='btn btn-primary'>Mais informações</a>" +
                     "</div></div></div>"
             }
