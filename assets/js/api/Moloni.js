@@ -863,7 +863,7 @@ function getAllAcceptedEvents() {
                 tipo = 'Outro'
                 image = "../../assets/img/default/outro.jpg"
             }
-            if (element.properties[11].value === 'Aceite') {
+            if (element.properties[0].value === 'Aceite') {
                 results.innerHTML +=
                     "<div class='col-lg-3'>" +
                     "<div class='card'>" +
@@ -871,8 +871,8 @@ function getAllAcceptedEvents() {
                     "<ul class='list-group list-group-flush'>" +
                     "<li class='list-group-item'>" + tipo + "</li>" +
                     "<li class='list-group-item'><b>" + element.properties[4].value + " participantes" + "</b></li>" +
-                    "<li class='list-group-item'>" + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
-                    "<li class='list-group-item'>" + element.properties[8].value + "</li>" +
+                    "<li class='list-group-item'>Ínicio: " + element.properties[5].value.replace("&#x2F;", "/") + "</li>" +
+                    "<li class='list-group-item'>Local: " + element.properties[8].value + "</li>" +
                     "</ul>" +
                     "<div class='card-body'>" +
                     "<h3 class='card-title mb-3'>" + element.name + "</h3>" +
