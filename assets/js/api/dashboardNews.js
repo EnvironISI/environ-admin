@@ -1,8 +1,13 @@
 var info;
+var date = new Date;
+date.setDate(date.getDate() - 15);
+var ano = date.getFullYear().toString(),
+    mes = ((date.getMonth() + 1) < 10) ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1).toString(),
+    dia = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate().toString();
 var url =
     "https://newsapi.org/v2/everything?" +
     "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution" +
-    "from=2020-05-15&" +
+    "from=" + ano + "-" + mes + "-" + dia + "&" +
     "pageSize=20&" +
     "sortBy=popularity&" +
     "apiKey=1602c707c35b423f946e6f8c60b76dde";
