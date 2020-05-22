@@ -1,6 +1,6 @@
 var info;
 var date = new Date;
-date.setDate(date.getDate() - 15);
+date.setDate(date.getDate() - 7);
 var ano = date.getFullYear().toString(),
     mes = ((date.getMonth() + 1) < 10) ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1).toString(),
     dia = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate().toString();
