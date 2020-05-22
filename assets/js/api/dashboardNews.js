@@ -2,7 +2,7 @@ var info;
 var url =
     "https://newsapi.org/v2/everything?" +
     "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution" +
-    "from=2020-05-01&" +
+    "from=2020-05-15&" +
     "pageSize=20&" +
     "sortBy=popularity&" +
     "apiKey=1602c707c35b423f946e6f8c60b76dde";
