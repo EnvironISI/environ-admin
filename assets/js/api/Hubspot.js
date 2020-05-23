@@ -317,8 +317,7 @@ function debug() {
     }).then(result => {
         var user = JSON.stringify(result.user);
         sessionStorage.setItem("user", user);
-        window.location.replace("../../../pages/" + result.user.role + "/dashboard.html");
-
+        
         messaging.requestPermission().then(function () {
             console.log('Have permission');
             return messaging.getToken();
@@ -331,12 +330,15 @@ function debug() {
                 },
                 credentials: 'include',
                 body: JSON.stringify({ notiToken: token })
+            }).then(() => {
+                localStorage.setItem('notiToken', token);
+                window.location.replace("../../../pages/" + result.user.role + "/dashboard.html");
             })
-            localStorage.setItem('notiToken', token);
+            
         }).catch(error => {
             console.log(error);
         })
-        
+
     }).catch(error => {
         console.log(error)
         window.location.assign("../../pages/all/login.html");
