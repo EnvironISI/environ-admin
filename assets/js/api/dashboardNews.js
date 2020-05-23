@@ -6,7 +6,7 @@ var ano = date.getFullYear().toString(),
     dia = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate().toString();
 var url =
     "https://newsapi.org/v2/everything?" +
-    "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution" +
+    "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution&" +
     "from=" + ano + "-" + mes + "-" + dia + "&" +
     "pageSize=20&" +
     "sortBy=popularity&" +

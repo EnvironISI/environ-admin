@@ -6,12 +6,12 @@ var ano = date.getFullYear().toString(),
     dia = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate().toString();
 function news() {
     var url =
-        "https://newsapi.org/v2/everything?" +
-        "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution" +
-        "from="+ ano +"-"+ mes +"-"+ dia +"&" +
-        "pageSize=20&" +
-        "sortBy=popularity&" +
-        "apiKey=1602c707c35b423f946e6f8c60b76dde";
+    "https://newsapi.org/v2/everything?" +
+    "q=Environment%20OR%20Preservation%20OR%20Cleaning%20forests%20OR%20Pollution&" +
+    "from=" + ano + "-" + mes + "-" + dia + "&" +
+    "pageSize=20&" +
+    "sortBy=popularity&" +
+    "apiKey=1602c707c35b423f946e6f8c60b76dde";
 
     var req = new Request(url);
     fetch(req)
