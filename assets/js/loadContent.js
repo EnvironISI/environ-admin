@@ -29,6 +29,25 @@ if (window.location.toString().includes("dashboard")) {
     if (window.location.toString().includes("camara") || window.location.toString().includes("empresa")) {
         document.getElementById("contentQRCode").src = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + fillUser.uid;
     }
+
+    messaging.requestPermission().then(function () {
+        console.log('Have permission');
+        return messaging.getToken();
+    }).then(function (token) {
+        console.log(token)
+        fetch('https://environ-back.herokuapp.com/notification/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({ notiToken: token })
+        })
+        localStorage.setItem('notiToken', token);
+    }).catch(error => {
+        console.log(error);
+    })
+
 }
 else if (window.location.toString().includes("profile")) {
     setUserInfo();
@@ -77,7 +96,9 @@ else if (window.location.toString().includes("weather")) {
 else if (window.location.toString().includes("news")) {
     news();
 }
-
+else if (window.location.toString().includes("notifications")) {
+    getAllNotifications();
+}
 window.onload = function () {
     $('.preloader').fadeOut(500);
 }

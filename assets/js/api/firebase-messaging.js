@@ -14,24 +14,6 @@ firebase.initializeApp(firebaseConfig);
 
 const messaging = firebase.messaging();
 
-messaging.requestPermission().then(function () {
-    console.log('Have permission');
-    return messaging.getToken();
-}).then(function (token) {
-    console.log(token)
-    fetch('https://environ-back.herokuapp.com/notification/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify({ notiToken: token })
-    })
-    localStorage.setItem('notiToken', token);
-}).catch(error => {
-    console.log(error);
-})
-
 messaging.onTokenRefresh(() => {
     messaging.getToken().then((refreshedToken) => {
         fetch('https://environ-back.herokuapp.com/notification/token', {
