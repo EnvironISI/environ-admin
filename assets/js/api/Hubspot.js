@@ -318,6 +318,25 @@ function debug() {
         var user = JSON.stringify(result.user);
         sessionStorage.setItem("user", user);
         window.location.replace("../../../pages/" + result.user.role + "/dashboard.html");
+
+        messaging.requestPermission().then(function () {
+            console.log('Have permission');
+            return messaging.getToken();
+        }).then(function (token) {
+            console.log(token)
+            fetch('https://environ-back.herokuapp.com/notification/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify({ notiToken: token })
+            })
+            localStorage.setItem('notiToken', token);
+        }).catch(error => {
+            console.log(error);
+        })
+        
     }).catch(error => {
         console.log(error)
         window.location.assign("../../pages/all/login.html");
