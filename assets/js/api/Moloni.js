@@ -57,9 +57,9 @@ async function requestEvent() {
         console.log(result)
         if (result.status == 200) {
             document.getElementById('eventocriado').click();
-            // setTimeout(function () {
-            //     location.reload();
-            // }, 2000);
+            setTimeout(function () {
+                 location.reload();
+            }, 2000);
         } else {
             document.getElementById('eventonaocriado').click();
             setTimeout(function () {
