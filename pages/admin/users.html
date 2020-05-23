@@ -246,6 +246,7 @@
               <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 <i class="ni ni-bell-55"></i>
+                <span class="notif notif-red" id="countNoti"></span>
               </a>
               <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
                 <!-- Dropdown header -->
@@ -256,7 +257,7 @@
 
                 </div>
                 <!-- View all -->
-                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
+                <a href="../../pages/all/notifications.html" class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -449,6 +450,13 @@
   <script src="../../assets/js/api/Hubspot.js"></script>
   <script src="../../assets/js/darkmode.js"></script>
   <script src="../../assets/js/permissions.js"></script>
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-messaging.js"></script>
+  <script src="../../assets/js/api/firebase.js"></script>
+  <script src="../../assets/js/api/firebase-messaging.js"></script>
 
   <script src="../../assets/js/loadContent.js"></script>
 </body>

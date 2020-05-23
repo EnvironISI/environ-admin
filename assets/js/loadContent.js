@@ -77,7 +77,9 @@ else if (window.location.toString().includes("weather")) {
 else if (window.location.toString().includes("news")) {
     news();
 }
-
+else if (window.location.toString().includes("notifications")) {
+    getAllNotifications();
+}
 window.onload = function () {
     $('.preloader').fadeOut(500);
 }

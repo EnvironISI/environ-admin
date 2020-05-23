@@ -5574,6 +5574,27 @@ input[type='button'].btn-block
     flex-wrap: wrap;
 }
 
+.notif {
+    position: relative; 
+    top: -10px; 
+    left: -13px; 
+    border: 1px solid black; 
+    border-radius: 50%;
+    
+    font-size: 66%;
+    font-weight: 600;
+    line-height: 1;
+
+    display: inline-block;
+
+    padding: .10rem .20rem;
+}
+
+.notif-red{
+    color: #fff;
+    background-color: #DC143C;
+}
+
 .nav-link
 {
     display: block;
