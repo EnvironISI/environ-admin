@@ -4,19 +4,20 @@ var fileTagPacote = document.getElementById("filetagPacote"),
 function changePreview() {
     if (fileTagPacote != null) {
         fileTagPacote.addEventListener("change", function () {
-            editPhoto(this);
+            editPhotoJasmin(this);
         });
     }
 }
 
 
 //Get photo URL with Storage Firebase
-function editPhoto(input) {
+function editPhotoJasmin(input) {
     var reader;
     if (input.files && input.files[0]) {
         reader = new FileReader();
         reader.onload = function (e) {
             helo.setAttribute('src', e.target.result);
+            console.log(e.target.result)
             document.getElementById("escondido").style.display = "inline";
         }
         reader.readAsDataURL(input.files[0]);
@@ -283,6 +284,7 @@ function getPackages() {
     }).then(result => {
         result.forEach(element => {
             //HTML ID
+            console.log(element)
             var results = document.getElementById("packages")
 
             //Function to replace at certain string index
@@ -405,7 +407,7 @@ function getPackagesByName() {
     }).then(response => {
         return response.json();
     }).then(result => {
-
+        console.log(results)
         //HTML ID
         var results = document.getElementById("packages")
 

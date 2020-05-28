@@ -775,7 +775,7 @@ function apagarEventoAdmin() {
             }).then(result => {
                 console.log(result);
             }).catch(error => {
-                console.log(error)
+                console.log(error);
             })
             swalWithBootstrapButtons.fire(
                 'Evento eliminado!',
