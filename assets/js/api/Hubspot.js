@@ -103,7 +103,7 @@ async function login() {
         }
         return response.json()
     })
-        .then((data) => {
+        .then(() => {
             debug();
         }).catch(error => {
             document.getElementById('loginButton').innerHTML = `<button onclick="login()" type="button" class="btn btn-primary my-4">
@@ -301,7 +301,16 @@ async function atualizarConta() {
     }).then(response => {
         return response.clone().json();
     }).then(result => {
-        console.log(result.msg);
+        fetch('https://environ-back.herokuapp.com/user', {
+            credentials: 'include'
+        }).then(resp => {
+            return resp.json();
+        }).then(result => {
+            sessionStorage.removeItem("user");
+            var user = JSON.stringify(result.user);
+            sessionStorage.setItem("user", user);
+            window.location.reload();
+        })
     }).catch(error => {
         console.log(error)
     })
@@ -663,6 +672,9 @@ function blockUnblock() {
         document.getElementById("filetag").disabled = false
         document.getElementById("atualizarConta").disabled = false
         document.getElementById("apagarConta").disabled = false
+        document.getElementById("popUpEmail").classList.remove("disabled");
+        document.getElementById("popUpTel").classList.remove("disabled");
+        document.getElementById("popUpPass").classList.remove("disabled");
     } else {
         document.getElementById("blockUnblock").innerHTML = "Desbloquear configurações";
         document.getElementById("blockUnblock").className = "text-white btn btn-sm btn-success"
@@ -675,6 +687,9 @@ function blockUnblock() {
         document.getElementById("filetag").disabled = true
         document.getElementById("atualizarConta").disabled = true
         document.getElementById("apagarConta").disabled = true
+        document.getElementById("popUpEmail").classList.add("disabled");
+        document.getElementById("popUpTel").classList.add("disabled");
+        document.getElementById("popUpPass").classList.add("disabled");
     }
 
     function isOdd(n) {
