@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
-
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Hugo Carvalho">
@@ -21,6 +20,7 @@
     <link rel="apple-touch-icon" href="frontoffice/images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="./assets/img/brand/favicon.ico" />
     <!-- Plugin-CSS -->
+    
     <link rel="stylesheet" href="frontoffice/css/bootstrap.min.css">
     <link rel="stylesheet" href="frontoffice/css/owl.carousel.min.css">
     <link rel="stylesheet" href="frontoffice/css/linearicons.css">
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="frontoffice/style.css">
     <link rel="stylesheet" href="frontoffice/css/responsive.css">
     <script src="frontoffice/js/vendor/modernizr-2.8.3.min.js"></script>
+    
     <!--[if lt IE 9]>
         <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,6 +40,9 @@
 </head>
 
 <body data-spy="scroll" data-target=".mainmenu-area">
+    <script
+    src="https://www.paypal.com/sdk/js?client-id=Ac0bw_Ep8sAuZqawePnkvTKeW-wCfIudA-giICOgp-y7o-JG9MCEBJ-X_6zGLxvWNjcpcxRRo5rGSLsT" currency="EUR"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+  </script>
     <!-- Preloader-content -->
     <div class="preloader">
         <?xml version="1.0" encoding="utf-8"?>
@@ -343,6 +347,46 @@
     </section>
     <!--Gallery-Area-End-->
     <!--Questions-Area -->
+    <section class="section-padding price-area" id="price_page">
+        <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-xs-12 justify-content-center">
+        <div class="page-title text-center">
+        <h5 class="title">Doações</h5>
+        <h3 class="dark-color">Podes contribuir para um mundo mais consciente</h3>
+        <div class="space-60"></div>
+        </div>
+        </div>
+        </div>
+        <div class="row justify-content-center">
+        <div class="col-xs-12 col-sm-4" style="float: none; margin: 0 auto;">
+        <div class="price-box">
+        <div class="price-header">
+        <div class="price-icon">
+        <span class="lnr lnr-rocket"></span>
+        </div>
+        <h4 class="upper">Faz-nos voar</h4>
+        </div>
+        <div class="price-body">
+        <ul>
+        <li>Apoia a nossa causa</li>
+        <li>Promove o ambiente</li>
+        <li>O ambiente precisa de ti</li>
+        </ul>
+        </div>
+        <div class="price-rate">
+        <sup>€</sup><span class="rate"></span>
+        <input style="border-style: none; text-align: center" for="email" class="control" placeholder="Insira a quantia" required="required" id="amount_number" name="EMAIL">
+        </div>
+        <div id="paypal-button-container" class="price-footer">
+        <!-- <a href="#" class="bttn-white">Doar</a> -->
+        </div>
+        </div>
+        <div class="space-30 hidden visible-xs"></div>
+        </div>
+        </div>
+        </div>
+        </section>
     <section id="questions_page" class="questions-area section-padding">
         <div class="container">
             <div class="row">
@@ -504,6 +548,11 @@
             </div>
         </div>
         <!-- Footer-Bootom-End -->
+        <button style="display: none;" id="transactionCompleted" class="btn btn-success" data-toggle="notify"
+        data-message="Transação completa" data-title="Obrigado por apoiar a nossa causa!"
+        data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">
+        Warning
+      </button>
     </footer>
     <!-- Footer-Area-End -->
     <!--Vendor-JS-->
@@ -519,6 +568,28 @@
     <script src="frontoffice/js/wow.min.js"></script>
     <!--Main-active-JS-->
     <script src="frontoffice/js/main.js"></script>
+      <script>
+        paypal.Buttons({
+          createOrder: function(data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: document.getElementById("amount_number").value
+                }
+              }]
+            });
+          },
+          onApprove: function(data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function(details) {
+              // This function shows a transaction success message to your buyer.
+              document.getElementById("amount_number").value = 'Obrigado '+ details.payer.name.given_name;
+            });
+          }
+        }).render('#paypal-button-container');
+        //This function displays Smart Payment Buttons on your web page.
+      </script>
     <!-- <script type='text/javascript' data-cfasync='false'>
         window.purechatApi = {
             l: [],
