@@ -7,7 +7,7 @@
     transition:opacity .3s,visibility .3s;
     visibility:hidden;
     width:100%;
-    z-index: 9900;
+    z-index: 1060;
 }
 .shepherd-enabled.shepherd-element{
     opacity:1;visibility:visible

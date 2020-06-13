@@ -894,7 +894,10 @@ function getUserEvents() {
         return result.json();
     }).then(response => {
         var array = []
-        console.log(response)
+        if(localStorage.getItem('nrEvents')){
+            localStorage.removeItem('nrEvents');
+        }
+        localStorage.setItem('nrEvents', response.length);
         response.forEach(element => {
             var obj = [];
 
@@ -989,8 +992,6 @@ function getUserEvents() {
             }
             array.push(obj);
         });
-        console.log(array)
-        localStorage.setItem('nrEvents', array.length);
         var table = $('#eventosEnviron').DataTable({
             data: array,
             language: {

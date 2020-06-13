@@ -222,150 +222,159 @@ function empresaTourDashboard() {
 
 //EMPRESA TOUR EVENTOS
 function empresaTourEvents() {
-    if (localStorage.getItem('nrEvents') === "0") {
-
-        //STEP2
-        tour.addStep({
-            title: 'Tutorial: Eventos',
-            text: `<b>Passo 2</b>: Esta é a sua Lista de Eventos!`,
-            attachTo: {
-                element: '.step2',
-                on: 'bottom'
-            },
-            buttons: [
-                {
-                    action() {
-                        return this.next();
-                    },
-                    text: 'Começar!'
-                }
-            ],
-            id: 'step2_empresa'
-        });
-
-        //STEP 2.1
-        tour.addStep({
-            title: 'Tutorial: Listar Eventos!',
-            text: `<b>Passo 2.1</b>: Ainda não tem nenhum evento! <br> Vá em <b>Eventos</b> > <b>Registar Eventos</b>.`,
-            attachTo: {
-                element: '#tbody',
-                on: 'top'
-            },
-            buttons: [
-                {
-                    action() {
-                        return this.back();
-                    },
-                    classes: 'shepherd-button-secondary',
-                    text: 'Anterior'
+    fetch('https://environ-back.herokuapp.com/event/user', {
+        credentials: 'include'
+    }).then(result => {
+        return result.json();
+    }).then(response => {
+        console.log(response)
+        if (response.length === 0) {
+            //STEP2
+            tour.addStep({
+                title: 'Tutorial: Eventos',
+                text: `<b>Passo 2</b>: Esta é a sua Lista de Eventos!`,
+                attachTo: {
+                    element: '.step2',
+                    on: 'bottom'
                 },
-                {
-                    action() {
-                        document.getElementById('clickEventos').click();
-                        return this.next();
-                    },
-                    text: 'Avançar'
-                }
-            ],
-            id: 'step2.1_empresa'
-        });
+                buttons: [
+                    {
+                        action() {
+                            return this.next();
+                        },
+                        text: 'Começar!'
+                    }
+                ],
+                id: 'step2_empresa'
+            });
 
-        //STEP 2.2
-        tour.addStep({
-            title: 'Tutorial: Listar Eventos!',
-            text: `<b>Passo 2.2</b>: Clique aqui`,
-            attachTo: {
-                element: '.step3',
-                on: 'right'
-            },
-            id: 'step2.2_empresa'
-        });
-    }
-    else {
-        //STEP 2.1
-        tour.addStep({
-            title: 'Tutorial: Listar Eventos',
-            text: `<b>Passo 2.1</b>: Na Lista de Eventos, você consegue gerir todos os eventos que registou. 
+            //STEP 2.1
+            tour.addStep({
+                title: 'Tutorial: Listar Eventos!',
+                text: `<b>Passo 2.1</b>: Ainda não tem nenhum evento! <br> Vá em <b>Eventos</b> > <b>Registar Eventos</b>.`,
+                attachTo: {
+                    element: '#tbody',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        action() {
+                            return this.back();
+                        },
+                        classes: 'shepherd-button-secondary',
+                        text: 'Anterior'
+                    },
+                    {
+                        action() {
+                            document.getElementById('clickEventos').click();
+                            return this.next();
+                        },
+                        text: 'Avançar'
+                    }
+                ],
+                id: 'step2.1_empresa'
+            });
+
+            //STEP 2.2
+            tour.addStep({
+                title: 'Tutorial: Listar Eventos!',
+                text: `<b>Passo 2.2</b>: Clique aqui`,
+                attachTo: {
+                    element: '.step3',
+                    on: 'right'
+                },
+                id: 'step2.2_empresa'
+            });
+        }
+        else {
+            //STEP 2.1
+            tour.addStep({
+                title: 'Tutorial: Listar Eventos',
+                text: `<b>Passo 2.1</b>: Na Lista de Eventos, você consegue gerir todos os eventos que registou. 
             <br> As informações, o seu estado e os detalhes!`,
-            attachTo: {
-                element: '#tbody',
-                on: 'top'
-            },
-            buttons: [
-                {
-                    action() {
-                        return this.back();
-                    },
-                    classes: 'shepherd-button-secondary',
-                    text: 'Anterior'
+                attachTo: {
+                    element: '#tbody',
+                    on: 'top'
                 },
-                {
-                    action() {
-                        document.getElementById('clickEventos').click();
-                        return this.next();
+                buttons: [
+                    {
+                        action() {
+                            return this.back();
+                        },
+                        classes: 'shepherd-button-secondary',
+                        text: 'Anterior'
                     },
-                    text: 'Avançar'
-                }
-            ],
-            id: 'step2.1_alternative_empresa'
-        });
+                    {
+                        action() {
+                            document.getElementById('clickEventos').click();
+                            return this.next();
+                        },
+                        text: 'Avançar'
+                    }
+                ],
+                id: 'step2.1_alternative_empresa'
+            });
 
-        //STEP 2.2
-        tour.addStep({
-            title: 'Tutorial: Listar Eventos',
-            text: `<b>Passo 2.2</b>: Este é o estado do seu evento. 
+            //STEP 2.2
+            tour.addStep({
+                title: 'Tutorial: Listar Eventos',
+                text: `<b>Passo 2.2</b>: Este é o estado do seu evento. 
             <br>Caso o estado do evento estiver:
             <ul>
                 <li><b>Suspenso</b>: Significa que está em fase de aceitação por parte do Administrador da Environ.</li>
                 <li><b>Pendente</b>: Significa que está em fase de aceitação por parte da Camara Municipial onde o evento irá decorrer.</li>
                 <li><b>Aceite</b>: Significa que o seu evento foi aceite e já pode fazer <b>Download</b> da autorização.</li>
             </ul>`,
-            attachTo: {
-                element: '#estado',
-                on: 'top'
-            },
-            buttons: [
-                {
-                    action() {
-                        return this.back();
-                    },
-                    classes: 'shepherd-button-secondary',
-                    text: 'Anterior'
+                attachTo: {
+                    element: '#estado',
+                    on: 'top'
                 },
-                {
-                    action() {
-                        return this.next();
+                buttons: [
+                    {
+                        action() {
+                            return this.back();
+                        },
+                        classes: 'shepherd-button-secondary',
+                        text: 'Anterior'
                     },
-                    text: 'Avançar'
-                }
-            ],
-            id: 'step2.2_alternative_empresa'
-        });
+                    {
+                        action() {
+                            return this.next();
+                        },
+                        text: 'Avançar'
+                    }
+                ],
+                id: 'step2.2_alternative_empresa'
+            });
 
-        //STEP 4
-        tour.addStep({
-            title: 'Tutorial: Listar Eventos',
-            text: `<b>Passo 4</b>: Nos detalhes, tem a opção de ver as informações detalhadas do evento e de fazer Scan do Código QR.
+            //STEP 4
+            tour.addStep({
+                title: 'Tutorial: Listar Eventos',
+                text: `<b>Passo 4</b>: Nos detalhes, tem a opção de ver as informações detalhadas do evento e de fazer Scan do Código QR.
             <br> Na opção das informações detalhadas, se o Estado estiver:
             <ul>
                 <li><b>Aceite</b>: É possível fazer o <b>Download</b> da autorização.</li>
             </ul>`,
-            attachTo: {
-                element: '#detalhes',
-                on: 'top'
-            },
-            buttons: [
-                {
-                    action() {
-                        return this.next();
-                    },
-                    text: 'Finalizar Tutorial!'
-                }
-            ],
-            id: 'step4_alternative_empresa'
-        });
+                attachTo: {
+                    element: '#detalhes',
+                    on: 'top'
+                },
+                buttons: [
+                    {
+                        action() {
+                            cancelTutorial(
+                                
+                            );
+                            return this.next();
+                        },
+                        text: 'Finalizar Tutorial!'
+                    }
+                ],
+                id: 'step4_alternative_empresa'
+            });
 
-    }
+        }
+    })
 }
 
 //EMPRESA TOUR REGISTO EVENTOS
@@ -631,15 +640,6 @@ function empresaTourRegisterEvents() {
             element: '#btnSubmeter',
             on: 'right'
         },
-        buttons: [
-            {
-                action() {
-                    cancelTutorial();
-                    return this.next();
-                },
-                text: 'Fim do Tutorial!'
-            }
-        ],
         id: 'step3.10_empresa'
     });
 
