@@ -309,6 +309,7 @@ async function atualizarConta() {
             sessionStorage.removeItem("user");
             var user = JSON.stringify(result.user);
             sessionStorage.setItem("user", user);
+            console.log(user);
             window.location.reload();
         })
     }).catch(error => {
@@ -326,7 +327,7 @@ function debug() {
     }).then(result => {
         var user = JSON.stringify(result.user);
         sessionStorage.setItem("user", user);
-        
+
         messaging.requestPermission().then(function () {
             console.log('Have permission');
             return messaging.getToken();
@@ -343,7 +344,7 @@ function debug() {
                 localStorage.setItem('notiToken', token);
                 window.location.replace("../../../pages/" + result.user.role + "/dashboard.html");
             })
-            
+
         }).catch(error => {
             console.log(error);
         })
