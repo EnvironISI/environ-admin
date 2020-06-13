@@ -17,6 +17,7 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../../assets/css/argon.css?v=1.1.0" type="text/css">
+  <link rel="stylesheet" href="../../assets/css/shepherd.css" type="text/css">
   <link rel="stylesheet" href="../../assets/css/darkmodeinput.css" type="text/css">
 </head>
 
@@ -251,7 +252,8 @@
 
                 </div>
                 <!-- View all -->
-                <a href="../../pages/all/notifications.html" class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
+                <a href="../../pages/all/notifications.html"
+                  class="dropdown-item text-center text-primary font-weight-bold py-3">Ver todas</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -291,7 +293,8 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-primary d-inline-block mb-0"><i class="fas fa-calendar-alt"></i> Evento</h6>
+              <h6 class="h2 text-primary d-inline-block mb-0 step4" style="padding-bottom: 10px;"><i
+                  class="fas fa-calendar-alt"></i> Registar Evento</h6>
             </div>
           </div>
         </div>
@@ -332,7 +335,8 @@
               <div class="col-md-3">
                 <div class="form-group">
                   <label class="form-control-label" for="example3cols1Input">Nome</label>
-                  <input id="name" type="text" class="form-control" placeholder="Nome do evento">
+                  <input id="name" type="text" class="form-control" placeholder="Nome do evento"
+                    class="padding-bottom: 10px">
                 </div>
               </div>
               <div class="col-md-3">
@@ -402,7 +406,7 @@
                     placeholder="Utilize a secção de pacotes ao lado">
                 </div>
               </div>
-              <button type="button" class="btn btn-google-plus btn-icon-only rounded-circle"
+              <button type="button" class="btn btn-google-plus btn-icon-only rounded-circle" id="btnPackage"
                 onclick="getPackagesEvento()" data-toggle="modal" data-target="#modal-notification">
                 <span class="btn-inner--icon"><i class="fas fa-archive"></i></span>
               </button>
@@ -412,7 +416,7 @@
                   class="badge badge-pill badge-danger">detalhada</span></label>
               <textarea class="form-control" id="resumo" rows="3"></textarea>
             </div>
-            <button class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
+            <button id="btnSubmeter" class="btn btn-primary" type="button" onclick="requestEvent()">Submeter</button>
           </form>
         </div>
       </div>
@@ -513,7 +517,8 @@
         <div class="modal-footer">
           <button id="fecharModalContact" type="button" class="btn btn-link text-white ml-auto"
             data-dismiss="modal">Fechar</button>
-          <button onclick="requestPackage()" id="btnEnviar" type='button' class='btn btn-primary' disabled>Enviar mensagem</button>
+          <button onclick="requestPackage()" id="btnEnviar" type='button' class='btn btn-primary' disabled>Enviar
+            mensagem</button>
         </div>
       </div>
     </div>
@@ -543,6 +548,8 @@
     document.getElementById('fim').value = today;
   </script>
   <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="../../assets/js/shepherd.js"></script>
+  <script src="../../assets/js/shepherd.min.js"></script>
   <script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
   <script src="../../assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
   <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -571,6 +578,21 @@
   <script src="../../assets/js/api/firebase-messaging.js"></script>
 
   <script src="../../assets/js/loadContent.js"></script>
+
+  <script src="../../assets/js/startTour.js"></script>
+
+  <script>
+    empresaTourRegisterEvents();
+    setTimeout(function () {
+      if (fillUser.newUser == 1) {
+        tour.start();
+        tour.on('cancel', () => {
+          cancelTutorial();
+        })
+      }
+    }, 2000);
+  </script>
+
 </body>
 
 </html>

@@ -58,7 +58,7 @@ async function requestEvent() {
         if (result.status == 200) {
             document.getElementById('eventocriado').click();
             setTimeout(function () {
-                window.location.assign('../../pages/camara/eventos.html');
+                window.location.assign('../../pages/empresa/eventos.html');
             }, 2000);
         } else {
             document.getElementById('eventonaocriado').click();
@@ -990,6 +990,7 @@ function getUserEvents() {
             array.push(obj);
         });
         console.log(array)
+        localStorage.setItem('nrEvents', array.length);
         var table = $('#eventosEnviron').DataTable({
             data: array,
             language: {

@@ -43,7 +43,9 @@ else if (window.location.toString().includes("eventos")) {
         getAllEventsCamara();
         changePreview();
     }
-    else if (window.location.toString().includes("empresa")) getUserEvents();
+    else if (window.location.toString().includes("empresa")) {
+        getUserEvents();
+    };
 }
 else if (window.location.toString().includes("registarEvento")) {
     getGeolocation();
