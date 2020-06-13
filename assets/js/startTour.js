@@ -52,6 +52,7 @@ function empresaTourDashboard() {
         buttons: [
             {
                 action() {
+                    cancelTutorial();
                     return this.hide();
                 },
                 classes: 'shepherd-button-secondary',
@@ -77,13 +78,6 @@ function empresaTourDashboard() {
             on: 'right'
         },
         buttons: [
-            {
-                action() {
-                    return this.hide();
-                },
-                classes: 'shepherd-button-secondary',
-                text: 'Fechar'
-            },
             {
                 action() {
                     return this.next();
@@ -640,6 +634,7 @@ function empresaTourRegisterEvents() {
         buttons: [
             {
                 action() {
+                    cancelTutorial();
                     return this.next();
                 },
                 text: 'Fim do Tutorial!'
